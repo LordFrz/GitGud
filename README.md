@@ -6,7 +6,7 @@ While this will contain feature that can be used for many FPS games, it is desig
 ### _Features_
 
 **Weapon Recoil Reduction**
-- Semi-AUto Rifle
+- Semi-Auto Rifle
 - AK
 - Python
 - Thompson

@@ -57,4 +57,12 @@ Set the time between shots, and how many shots per click. The M92 for example wi
 
 While defualts are optimized for Rust ingame sesitivity of 1, you may set your prefered sesitivity in the GUI and all values will be adjusted accordigly.
 
+
+**GUI Images**
+
+![](https://i.imgur.com/gJwfGlo.png) 
+![](https://i.imgur.com/OzMKfgv.png)
+![](https://i.imgur.com/CNpPQtJ.png)
+![](https://i.imgur.com/gLvgyI0.png)
+
 [Discord](https://discord.gg/Ghq9UcQ)

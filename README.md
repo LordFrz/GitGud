@@ -19,7 +19,7 @@ While this will contain feature that can be used for many FPS games, it is desig
 
 
 
-**Atachments**
+**Attachment**
 - Simple Sight
 - Holosight
 - 4x Scope
@@ -30,7 +30,7 @@ While this will contain feature that can be used for many FPS games, it is desig
 - _Color Slider_
 - _Reticle On/Off Toggle_
 - Sniper Lines
-- Range Distence Lines
+- Range Distance Lines
 - Holo Sight
 - Cross
 - Dot
@@ -43,7 +43,7 @@ While this will contain feature that can be used for many FPS games, it is desig
 
 **Customizable Hotkeys**
 - Recoil Reduction On/Off Toggle
-- Minamiz/Maximize Toggle
+- Minimize/Maximize Toggle
 - Suicide Command
 - Burst Mode Toggle
 - _4 quick chat commands_
@@ -51,11 +51,11 @@ While this will contain feature that can be used for many FPS games, it is desig
 
 **Burst Mode**
 
-Set the time between shots, and how many shots per click. The M92 for example will dump it magazine in 1.2s if configured correctely. (15 shots, at 80ms intervals)
+Set the time between shots, and how many shots per click. The M92, for example, will dump it magazine in 1.2s if configured correctly. (15 shots, at 80ms intervals)
 
-**Supports any sesitivity**
+**Supports any sensitivity**
 
-While defualts are optimized for Rust ingame sesitivity of 1, you may set your prefered sesitivity in the GUI and all values will be adjusted accordigly.
+While defaults are optimized for Rust in-game sensitivity of 1, you may set your preferred sensitivity in the GUI and all values will be adjusted accordingly.
 
 
 **GUI Images**

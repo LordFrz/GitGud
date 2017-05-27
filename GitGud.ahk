@@ -40,12 +40,12 @@ if FileExist("Settings.ini")
 			IniWrite, -49, Settings.ini, RECOIL, Semi-Automatic Rifle (4x Scope) X
 			
 			
-			IniWrite, 1.5, Settings.ini, RECOIL, Thompson (No Sight) Y
-			IniWrite, 1.1, Settings.ini, RECOIL, Thompson (Simple Sight) Y
-			IniWrite, 1.1, Settings.ini, RECOIL, Thompson (Holosight) Y
-			IniWrite, -0.3, Settings.ini, RECOIL, Thompson (No Sight) X
-			IniWrite, -0.2, Settings.ini, RECOIL, Thompson (Simple Sight) X
-			IniWrite, -0.2, Settings.ini, RECOIL, Thompson (Holosight) X
+			IniWrite, 2, Settings.ini, RECOIL, Thompson (No Sight) Y
+			IniWrite, 1, Settings.ini, RECOIL, Thompson (Simple Sight) Y
+			IniWrite, 1, Settings.ini, RECOIL, Thompson (Holosight) Y
+			IniWrite, -1, Settings.ini, RECOIL, Thompson (No Sight) X
+			IniWrite, -1, Settings.ini, RECOIL, Thompson (Simple Sight) X
+			IniWrite, -1, Settings.ini, RECOIL, Thompson (Holosight) X
 			
 			IniWrite, 101, Settings.ini, RECOIL, Python (No Sight) Y
 			IniWrite, 93, Settings.ini, RECOIL, Python (Simple Sight) Y
@@ -128,9 +128,9 @@ if FileExist("Settings.ini")
 			IniWrite, 1, Settings.ini, CROUCHRECOIL, Thompson (No Sight) Y
 			IniWrite, 1, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) Y
 			IniWrite, 1, Settings.ini, CROUCHRECOIL, Thompson (Holosight) Y
-			IniWrite, -0.2, Settings.ini, CROUCHRECOIL, Thompson (No Sight) X
-			IniWrite, -0.2, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) X
-			IniWrite, -0.2, Settings.ini, CROUCHRECOIL, Thompson (Holosight) X
+			IniWrite, -1, Settings.ini, CROUCHRECOIL, Thompson (No Sight) X
+			IniWrite, -1, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) X
+			IniWrite, -1, Settings.ini, CROUCHRECOIL, Thompson (Holosight) X
 			
 			IniWrite, 48, Settings.ini, CROUCHRECOIL, Python (No Sight) Y
 			IniWrite, 54, Settings.ini, CROUCHRECOIL, Python (Simple Sight) Y

@@ -1012,8 +1012,8 @@ Loop {
 	
 	Gui, Submit, NoHide
 	If (MP5A4 = 1) || (SMG = 1) || (Thompson = 1) || (AK = 1){
-		GuiControl,, NoSight, 1
 		GuiControl, Disable, 4xScope
+		GuiControl,, 4xScope, 0
 		}
 	else GuiControl, Enable, 4xScope
 }
@@ -1286,7 +1286,6 @@ Loop
 			mouseXY(moveAmountX,moveAmountY)
 			Sleep, 100
 		}
-Return
 
 SMEKTHairOn:
 	Run, "SMEKTHair.ahk"

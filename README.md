@@ -62,7 +62,7 @@ While defaults are optimized for Rust in-game sensitivity of 1, you may set your
 
 ![](https://i.imgur.com/gJwfGlo.png) 
 ![](https://i.imgur.com/OzMKfgv.png)
-![](https://i.imgur.com/CNpPQtJ.png)
+![](http://i.imgur.com/T4gH7I2.png)
 ![](https://i.imgur.com/gLvgyI0.png)
 
 [Discord](https://discord.gg/Ghq9UcQ)

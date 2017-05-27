@@ -504,19 +504,19 @@ Gui, add, Text, x8 y150 w100 h20, KILL
 Gui, Add, Hotkey, vKillKey x155 y150 w100 h20,%KILLKEY%
 
 Gui, add, Text, x8 y170 w100 h20, CMD1
-Gui, Add, Edit, x55 y170 w100 h20 cBlack vCHAT1, %CHAT1%
+Gui, Add, Edit, x55 y170 w100 h20 vCHAT1, %CHAT1%
 Gui, Add, Hotkey, vChatKey1 x155 y170 w100 h20,%CHATKEY1%
 
 Gui, add, Text, x8 y190 w100 h20, CMD2
-Gui, Add, Edit, x55 y190 w100 h20 cBlack vCHAT2, %CHAT2%
+Gui, Add, Edit, x55 y190 w100 h20 vCHAT2, %CHAT2%
 Gui, Add, Hotkey, vChatKey2 x155 y190 w100 h20,%CHATKEY2%
 
 Gui, add, Text, x8 y210 w100 h20, CMD3
-Gui, Add, Edit, x55 y210 w100 h20 cBlack vCHAT3, %CHAT3%
+Gui, Add, Edit, x55 y210 w100 h20 vCHAT3, %CHAT3%
 Gui, Add, Hotkey, vChatKey3 x155 y210 w100 h20,%CHATKEY3%
 
 Gui, add, Text, x8 y230 w100 h20, CMD4
-Gui, Add, Edit, x55 y230 w100 h20  cBlack vCHAT4, %CHAT4%
+Gui, Add, Edit, x55 y230 w100 h20 vCHAT4, %CHAT4%
 Gui, Add, Hotkey, vChatKey4 x155 y230 w100 h20,%CHATKEY4%
 
 Gui, add, button, x115 y370 w45 h20 gSaveSettings, Save
@@ -1012,8 +1012,8 @@ Loop {
 	
 	Gui, Submit, NoHide
 	If (MP5A4 = 1) || (SMG = 1) || (Thompson = 1) || (AK = 1){
-		GuiControl, Disable, 4xScope
 		GuiControl,, 4xScope, 0
+		GuiControl, Disable, 4xScope
 		}
 	else GuiControl, Enable, 4xScope
 }
@@ -1286,6 +1286,7 @@ Loop
 			mouseXY(moveAmountX,moveAmountY)
 			Sleep, 100
 		}
+Return
 
 SMEKTHairOn:
 	Run, "SMEKTHair.ahk"

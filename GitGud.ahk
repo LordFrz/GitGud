@@ -9,9 +9,9 @@ if FileExist("Settings.ini")
 			FileAppend,`n,Settings.ini
 			
 			;Recoil Values
-			IniWrite, 1.95, Settings.ini, RECOIL, AK (No Sight) Y
-			IniWrite, 1.95, Settings.ini, RECOIL, AK (Simple Sight) Y
-			IniWrite, 1.95, Settings.ini, RECOIL, AK (Holosight) Y
+			IniWrite, 5.5, Settings.ini, RECOIL, AK (No Sight) Y
+			IniWrite, 5.5, Settings.ini, RECOIL, AK (Simple Sight) Y
+			IniWrite, 5.5, Settings.ini, RECOIL, AK (Holosight) Y
 			IniWrite, 0.1, Settings.ini, RECOIL, AK (No Sight) X
 			IniWrite, 0.1, Settings.ini, RECOIL, AK (Simple Sight) X
 			IniWrite, 0.1, Settings.ini, RECOIL, AK (Holosight) X
@@ -43,9 +43,9 @@ if FileExist("Settings.ini")
 			IniWrite, 2, Settings.ini, RECOIL, Thompson (No Sight) Y
 			IniWrite, 1, Settings.ini, RECOIL, Thompson (Simple Sight) Y
 			IniWrite, 1, Settings.ini, RECOIL, Thompson (Holosight) Y
-			IniWrite, -1, Settings.ini, RECOIL, Thompson (No Sight) X
-			IniWrite, -1, Settings.ini, RECOIL, Thompson (Simple Sight) X
-			IniWrite, -1, Settings.ini, RECOIL, Thompson (Holosight) X
+			IniWrite, 0, Settings.ini, RECOIL, Thompson (No Sight) X
+			IniWrite, 0, Settings.ini, RECOIL, Thompson (Simple Sight) X
+			IniWrite, 0, Settings.ini, RECOIL, Thompson (Holosight) X
 			
 			IniWrite, 101, Settings.ini, RECOIL, Python (No Sight) Y
 			IniWrite, 93, Settings.ini, RECOIL, Python (Simple Sight) Y
@@ -94,9 +94,9 @@ if FileExist("Settings.ini")
 			
 ;////////////////////////////////////////CROUCH RECOIL////////////////////////////////////////		
 
-			IniWrite, 0.8, Settings.ini,  CROUCHRECOIL, AK (No Sight) Y
-			IniWrite, 0.8, Settings.ini, CROUCHRECOIL, AK (Simple Sight) Y
-			IniWrite, 0.8, Settings.ini, CROUCHRECOIL, AK (Holosight) Y
+			IniWrite, 3, Settings.ini,  CROUCHRECOIL, AK (No Sight) Y
+			IniWrite, 3, Settings.ini, CROUCHRECOIL, AK (Simple Sight) Y
+			IniWrite, 3, Settings.ini, CROUCHRECOIL, AK (Holosight) Y
 			IniWrite, 0, Settings.ini, CROUCHRECOIL, AK (No Sight) X
 			IniWrite, 0.1, Settings.ini, CROUCHRECOIL, AK (Simple Sight) X
 			IniWrite, 0.1, Settings.ini, CROUCHRECOIL, AK (Holosight) X
@@ -128,9 +128,9 @@ if FileExist("Settings.ini")
 			IniWrite, 1, Settings.ini, CROUCHRECOIL, Thompson (No Sight) Y
 			IniWrite, 1, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) Y
 			IniWrite, 1, Settings.ini, CROUCHRECOIL, Thompson (Holosight) Y
-			IniWrite, -1, Settings.ini, CROUCHRECOIL, Thompson (No Sight) X
-			IniWrite, -1, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) X
-			IniWrite, -1, Settings.ini, CROUCHRECOIL, Thompson (Holosight) X
+			IniWrite, 0, Settings.ini, CROUCHRECOIL, Thompson (No Sight) X
+			IniWrite, 0, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) X
+			IniWrite, 0, Settings.ini, CROUCHRECOIL, Thompson (Holosight) X
 			
 			IniWrite, 48, Settings.ini, CROUCHRECOIL, Python (No Sight) Y
 			IniWrite, 54, Settings.ini, CROUCHRECOIL, Python (Simple Sight) Y
@@ -504,19 +504,19 @@ Gui, add, Text, x8 y150 w100 h20, KILL
 Gui, Add, Hotkey, vKillKey x155 y150 w100 h20,%KILLKEY%
 
 Gui, add, Text, x8 y170 w100 h20, CMD1
-Gui, Add, Edit, x55 y170 w100 h20 vCHAT1, %CHAT1%
+Gui, Add, Edit, x55 y170 w100 h20 vCHAT1 cBlack, %CHAT1%
 Gui, Add, Hotkey, vChatKey1 x155 y170 w100 h20,%CHATKEY1%
 
 Gui, add, Text, x8 y190 w100 h20, CMD2
-Gui, Add, Edit, x55 y190 w100 h20 vCHAT2, %CHAT2%
+Gui, Add, Edit, x55 y190 w100 h20 vCHAT2 cBlack, %CHAT2%
 Gui, Add, Hotkey, vChatKey2 x155 y190 w100 h20,%CHATKEY2%
 
 Gui, add, Text, x8 y210 w100 h20, CMD3
-Gui, Add, Edit, x55 y210 w100 h20 vCHAT3, %CHAT3%
+Gui, Add, Edit, x55 y210 w100 h20 vCHAT3 cBlack, %CHAT3%
 Gui, Add, Hotkey, vChatKey3 x155 y210 w100 h20,%CHATKEY3%
 
 Gui, add, Text, x8 y230 w100 h20, CMD4
-Gui, Add, Edit, x55 y230 w100 h20 vCHAT4, %CHAT4%
+Gui, Add, Edit, x55 y230 w100 h20 vCHAT4 cBlack, %CHAT4%
 Gui, Add, Hotkey, vChatKey4 x155 y230 w100 h20,%CHATKEY4%
 
 Gui, add, button, x115 y370 w45 h20 gSaveSettings, Save
@@ -549,7 +549,7 @@ Gui, Font, s7 c0000
 Gui, add, edit, x15 y270 w70 h20 vSensitivity, %SENSE%
 Gui, add, edit, x15 y90 w70 h20 vBurstSpeed, 90 
 Gui, Font, s7 cRed
-Gui, add, text, x3 y200 w290 h55 Center, Input your RUST Sensitivity below and press Enter.
+Gui, add, text, x3 y200 w290 h55 Center, Input your RUST Sensitivity below and press Enter. Feature is in testing, and values above and below 1 may not be perfect. We have plans to switch to a new mouse move library that will make this much more usefull in the future.
 Gui, Font, s7 c7BF106
 Gui, add, text, x10 y255 w80 h15 Center vSensitivityText, Sensitivity
 Gui, Add, Slider, x5 y135 w200 h20 vRapidFire AltSubmit gRapidFire Range1-15, 1
@@ -730,6 +730,8 @@ Loop {
 
 	if (Thompson = 1) && (NoSight = 1)
 	{
+		if (SENSE <= 1)
+		{
 			moveAmountX = %THNSX%
 			moveAmountX /= %SENSE%
 			moveAmountY = %THNSY%
@@ -738,10 +740,22 @@ Loop {
 			cmoveAmountX /= %SENSE%
 			cmoveAmountY = %cTHNSY%
 			cmoveAmountY /= %SENSE%	
+		}else{
+				moveAmountX = %THNSX%
+				moveAmountX *= %SENSE%
+				moveAmountY = %THNSY%
+				moveAmountY *= %SENSE%
+				cmoveAmountX = %cTHNSX%
+				cmoveAmountX *= %SENSE%
+				cmoveAmountY = %cTHNSY%
+				cmoveAmountY *= %SENSE%	
+			 }
 	}
 
 	if (Thompson = 1) && (SimpleSight = 1)
 	{
+		if (SENSE <= 1)
+		{
 			moveAmountX = %THSSX%
 			moveAmountX /= %SENSE%
 			moveAmountY = %THSSY%
@@ -750,10 +764,22 @@ Loop {
 			cmoveAmountX /= %SENSE%
 			cmoveAmountY = %cTHSSY%
 			cmoveAmountY /= %SENSE%	
+		}else{
+				moveAmountX = %THSSX%
+				moveAmountX *= %SENSE%
+				moveAmountY = %THSSY%
+				moveAmountY *= %SENSE%
+				cmoveAmountX = %cTHSSX%
+				cmoveAmountX *= %SENSE%
+				cmoveAmountY = %cTHSSY%
+				cmoveAmountY *= %SENSE%	
+			 }
 	}
 
 	if (Thompson = 1) && (HoloSight = 1)
 	{
+		if (SENSE <= 1)
+		{
 			moveAmountX = %THHSX%
 			moveAmountX /= %SENSE%
 			moveAmountY = %THHSY%
@@ -762,6 +788,16 @@ Loop {
 			cmoveAmountX /= %SENSE%
 			cmoveAmountY = %cTHHSY%
 			cmoveAmountY /= %SENSE%	
+		}else{
+				moveAmountX = %THHSX%
+				moveAmountX *= %SENSE%
+				moveAmountY = %THHSY%
+				moveAmountY *= %SENSE%
+				cmoveAmountX = %cTHHSX%
+				cmoveAmountX *= %SENSE%
+				cmoveAmountY = %cTHHSY%
+				cmoveAmountY *= %SENSE%	
+			 }
 	}
 
 	if (LR300 = 1) && (NoSight = 1)

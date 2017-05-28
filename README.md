@@ -75,5 +75,5 @@ _DOGE_ - DBdYwDEy8fEpNAjwDHDTuHcntA1dpogh9Q
 
 _BitCoin_ - 1K4zmXYRXhEG3mwfzKp8fq9XkwkNVnL48z
 
-_PayPal_ - paypal.me/smekt
+_PayPal_ - paypal.me/smekt (FrDe Plastics is for somethin else, but its the same account)
 

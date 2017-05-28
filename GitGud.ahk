@@ -730,8 +730,6 @@ Loop {
 
 	if (Thompson = 1) && (NoSight = 1)
 	{
-		if (SENSE <= 1)
-		{
 			moveAmountX = %THNSX%
 			moveAmountX /= %SENSE%
 			moveAmountY = %THNSY%
@@ -740,22 +738,10 @@ Loop {
 			cmoveAmountX /= %SENSE%
 			cmoveAmountY = %cTHNSY%
 			cmoveAmountY /= %SENSE%	
-		}else{
-				moveAmountX = %THNSX%
-				moveAmountX *= %SENSE%
-				moveAmountY = %THNSY%
-				moveAmountY *= %SENSE%
-				cmoveAmountX = %cTHNSX%
-				cmoveAmountX *= %SENSE%
-				cmoveAmountY = %cTHNSY%
-				cmoveAmountY *= %SENSE%	
-			 }
 	}
 
 	if (Thompson = 1) && (SimpleSight = 1)
 	{
-		if (SENSE <= 1)
-		{
 			moveAmountX = %THSSX%
 			moveAmountX /= %SENSE%
 			moveAmountY = %THSSY%
@@ -764,22 +750,10 @@ Loop {
 			cmoveAmountX /= %SENSE%
 			cmoveAmountY = %cTHSSY%
 			cmoveAmountY /= %SENSE%	
-		}else{
-				moveAmountX = %THSSX%
-				moveAmountX *= %SENSE%
-				moveAmountY = %THSSY%
-				moveAmountY *= %SENSE%
-				cmoveAmountX = %cTHSSX%
-				cmoveAmountX *= %SENSE%
-				cmoveAmountY = %cTHSSY%
-				cmoveAmountY *= %SENSE%	
-			 }
 	}
 
 	if (Thompson = 1) && (HoloSight = 1)
 	{
-		if (SENSE <= 1)
-		{
 			moveAmountX = %THHSX%
 			moveAmountX /= %SENSE%
 			moveAmountY = %THHSY%
@@ -788,16 +762,6 @@ Loop {
 			cmoveAmountX /= %SENSE%
 			cmoveAmountY = %cTHHSY%
 			cmoveAmountY /= %SENSE%	
-		}else{
-				moveAmountX = %THHSX%
-				moveAmountX *= %SENSE%
-				moveAmountY = %THHSY%
-				moveAmountY *= %SENSE%
-				cmoveAmountX = %cTHHSX%
-				cmoveAmountX *= %SENSE%
-				cmoveAmountY = %cTHHSY%
-				cmoveAmountY *= %SENSE%	
-			 }
 	}
 
 	if (LR300 = 1) && (NoSight = 1)
@@ -1352,7 +1316,9 @@ CloseScript(Name)
 
 mouseXY(x,y)
 {
-DllCall("mouse_event",int,1,int,x,int,y,uint,0,uint,0)
+	x:= Round(x)
+	y:= Round(y)
+	DllCall("mouse_event",int,1,int,x,int,y,uint,0,uint,0)
 }	
 
 F7::

@@ -57,6 +57,7 @@ Set the time between shots, and how many shots per click. The M92, for example, 
 
 While defaults are optimized for Rust in-game sensitivity of 1, you may set your preferred sensitivity in the GUI and all values will be adjusted accordingly.
 
+## [Discord](https://discord.gg/Ghq9UcQ)
 
 **GUI Images**
 
@@ -65,4 +66,12 @@ While defaults are optimized for Rust in-game sensitivity of 1, you may set your
 ![](http://i.imgur.com/T4gH7I2.png)
 ![](https://i.imgur.com/gLvgyI0.png)
 
-[Discord](https://discord.gg/Ghq9UcQ)
+
+
+
+
+### Donations
+_DOGE_ - DBdYwDEy8fEpNAjwDHDTuHcntA1dpogh9Q
+
+_BitCoin_ - 1K4zmXYRXhEG3mwfzKp8fq9XkwkNVnL48z
+

@@ -5,6 +5,7 @@ SetWorkingDir %A_ScriptDir%
 
 #Include, Gdip.ahk
 
+
 ;-----Gits current reticle values
 IniRead, PIC, Settings.ini, SightSelected, CURRENTSIGHT
 IniRead, RETCOLOR, Settings.ini, ColorSets, RETICLECOLOR
@@ -47,6 +48,7 @@ yy :=  (A_ScreenHeight //2) - (Gdip_GetImageHeight(pBitmap)/2)
 Xr:= 0
 Yr:= 0
 
+
 ;--------Shitty Random way to switch color---------
 ;Gdip_DrawImage(G, pBitmap, xx, yy, Width, Height, 0, 0, Width, Height)
 ;setLoop:= (Width*Height)*10
@@ -65,6 +67,10 @@ Yr:= 0
 	;MsgBox, %tmp%
 ;	Gdip_DrawImage(G, pBitmap, xx, yy, Width, Height, 0, 0, Width, Height)
 ;}
+
+
+
+
 
 ;--------Smooth Slick koolkid way to switch the color----------
 Loop, %Height%
@@ -95,12 +101,40 @@ Gdip_DeleteGraphics(G)
 Gdip_DisposeImage(pBitmap)
 
 ;OnMessage(0x201, "WM_LBUTTONDOWN")  ;to move the gui with mouse
+
+
+
+
+ExitScript("GitGud.ahk")
+
+
 Return
+;Checks is main Script running, if not closes
+ExitScript(Name)
+{
+	Loop
+	{
+		DetectHiddenWindows On
+		SetTitleMatchMode RegEx
+		IfWinExist, i)%Name%.* ahk_class AutoHotkey
+			{
+			
+			}
+		else
+			ExitApp
+			
+		Sleep, 5000
+	}
+}
+
+
+
+
+
 
 WM_LBUTTONDOWN()
 {
 	PostMessage, 0xA1, 2
 }
-
 
 Return

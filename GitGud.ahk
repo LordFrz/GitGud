@@ -1404,9 +1404,6 @@ moveAmountY := 0
 cmoveAmountX := 0
 cmoveAmountY := 0
 
-~f::
-	MsgBox, %tune%
-return
 ;/////////////////////////THIS IS THE STANDING TRIGGER CODE/////////////////////////////////////////
 
 ~LCtrl & ~LButton::

@@ -75,5 +75,20 @@ _DOGE_ - DBdYwDEy8fEpNAjwDHDTuHcntA1dpogh9Q
 
 _BitCoin_ - 1K4zmXYRXhEG3mwfzKp8fq9XkwkNVnL48z
 
+
+###Patch 1.6.4
+
+6-11-17
+- Added support for Muzzle Boost for a few weapons, adding the rest later.
+- Added Hanzo (overwatch?) reticle
+- Reworked the Burst System. No need to set it or even activate it anymore.
+	Selecting a semi-auto weapon makes it fully automatic when the mouse is held down. For example, select M92, aim at your friend and hold down the mouse button
+- Crosshair Images look for 0,0 as the transparency color.
+- Cleaned up some of the messy code for people who like to inspect or change the code.
+- Works through Devblog 163.
+
+
+-----------Let us know if you encounter any issues with the script on the discord---------------
+
 _PayPal_ - paypal.me/smekt (FrDe Plastics is for somethin else, but its the same account)
 

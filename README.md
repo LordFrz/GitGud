@@ -1,7 +1,7 @@
 ## GitGud
-A FPS Autohotkey system specific for Rust
+An FPS Autohotkey system specific for Rust
 
-While this will contain feature that can be used for many FPS games, it is designed specificaly for Rust.
+While this will contains features that can be used for many FPS games, it is designed specifically for Rust.
 
 ### _Features_
 

@@ -75,6 +75,7 @@ _DOGE_ - DBdYwDEy8fEpNAjwDHDTuHcntA1dpogh9Q
 
 _BitCoin_ - 1K4zmXYRXhEG3mwfzKp8fq9XkwkNVnL48z
 
+_PayPal_ - paypal.me/smekt (FrDe Plastics is for somethin else, but its the same account)
 
 ### Patch 1.6.4
 
@@ -90,5 +91,5 @@ _BitCoin_ - 1K4zmXYRXhEG3mwfzKp8fq9XkwkNVnL48z
 
 -----------Let us know if you encounter any issues with the script on the discord---------------
 
-_PayPal_ - paypal.me/smekt (FrDe Plastics is for somethin else, but its the same account)
+
 

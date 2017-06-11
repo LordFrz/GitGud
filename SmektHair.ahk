@@ -105,7 +105,7 @@ Gdip_DisposeImage(pBitmap)
 
 
 
-ExitScript("GitGud.ahk")
+ExitScript("RUN ME.ahk")
 
 
 Return

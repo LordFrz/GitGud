@@ -68,9 +68,9 @@ Yr:= 0
 ;	Gdip_DrawImage(G, pBitmap, xx, yy, Width, Height, 0, 0, Width, Height)
 ;}
 
-
-
-
+;Set Transparency color to the pixles color at 0,0
+TranColor:= Gdip_GetPixel(pBitmap, 0, 0)
+;16777215 - Photoshop Transparecy
 
 ;--------Smooth Slick koolkid way to switch the color----------
 Loop, %Height%
@@ -78,7 +78,7 @@ Loop, %Height%
 	Loop, %Width%
 	{
 		;------------------------Check if current pixel is clear---------------
-		if(Gdip_GetPixel(pBitmap, Xr, Yr) != 16777215)
+		if(Gdip_GetPixel(pBitmap, Xr, Yr) != TranColor)
 		{
 			;--------------------Changes pixel color and updates on screen image---------
 			Gdip_SetPixel(pBitmap, Xr, Yr, RETCOLOR)

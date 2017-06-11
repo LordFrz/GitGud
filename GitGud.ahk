@@ -1,3 +1,5 @@
+;Script Version
+SVersion = 1.6.0
 ; Uncomment if Gdip.ahk is not in your standard library
 #Include, Gdip.ahk
 if FileExist("Settings.ini")
@@ -9,9 +11,9 @@ if FileExist("Settings.ini")
 			FileAppend,`n,Settings.ini
 			
 			;Recoil Values
-			IniWrite, 12, Settings.ini, RECOIL, AK (No Sight) Y
+			IniWrite, 11, Settings.ini, RECOIL, AK (No Sight) Y
 			IniWrite, 8, Settings.ini, RECOIL, AK (Simple Sight) Y
-			IniWrite, 12, Settings.ini, RECOIL, AK (Holosight) Y
+			IniWrite, 10, Settings.ini, RECOIL, AK (Holosight) Y
 			IniWrite, 0, Settings.ini, RECOIL, AK (No Sight) X
 			IniWrite, 0, Settings.ini, RECOIL, AK (Simple Sight) X
 			IniWrite, 0, Settings.ini, RECOIL, AK (Holosight) X
@@ -56,9 +58,9 @@ if FileExist("Settings.ini")
 			IniWrite, 0, Settings.ini, RECOIL, Python (Holosight) X
 			IniWrite, 0, Settings.ini, RECOIL, Python (4x Scope) X
 			
-			IniWrite, 22, Settings.ini, RECOIL, M92 (No Sight) Y
+			IniWrite, 19, Settings.ini, RECOIL, M92 (No Sight) Y
 			IniWrite, 19, Settings.ini, RECOIL, M92 (Simple Sight) Y
-			IniWrite, 23, Settings.ini, RECOIL, M92 (Holosight) Y
+			IniWrite, 20, Settings.ini, RECOIL, M92 (Holosight) Y
 			IniWrite, 100, Settings.ini, RECOIL, M92 (4x Scope) Y
 			IniWrite, 0, Settings.ini, RECOIL, M92 (No Sight) X
 			IniWrite, 0, Settings.ini, RECOIL, M92 (Simple Sight) X
@@ -73,10 +75,10 @@ if FileExist("Settings.ini")
 			IniWrite, 0, Settings.ini, RECOIL, SMG (Simple Sight) X
 			IniWrite, 0, Settings.ini, RECOIL, SMG (Holosight) X
 			
-			IniWrite, 8, Settings.ini, RECOIL, LR-300 (No Sight) Y
-			IniWrite, 6, Settings.ini, RECOIL, LR-300 (Simple Sight) Y
-			IniWrite, 7, Settings.ini, RECOIL, LR-300 (Holosight) Y
-			IniWrite, 14, Settings.ini, RECOIL, LR-300 (4x Scope) Y
+			IniWrite, 6, Settings.ini, RECOIL, LR-300 (No Sight) Y
+			IniWrite, 5, Settings.ini, RECOIL, LR-300 (Simple Sight) Y
+			IniWrite, 5, Settings.ini, RECOIL, LR-300 (Holosight) Y
+			IniWrite, 13, Settings.ini, RECOIL, LR-300 (4x Scope) Y
 			IniWrite, 0, Settings.ini, RECOIL, LR-300 (No Sight) X
 			IniWrite, 0, Settings.ini, RECOIL, LR-300 (Simple Sight) X
 			IniWrite, 0, Settings.ini, RECOIL, LR-300 (Holosight) X
@@ -84,8 +86,8 @@ if FileExist("Settings.ini")
 			
 			IniWrite, 10, Settings.ini, RECOIL, M249 (No Sight) Y
 			IniWrite, 8, Settings.ini, RECOIL, M249 (Simple Sight) Y
-			IniWrite, 10, Settings.ini, RECOIL, M249 (Holosight) Y
-			IniWrite, 38, Settings.ini, RECOIL, M249 (4x Scope) Y
+			IniWrite, 9, Settings.ini, RECOIL, M249 (Holosight) Y
+			IniWrite, 37, Settings.ini, RECOIL, M249 (4x Scope) Y
 			IniWrite, 0, Settings.ini, RECOIL, M249 (No Sight) X
 			IniWrite, 0, Settings.ini, RECOIL, M249 (Simple Sight) X
 			IniWrite, 0, Settings.ini, RECOIL, M249 (Holosight) X
@@ -191,7 +193,13 @@ if FileExist("Settings.ini")
 			IniWrite, ^Numpad2, Settings.ini, ChatHotKeys, CHATHOTKEY2
 			IniWrite, ^Numpad3, Settings.ini, ChatHotKeys, CHATHOTKEY3
 			IniWrite, ^Numpad4, Settings.ini, ChatHotKeys, CHATHOTKEY4
-			IniWrite, ^Numpad5, Settings.ini, ChatHotKeys, RapidfireHotkey
+			FileAppend,`n,Settings.ini
+			
+			IniWrite, 90, Settings.ini, Refractory, M92Refractory
+			IniWrite, 70, Settings.ini, Refractory, M92RefractoryMuz
+			IniWrite, 165, Settings.ini, Refractory, SARRefractory
+			IniWrite, 130, Settings.ini, Refractory, SARRefractoryMuz
+			IniWrite, 140, Settings.ini, Refractory, ShitstolRefractory
 			FileAppend,`n,Settings.ini
 
 			IniWrite, -16711936, Settings.ini, ColorSets, RETICLECOLOR
@@ -202,6 +210,12 @@ if FileExist("Settings.ini")
 
 		}
 		
+			IniRead, M92Refractory, Settings.ini, Refractory, M92Refractory
+			IniRead, SARRefractory, Settings.ini, Refractory, SARRefractory
+			IniRead, M92RefractoryMuz, Settings.ini, Refractory, M92RefractoryMuz
+			IniRead, SARRefractoryMuz, Settings.ini, Refractory, SARRefractoryMuz
+			IniRead, ShitstolRefractory, Settings.ini, Refractory, ShitstolRefractory
+			
 ;//////////Variable: 1st 2 letters are gun, 2nd 2 letters are scope, last letter is coord///////////////////////////
 			IniRead, AKNSY, Settings.ini, RECOIL, AK (No Sight) Y
 			IniRead, AKSSY, Settings.ini, RECOIL, AK (Simple Sight) Y
@@ -510,9 +524,8 @@ Gui, Font, s8 c7BF106
 Gui, Add, Text, x5 y70  Center w340 h10, ------------------------------------------------------------------------------------
 Gui, Add, Text, x5 y56  Center w340 h20, Select Weapon
 Gui, Font, s6 c7BF106
-Gui, Add, Text, x300 y390 w80 h20, V: 1.5.6
+Gui, Add, Text, x300 y390 w80 h20, V: %SVersion%
 Gui, Add, Picture, x290 y1 vPScript1, %a_Workingdir%\Images\Off.png
-Gui, Add, Picture, x240 y1 vPBurst1, %a_Workingdir%\Images\BurstOff.png
 Gui, add, radio, x85 y95 w70 h15 vMP5A4, MP5A4
 Gui, add, radio, x5 y95 w70 h15 vSAR, Semi-Auto Rifle
 Gui, add, radio, x5 y120 w70 h15 vAK, AK
@@ -534,8 +547,9 @@ Gui, add, radio, x5 y235 w70 h17 vNoSight, No Sight
 Gui, add, radio, x85 y235 w70 h17 vSimpleSight, Simple Sight
 Gui, add, radio, x165 y235 w70 h17 vHoloSight, Holosight
 Gui, add, radio, x240 y235 w70 h17 v4xScope, 4x Scope
-
 Gui, add, button, x5 y370 w45 h20 gHelp, Help
+Gui, add, radio, x5 y265 w70 h17 vNoBarrel, No Barrel Mod
+Gui, add, radio, x85 y265 w70 h17 vMuzzleBoost, Muzzle Boost
 Gui, add, button, x60 y370 w45 h20 gClose, Close
 Gui, add, radio, x380 y45 w70 h20 vHide, Hide
 Gui, add, radio, x380 y25 w70 h20 vShow, Show
@@ -546,10 +560,9 @@ Gui, add, radio, x380 y25 w70 h25 vOff, Off
 ;------------------------------------------------------Reticle Tab------------------------------------------
 Gui, tab, Reticle
 Gui, add, button, x5 y370 w45 h20 gHelp, Help
-Gui, Add, Text, x300 y390 w80 h20, V: 1.5.6
+Gui, Add, Text, x300 y390 w80 h20, V: %SVersion%
 Gui, add, button, x60 y370 w45 h20 gClose, Close
 Gui, Add, Picture, x290 y1 vPScript2, %a_Workingdir%\Images\Off.png
-Gui, Add, Picture, x240 y1 vPBurst2, %a_Workingdir%\Images\BurstOff.png
 Gui, add, radio, x5 y75 w35 h15 vSMEKTHairOn gSMEKTHairOn, On
 Gui, add, radio, x40 y75 w35 h15 vSMEKTHairOff gSMEKTHairOff, Off
 Gui, Font, s8 c7BF106
@@ -564,6 +577,8 @@ Gui, add, radio, x75 y95 w50 h25 vVSight gVSight, V Sight
 Gui, add, radio, x75 y120 w50 h25 vGapDash gGapDash, Gap Dash
 Gui, add, radio, x75 y145 w50 h25 vRangeFinder gRangeFinder, Range Finder
 Gui, add, radio, x75 y170 w50 h25 vXSite gXSight, X Sight
+Gui, add, radio, x145 y120 w50 h25 vHonzo gHonzo, Honzo
+Gui, add, radio, x145 y145 w50 h25 vWTF gWTF, ???
 
 ;----------------Color Slider-----------------------
 IniRead, RETCOLOR, Settings.ini, ColorSets, RETICLECOLOR
@@ -591,12 +606,12 @@ CSTrans = %RETTRAN%
 ;------------------------------------------------------Settings Tab------------------------------------------
 Gui, tab, Settings
 Gui, add, button, x5 y370 w45 h20 gHelp, Help
-Gui, Add, Text, x300 y390 w80 h20, V: 1.5.6
+Gui, Add, Text, x300 y390 w80 h20, V: %SVersion%
 Gui, add, button, x60 y370 w45 h20 gClose, Close
 Gui, Add, Picture, x290 y1 vPScript3, %a_Workingdir%\Images\Off.png
-Gui, Add, Picture, x240 y1 vPBurst3, %a_Workingdir%\Images\BurstOff.png
 Gui, Font, s7 c7BF106
 Guicontrol,,Show,1
+Guicontrol,,NoBarrel,1
 Guicontrol,,Mod,0
 Guicontrol,,SAR,1
 Guicontrol,,Cross,1
@@ -616,7 +631,6 @@ IniRead, CHAT3, Settings.ini, ChatCommands, CHATCOMMAND3
 IniRead, CHATKEY3, Settings.ini, ChatHotKeys, CHATHOTKEY3
 IniRead, CHAT4, Settings.ini, ChatCommands, CHATCOMMAND4
 IniRead, CHATKEY4, Settings.ini, ChatHotKeys, CHATHOTKEY4
-IniRead, RFHotkey, Settings.ini, ChatHotKeys, RapidfireHotkey
 
 
 Gui, add, Text, x8 y95 w110 h13, Custom Commands
@@ -656,10 +670,7 @@ Gui, add, button, x115 y370 w45 h20 gSaveSettings, Save
 	Hotkey, %CHATKEY2%, ChatKey2
 	Hotkey, %CHATKEY3%, ChatKey3
 	Hotkey, %CHATKEY4%, ChatKey4
-	Hotkey, %RFHOTKEY%, RFHotkey
 	
-Gui, add, Text, x8 y255 w120 h15, Burst Toggle Hotkey
-Gui, Add, Hotkey, x155 y250 w100 h20 vRFHotkey,%RFHOTKEY%
 	
 	
 ;/////////////////////////////////////////Config Tab////////////////////////////////////////
@@ -669,28 +680,17 @@ Gui, Font, s6 c0000
 Gui, add, button, x5 y370 w45 h20 gHelp, Help
 Gui, add, button, x60 y370 w45 h20 gClose, Close
 Gui, Add, Picture, x290 y1 vPScript4, %a_Workingdir%\Images\Off.png
-Gui, Add, Picture, x240 y1 vPBurst4, %a_Workingdir%\Images\BurstOff.png
 Gui, Font, s7 c7BF106
-Gui, add, text, x3 y60 w332 h15 Center, =================BURST EDITOR=================
 Gui, add, text, x3 y180 w332 h15 Center, ==============SENSITIVITY SELECT==============
 Gui, Font, s7 c0000
-Gui, add, edit, x15 y270 w70 h20 vSensitivity, %SENSE%
-Gui, add, edit, x15 y90 w70 h20 vBurstSpeed, 90 
+Gui, add, edit, x15 y270 w70 h20 vSensitivity, %SENSE% 
 Gui, Font, s7 cRed
 Gui, add, text, x3 y200 w290 h55 Center, Input your RUST Sensitivity below and press Enter. Feature is in testing, and values above and below 1 may not be perfect. We have plans to switch to a new mouse move library that will make this much more usefull in the future.
 Gui, Font, s7 c7BF106
 Gui, add, text, x10 y255 w80 h15 Center vSensitivityText, Sensitivity
-Gui, Add, Slider, x5 y135 w200 h20 vRapidFire AltSubmit gRapidFire Range1-15, 1
 Gui, add, button, x85 y270 w40 h20 gSensitivityEnter, Enter
-Gui, add, button, x130 y90 w70 h20 gBurstExamples, Examples
-Gui, add, text, x15 y120 w180 h12 vRFText Center, Shots per Burst:1
-Gui, add, text, x5 y75 w180 h12 vRFText2, Time Between Shots (ms):90
-Gui, add, button, x85 y90 w40 h20 gBurstSpeed, Enter
 Gui, Font, s6 c7BF106
-Gui, Add, Text, x300 y390 w80 h20, V: 1.5.6
-gui, add, radio, x930 y300 w50 h15 vRFOn, On
-gui, add, radio, x980 y300 w50 h15 vRFOff, Off
-Guicontrol,,RFOff, 1
+Gui, Add, Text, x300 y390 w80 h20, V: %SVersion%
 
 ;///////////////////////////////////////////GUI 2/////////////////////////////////////
 
@@ -704,12 +704,37 @@ Gui, 2:Show, x0 y0 w0 h0, SMEKT
 Gui, 2:+LastFound
 WinSet, Transparent, 235
 gui, 2:+AlwaysOnTop
-Gui, 2:Add, Picture, x1 y1 vPBurst5, %a_Workingdir%\Images\BurstOff.png
-Gui, 2:Add, Picture, x50 y1 vPScript5, %a_Workingdir%\Images\Off.png
+Gui, 2:Add, Picture, x3 y1 vPScript5, %a_Workingdir%\Images\Off.png
 ;------This Fucking Loop IS required :(
 Loop {
 	sleep 250		
 		Gui, Submit, NoHide
+		
+	If (M92 = 1) && (NoBarrel = 1)
+	{
+		refractory = %M92Refractory%
+	}
+	
+	If (M92 = 1) && (MuzzleBoost = 1)
+	{
+		refractory = %M92RefractoryMuzz%
+	}
+	
+	If (SAR = 1)  && (NoBarrel = 1)
+	{
+		refractory = %SARRefractory%
+	}
+	
+	If (SAR = 1) && (MuzzleBoost = 1)
+	{
+		refractory = %SARRefractoryMuz%
+	}
+	
+	If (Shitstol = 1) && (NoBarrel = 1)
+	{
+		refractory = %ShitstolRefractory%
+	}
+	
 	If (MP5A4 = 1) && (NoSight = 1)
 	{
 			tune = %MP5A4SLEEPNS%
@@ -1174,6 +1199,26 @@ Loop {
 	}
 	IniRead, SENSE, Settings.ini, Sensitivity, Sensitivity
 	
+	if (M92 = 1) && (NoBarrel = 1)
+	{
+			refractory = %M92Refractory%
+	}
+	
+	if (M92 = 1) && (MuzzleBoost = 1)
+	{
+			refractory = %M92RefractoryMuz%
+	}
+	
+	if (SAR = 1) && (NoBarrel = 1)
+	{
+			refractory = %SARRefractory%
+	}
+	
+	if (SAR = 1) && (MuzzleBoost = 1)
+	{
+			refractory = %SARRefractoryMuz%
+	}
+	
 	If (MP5A4 = 1) || (m249 = 1) || (AK = 1) || (LR300 = 1) || (SMG = 1) || (Thompson = 1)
 		GuiControl,,AUTO,1
 	If (M92 = 1) || (SAR = 1) || (Python = 1) || (SHITSTOL = 1)
@@ -1184,13 +1229,13 @@ Loop {
 		GuiControl,, 4xScope, 0
 		GuiControl, Disable, 4xScope
 		}
-	else GuiControl, Enable, 4xScope
+	If (MP5A4 = 1) || (SMG = 1) || (Thompson = 1) || (LR300 = 1) || (Python = 1){
+		GuiControl,, MuzzleBoost, 0
+		GuiControl, Disable, MuzzleBoost
+		}
+	else GuiControl, Enable, MuzzleBoost
 }
 ;Return
-
-BurstExamples:
-	MsgBox, Every gun has its own refractory period that locks out the next shot. Known refractory period values are: M92=90 ms   Semi-Automatic Rifle=150 ms  -Enter these into the Burst Editor for optimal burst with specified gun, or create your own!
-Return
 
 SensitivityEnter:
 Loop 2 {
@@ -1198,17 +1243,7 @@ Loop 2 {
 	IniWrite, %Sensitivity%, Settings.ini, Sensitivity, Sensitivity
 }
 Return
-
-BurstSpeed:
-	GuiControl,, RFText2, Time Between Shots (ms):%BurstSpeed%
-Return
 	
-RapidFire:
-	GuiControl,, RFText, Shots per Burst:%RapidFire%	
-	If (RapidFire = 15)
-		GuiControl,, RFText, !!!BURN IT!!!
-Return
-
 MinMaxKey:
 	Gui, Submit, NoHide
 	If (Hide = 1) {
@@ -1220,7 +1255,7 @@ MinMaxKey:
 	if (Show = 1) {
 		GuiControl,, Hide, 1
 		Gui, Show, w0 h0, SMEKT
-		Gui, 2:Show, w100 h50
+		Gui, 2:Show, w50 h50
 }
 	Return
 
@@ -1303,6 +1338,15 @@ XSight:
 IniWrite, XSIGHT.png, Settings.ini, SightSelected, CURRENTSIGHT
 		Run, "SMEKTHair.ahk"
 Return
+Honzo:
+IniWrite, Honzo.png, Settings.ini, SightSelected, CURRENTSIGHT
+		Run, "SMEKTHair.ahk"
+Return
+
+WTF:
+IniWrite, WTF.png, Settings.ini, SightSelected, CURRENTSIGHT
+		Run, "SMEKTHair.ahk"
+Return
 
 ;//////////////////////////Save Settings//////////////////////
 SaveSettings:
@@ -1317,32 +1361,13 @@ SaveSettings:
 	IniWrite, %CHATKEY3%, Settings.ini, ChatHotKeys, CHATHOTKEY3
 	IniWrite, %CHAT4%, Settings.ini, ChatCommands, CHATCOMMAND4
 	IniWrite, %CHATKEY4%, Settings.ini, ChatHotKeys, CHATHOTKEY4
-	IniWrite, %RFHOTKEY%, Settings.ini, ChatHotKeys, RapidfireHotkey
 	MsgBox, 0,, Settings Saved
 ;----Reload Script to Update Hotkeys----
 	Reload
 Return
 
 ;----Hotkey actions
-RFHotkey:
-	Gui, Submit, NoHide
-	If (RFOn = 0) {
-		GuiControl,,RFOn,1 
-		GuiControl,, PBurst1, %a_Workingdir%\Images\BurstOn.png	
-		GuiControl,, PBurst2, %a_Workingdir%\Images\BurstOn.png
-		GuiControl,, PBurst3, %a_Workingdir%\Images\BurstOn.png	
-		GuiControl,, PBurst4, %a_Workingdir%\Images\BurstOn.png	
-		GuiControl, 2:, PBurst5, %a_Workingdir%\Images\BurstOn.png	
-	}
-		else {
-		GuiControl,,RFOff,1
-		GuiControl,, PBurst1, %a_Workingdir%\Images\BurstOff.png	
-		GuiControl,, PBurst2, %a_Workingdir%\Images\BurstOff.png
-		GuiControl,, PBurst3, %a_Workingdir%\Images\BurstOff.png	
-		GuiControl,, PBurst4, %a_Workingdir%\Images\BurstOff.png	
-		GuiControl, 2:, PBurst5, %a_Workingdir%\Images\BurstOff.png		
-		}
-Return
+
 ChatKey1:
 	Send {Enter}
 	Sleep, 100
@@ -1403,12 +1428,12 @@ moveAmountX := 0
 moveAmountY := 0
 cmoveAmountX := 0
 cmoveAmountY := 0
+moveMultiplier := 1.5
 
 ;/////////////////////////THIS IS THE STANDING TRIGGER CODE/////////////////////////////////////////
-
-~LCtrl & ~LButton::
+~Ctrl & ~LButton::
 Loop
-	If GetKeyState("LButton", "LCtrl") && (Mod = 1) && (RFOff = 1) && (AUTO = 1) 
+	If GetKeyState("LButton", "LCtrl") && (Mod = 1) && (AUTO = 1) 
 		{
 			Sleep, %ctune%
 			mouseXY(cmoveAmountX,cmoveAmountY)
@@ -1416,46 +1441,46 @@ Loop
 	else
 		Break
 	
-	If GetKeyState("LButton", "LCtrl") && (RFOff = 1) && (Mod = 1) && (SEMI = 1)
+	If GetKeyState("LButton", "LCtrl") && (Mod = 1) && (SEMI = 1)
 		{
 			Sleep, 5
 			mouseXY(cmoveAmountX,cmoveAmountY)
 			Sleep, 100
 		}
-	If GetKeyState("LButton", "LCtrl") && (RFOn = 1) && (Mod = 1)
-		Loop, %RapidFire%
-			{
-				MouseClick, left
-				mouseXY(cmoveAmountX,cmoveAmountY)
-				sleep, %BurstSpeed%
-			}
 Return
 
 ~LButton::
 Loop
-		If GetKeyState("LButton") && (RFOff = 1) && (Mod = 1) && (AUTO = 1) 
+	If GetKeyState("LButton") && (Mod = 1) && (AUTO = 1) 
 		{
-			mouseXY(moveAmountX,moveAmountY)
+				If GetKeyState("w" || "s" || "a" || "d")
+					{
+					mouseXY((moveAmountX * moveMultiplier),(moveAmountY * moveMultiplier))
+					}
+			else
+					{
+					mouseXY(moveAmountX,moveAmountY)
+					}
 			Sleep, %tune%
 		}
 		else
 			Break
-		
-	If GetKeyState("LButton") && (RFOn = 1) && (Mod = 1)
-		Loop, %RapidFire%
-			{
-				MouseClick, left
-				mouseXY(moveAmountX,moveAmountY)
-				sleep, %BurstSpeed%
-			}
 
-	If GetKeyState("LButton") && (RFOff = 1) && (Mod = 1) && (SEMI = 1)
-		{
-			Sleep, 5
-			mouseXY(moveAmountX,moveAmountY)
-			Sleep, 100
-		}
-Return
+If GetKeyState("LButton") && (Mod = 1) && (SEMI = 1)
+{
+Loop{
+	GetKeyState, keystate, Lbutton,P
+	if keystate = U
+	break
+	else
+	If (Mod = 1) && (SEMI = 1)
+; do the click then loop
+	MouseClick, left
+	mouseXY(moveAmountX,moveAmountY)
+	sleep, %refractory%
+	}
+}
+return
 
 SMEKTHairOn:
 	Run, "SMEKTHair.ahk"

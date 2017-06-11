@@ -1,5 +1,5 @@
 ;Script Version
-SVersion = 1.6.0
+SVersion = 1.6.2
 ; Uncomment if Gdip.ahk is not in your standard library
 #Include, Gdip.ahk
 if FileExist("Settings.ini")

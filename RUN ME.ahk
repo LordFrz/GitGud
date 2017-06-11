@@ -1,5 +1,5 @@
 ;Script Version
-SVersion = 1.6.2
+SVersion = 1.6.3
 ; Uncomment if Gdip.ahk is not in your standard library
 #Include, Gdip.ahk
 if FileExist("Settings.ini")
@@ -1229,6 +1229,7 @@ Loop {
 		GuiControl,, 4xScope, 0
 		GuiControl, Disable, 4xScope
 		}
+	else GuiControl, Enable, 4xScope
 	If (MP5A4 = 1) || (SMG = 1) || (Thompson = 1) || (LR300 = 1) || (Python = 1){
 		GuiControl,, MuzzleBoost, 0
 		GuiControl, Disable, MuzzleBoost

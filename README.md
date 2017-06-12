@@ -57,9 +57,11 @@ _If you want to make a custom reticle, just create an image and replace one of t
 
 
 **Burst Mode**
+
 Burst mode is a pasive system in place that turns all semi auto weapons into fully automatic just by holding the fire button.
 
 **Consecutive Fire Mode**
+
 Currently only supports the AK. From the Config tab, set the time between shots in MS. This will make the AK fire fast consecutive single click shots. This is to counter the Aimcone.
 
 **Supports any sensitivity**

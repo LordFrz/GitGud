@@ -44,7 +44,7 @@ _Does **NOT** work if you don't play in FullScreen or Windowed Full Screen._
 - Hanzo
 - ???
 
-_If you want to make a custom reticle, just create an image and replace one of the current reticle in the Images folder. The Reticle you create need to have a transparent background. And the Pixles at 0,0 (Top Left) must be that same transparent color._
+_If you want to make a custom reticle, just create an image and replace one of the current reticle in the Images folder. The Reticle you create needs to have a transparent background. And the Pixle at 0,0 (Top Left) must be that same transparent color._
 
 
 
@@ -85,7 +85,7 @@ _PayPal_ - paypal.me/smekt (FrDe Plastics is for somethin else, but its the same
 ![](https://i.imgur.com/gLvgyI0.png)
 
 
-### //////////////////////////////PATCH 1.6.7\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+### ////////////////////PATCH 1.6.7\\\\\\\\\\\\\\\\\\\\
 6-10-17
 - Added support for Muzzle Boost for a few weapons, adding the rest later.
 - Added Hanzo (overwatch?) reticle
@@ -93,7 +93,7 @@ _PayPal_ - paypal.me/smekt (FrDe Plastics is for somethin else, but its the same
 - Selecting a semi-auto weapon makes it fully automatic when the mouse is held down. For example, select M92, aim at your friend and hold down the mouse button
 - Cleaned up some of the messy code for people who like to inspect or change the code.
 - Works through Devblog 163.
-### //////////////////////////////PATCH 1.6.7\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+### ////////////////////PATCH 1.6.7\\\\\\\\\\\\\\\\\\\\
 6-12-17
 - Lots of minor bug fixes
 - Added AK Consecutive Fire mode. Just select time between shots in Config, and set hotkey for toggle in settings.

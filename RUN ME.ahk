@@ -1,5 +1,5 @@
 ;Script Version
-SVersion = 1.6.4
+SVersion = 1.6.6
 ; Uncomment if Gdip.ahk is not in your standard library
 #Include, Gdip.ahk
 if FileExist("Settings.ini")
@@ -14,6 +14,7 @@ if FileExist("Settings.ini")
 			IniWrite, 11, Settings.ini, RECOIL, AK (No Sight) Y
 			IniWrite, 8, Settings.ini, RECOIL, AK (Simple Sight) Y
 			IniWrite, 10, Settings.ini, RECOIL, AK (Holosight) Y
+			IniWrite, 24, Settings.ini, RECOIL, AK (4x Scope) Y
 			IniWrite, 0, Settings.ini, RECOIL, AK (No Sight) X
 			IniWrite, 0, Settings.ini, RECOIL, AK (Simple Sight) X
 			IniWrite, 0, Settings.ini, RECOIL, AK (Holosight) X
@@ -99,6 +100,7 @@ if FileExist("Settings.ini")
 			IniWrite, 2, Settings.ini,  CROUCHRECOIL, AK (No Sight) Y
 			IniWrite, 4, Settings.ini, CROUCHRECOIL, AK (Simple Sight) Y
 			IniWrite, 4, Settings.ini, CROUCHRECOIL, AK (Holosight) Y
+			IniWrite, 17, Settings.ini, CROUCHRECOIL, AK (4x Scope) Y
 			IniWrite, 0, Settings.ini, CROUCHRECOIL, AK (No Sight) X
 			IniWrite, 0, Settings.ini, CROUCHRECOIL, AK (Simple Sight) X
 			IniWrite, 0, Settings.ini, CROUCHRECOIL, AK (Holosight) X
@@ -193,12 +195,13 @@ if FileExist("Settings.ini")
 			IniWrite, ^Numpad2, Settings.ini, ChatHotKeys, CHATHOTKEY2
 			IniWrite, ^Numpad3, Settings.ini, ChatHotKeys, CHATHOTKEY3
 			IniWrite, ^Numpad4, Settings.ini, ChatHotKeys, CHATHOTKEY4
+			IniWrite, ^Numpad5, Settings.ini, ChatHotKeys, RoFTOGGLE
 			FileAppend,`n,Settings.ini
 			
 			IniWrite, 90, Settings.ini, Refractory, M92Refractory
 			IniWrite, 70, Settings.ini, Refractory, M92RefractoryMuz
 			IniWrite, 165, Settings.ini, Refractory, SARRefractory
-			IniWrite, 130, Settings.ini, Refractory, SARRefractoryMuz
+			IniWrite, 140, Settings.ini, Refractory, SARRefractoryMuz
 			IniWrite, 140, Settings.ini, Refractory, ShitstolRefractory
 			FileAppend,`n,Settings.ini
 
@@ -220,6 +223,7 @@ if FileExist("Settings.ini")
 			IniRead, AKNSY, Settings.ini, RECOIL, AK (No Sight) Y
 			IniRead, AKSSY, Settings.ini, RECOIL, AK (Simple Sight) Y
 			IniRead, AKHSY, Settings.ini, RECOIL, AK (Holosight) Y
+			IniRead, AK4XY, Settings.ini, RECOIL, AK (4X Scope) Y
 			IniRead, AKNSX, Settings.ini, RECOIL, AK (No Sight) X
 			IniRead, AKSSX, Settings.ini, RECOIL, AK (Simple Sight) X
 			IniRead, AKHSX, Settings.ini, RECOIL, AK (Holosight) X
@@ -300,6 +304,7 @@ if FileExist("Settings.ini")
 			IniRead, cAKNSY, Settings.ini, CROUCHRECOIL, AK (No Sight) Y
 			IniRead, cAKSSY, Settings.ini, CROUCHRECOIL, AK (Simple Sight) Y
 			IniRead, cAKHSY, Settings.ini, CROUCHRECOIL, AK (Holosight) Y
+			IniRead, cAK4XY, Settings.ini, CROUCHRECOIL, AK (4x Scope) Y
 			IniRead, cAKNSX, Settings.ini, CROUCHRECOIL, AK (No Sight) X
 			IniRead, cAKSSX, Settings.ini, CROUCHRECOIL, AK (Simple Sight) X
 			IniRead, cAKHSX, Settings.ini, CROUCHRECOIL, AK (Holosight) X
@@ -386,6 +391,7 @@ if FileExist("Guns.ini")
 			IniWrite, 52, Guns.ini, TUNING (Sleeps), AK (No Sight)
 			IniWrite, 38, Guns.ini, TUNING (Sleeps), AK (Simple Sight)
 			IniWrite, 52, Guns.ini, TUNING (Sleeps), AK (Holosight)
+			IniWrite, 52, Guns.ini, TUNING (Sleeps), AK (4x Scope)
 
 			
 			IniWrite, 36, Guns.ini, TUNING (Sleeps), MP5A4 (No Sight)
@@ -415,7 +421,8 @@ if FileExist("Guns.ini")
 			IniWrite, 20, Guns.ini, CROUCHTUNING (Sleeps), AK (No Sight)
 			IniWrite, 45, Guns.ini, CROUCHTUNING (Sleeps), AK (Simple Sight)
 			IniWrite, 37, Guns.ini, CROUCHTUNING (Sleeps), AK (Holosight)
-					
+			IniWrite, 37, Guns.ini, CROUCHTUNING (Sleeps), AK (4x Scope)
+
 			IniWrite, 65, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (No Sight)
 			IniWrite, 65, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (Simple Sight)
 			IniWrite, 65, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (Holosight)
@@ -439,12 +446,22 @@ if FileExist("Guns.ini")
 			IniWrite, 29, Guns.ini, CROUCHTUNING (Sleeps), M249 (Holosight)
 			IniWrite, 45, Guns.ini, CROUCHTUNING (Sleeps), M249 (4x Scope)
 			FileAppend,`n,Settings.ini
+			
+			IniWrite, 220, Guns.ini, FireRate, FireRate
+			IniWrite, 28, Guns.ini, FireRate, AK (No Sight)
+			IniWrite, 11, Guns.ini, FireRate, cAK (No Sight)
+			FileAppend,`n,Settings.ini
 		}	
 
 ;/////////////////////////////////////////////SLEEP MODIFIERS////////////////////////////////////////////
+			IniRead, RoF, Guns.ini, FireRate, FireRate
+			IniRead, RoFAK, Guns.ini, FireRate, AK (No Sight)
+			IniRead, cRoFAK, Guns.ini, FireRate, cAK (No Sight)
+			
 			IniRead, AKSLEEPNS, Guns.ini,  TUNING (Sleeps), AK (No Sight)
 			IniRead, AKSLEEPSS, Guns.ini, TUNING (Sleeps), AK (Simple Sight)
 			IniRead, AKSLEEPHS, Guns.ini, TUNING (Sleeps), AK (Holosight)
+			IniRead, AKSLEEP4X, Guns.ini, TUNING (Sleeps), AK (4x Scope)
 
 			IniRead, MP5A4SLEEPNS, Guns.ini, TUNING (Sleeps), MP5A4 (No Sight)
 			IniRead, MP5A4SLEEPSS, Guns.ini, TUNING (Sleeps), MP5A4 (Simple Sight)
@@ -476,6 +493,7 @@ if FileExist("Guns.ini")
 			IniRead, cAKSLEEPNS, Guns.ini,  CROUCHTUNING (Sleeps), AK (No Sight)
 			IniRead, cAKSLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), AK (Simple Sight)
 			IniRead, cAKSLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), AK (Holosight)
+			IniRead, cAKSLEEP4X, Guns.ini, CROUCHTUNING (Sleeps), AK (4x Scope)
 
 			IniRead, cMP5A4SLEEPNS, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (No Sight)
 			IniRead, cMP5A4SLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (Simple Sight)
@@ -500,8 +518,34 @@ if FileExist("Guns.ini")
 			IniRead, cM249SLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), M249 (Simple Sight)
 			IniRead, cM249SLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), M249 (Holosight)
 			IniRead, cM249SLEEP4X, Guns.ini, CROUCHTUNING (Sleeps), M249 (4x Scope)
-
-
+			
+;Resolution Calibration Unit--------------------------------
+	xx := (A_ScreenWidth // 2)
+	yy := (A_ScreenHeight // 2)
+		IniWrite, %xx%, Settings.ini, ResCalibration, XRes
+		IniWrite, %yy%, Settings.ini, ResCalibration, YRes
+		FileAppend,`n,Settings.ini
+		
+		IniRead, XRes, Settings.ini, ResCalibration, XRes
+		IniRead, YRes, Settings.ini, ResCalibration, YRes
+			XRes1 = %XRes%
+			XRes1 -= 10
+			XRes2 = %XRes%
+			XRes2 += 10
+			YRes1 = %YRes%
+			YRes1 -= 10
+			YRes2 = %YRes%
+			YRes2 += 10
+		IniWrite, %XRes1%, Settings.ini, ResCalibration, X1
+		IniWrite, %XRes2%, Settings.ini, ResCalibration, X2
+		IniWrite, %YRes1%, Settings.ini, ResCalibration, Y1
+		IniWrite, %YRes2%, Settings.ini, ResCalibration, Y2
+		
+		IniRead, X1, Settings.ini, ResCalibration, X1
+		IniRead, X2, Settings.ini, ResCalibration, X2
+		IniRead, Y1, Settings.ini, ResCalibration, Y1
+		IniRead, Y2, Settings.ini, ResCalibration, Y2
+;-----------------------------------------------------------
 
 Run, "SMEKTHair.ahk"
 SetWorkingDir %A_ScriptDir%
@@ -525,6 +569,7 @@ Gui, Add, Text, x5 y70  Center w340 h10, ---------------------------------------
 Gui, Add, Text, x5 y56  Center w340 h20, Select Weapon
 Gui, Font, s6 c7BF106
 Gui, Add, Text, x300 y390 w80 h20, V: %SVersion%
+Gui, Add, Picture, x270 y25 w30 h20 vFRPic, %a_Workingdir%\Images\FROff.png
 Gui, Add, Picture, x290 y1 vPScript1, %a_Workingdir%\Images\Off.png
 Gui, add, radio, x85 y95 w70 h15 vMP5A4, MP5A4
 Gui, add, radio, x5 y95 w70 h15 vSAR, Semi-Auto Rifle
@@ -562,6 +607,7 @@ Gui, tab, Reticle
 Gui, add, button, x5 y370 w45 h20 gHelp, Help
 Gui, Add, Text, x300 y390 w80 h20, V: %SVersion%
 Gui, add, button, x60 y370 w45 h20 gClose, Close
+Gui, Add, Picture, x270 y25 w30 h20 vFRPic2, %a_Workingdir%\Images\FROff.png
 Gui, Add, Picture, x290 y1 vPScript2, %a_Workingdir%\Images\Off.png
 Gui, add, radio, x5 y75 w35 h15 vSMEKTHairOn gSMEKTHairOn, On
 Gui, add, radio, x40 y75 w35 h15 vSMEKTHairOff gSMEKTHairOff, Off
@@ -608,6 +654,7 @@ Gui, tab, Settings
 Gui, add, button, x5 y370 w45 h20 gHelp, Help
 Gui, Add, Text, x300 y390 w80 h20, V: %SVersion%
 Gui, add, button, x60 y370 w45 h20 gClose, Close
+Gui, Add, Picture, x270 y25 w30 h20 vFRPic3, %a_Workingdir%\Images\FROff.png
 Gui, Add, Picture, x290 y1 vPScript3, %a_Workingdir%\Images\Off.png
 Gui, Font, s7 c7BF106
 Guicontrol,,Show,1
@@ -631,6 +678,11 @@ IniRead, CHAT3, Settings.ini, ChatCommands, CHATCOMMAND3
 IniRead, CHATKEY3, Settings.ini, ChatHotKeys, CHATHOTKEY3
 IniRead, CHAT4, Settings.ini, ChatCommands, CHATCOMMAND4
 IniRead, CHATKEY4, Settings.ini, ChatHotKeys, CHATHOTKEY4
+IniRead, RoFTOG, Settings.ini, ChatHotKeys, RoFTOGGLE
+IniRead, X1, Settings.ini, ResCalibration, X1
+IniRead, X2, Settings.ini, ResCalibration, X2
+IniRead, Y1, Settings.ini, ResCalibration, Y1
+IniRead, Y2, Settings.ini, ResCalibration, Y2
 
 
 Gui, add, Text, x8 y95 w110 h13, Custom Commands
@@ -661,6 +713,9 @@ Gui, add, Text, x8 y230 w100 h20, CMD4
 Gui, Add, Edit, x55 y230 w100 h20 vCHAT4 cBlack, %CHAT4%
 Gui, Add, Hotkey, vChatKey4 x155 y230 w100 h20,%CHATKEY4%
 
+Gui, add, Text, x8 y250 w150 h20, Controlled Fire Toggle
+Gui, Add, Hotkey, vRoFTOGGLE x155 y250 w100 h20,%RoFTOG%
+
 Gui, add, button, x115 y370 w45 h20 gSaveSettings, Save
 ;Set Hotkeys
 	Hotkey, %TOGGLEKEY%, ToggleKey
@@ -670,27 +725,33 @@ Gui, add, button, x115 y370 w45 h20 gSaveSettings, Save
 	Hotkey, %CHATKEY2%, ChatKey2
 	Hotkey, %CHATKEY3%, ChatKey3
 	Hotkey, %CHATKEY4%, ChatKey4
-	
-	
+	Hotkey, %RoFTOG%, RoFTOGGLE
 	
 ;/////////////////////////////////////////Config Tab////////////////////////////////////////
-
 Gui, tab, Config
 Gui, Font, s6 c0000
 Gui, add, button, x5 y370 w45 h20 gHelp, Help
+Gui, add, checkbox, x750 y320 w50 h25 vFROn, FROn
 Gui, add, button, x60 y370 w45 h20 gClose, Close
+Gui, Add, Picture, x270 y25 w30 h20 vFRPic4, %a_Workingdir%\Images\FROff.png
 Gui, Add, Picture, x290 y1 vPScript4, %a_Workingdir%\Images\Off.png
 Gui, Font, s7 c7BF106
+Gui, add, text, x7 y60 w332 h15, ===========CONTROLLED FIRE EDITOR============
 Gui, add, text, x3 y180 w332 h15 Center, ==============SENSITIVITY SELECT==============
 Gui, Font, s7 c0000
 Gui, add, edit, x15 y270 w70 h20 vSensitivity, %SENSE% 
+Gui, add, edit, x15 y90 w70 h20 vFireRate, %RoF% 
+Gui, add, button, x85 y90 w40 h20 gFireRate, Enter
 Gui, Font, s7 cRed
-Gui, add, text, x3 y200 w290 h55 Center, Input your RUST Sensitivity below and press Enter. Feature is in testing, and values above and below 1 may not be perfect. We have plans to switch to a new mouse move library that will make this much more usefull in the future.
+Gui, add, text, x3 y200 w290 h55 Center, Input your RUST Sensitivity below and press Enter.
+Gui, add, text, x3 y110 w290 h55 Center, Simulates rapid single fires while mouse is held down to eliminate progressive aimcone. Input a custom time between shots above to your liking. ONLY SUPPORTS AK AT THE MOMENT
 Gui, Font, s7 c7BF106
 Gui, add, text, x10 y255 w80 h15 Center vSensitivityText, Sensitivity
 Gui, add, button, x85 y270 w40 h20 gSensitivityEnter, Enter
+Gui, add, text, x5 y75 w180 h12 vRFText2, Time Between Shots (ms): %RoF%
 Gui, Font, s6 c7BF106
 Gui, Add, Text, x300 y390 w80 h20, V: %SVersion%
+GuiControl,,FROff,1
 
 ;///////////////////////////////////////////GUI 2/////////////////////////////////////
 
@@ -704,10 +765,11 @@ Gui, 2:Show, x0 y0 w0 h0, SMEKT
 Gui, 2:+LastFound
 WinSet, Transparent, 235
 gui, 2:+AlwaysOnTop
-Gui, 2:Add, Picture, x3 y1 vPScript5, %a_Workingdir%\Images\Off.png
+Gui, 2:Add, Picture, x3 y25 w30 h20 vFRPic5, %a_Workingdir%\Images\FROff.png
+Gui, 2:Add, Picture, x33 y1 vPScript5, %a_Workingdir%\Images\Off.png
 ;------This Fucking Loop IS required :(
 Loop {
-	sleep 250		
+	sleep 100		
 		Gui, Submit, NoHide
 		
 	If (M92 = 1) && (NoBarrel = 1)
@@ -827,6 +889,10 @@ Loop {
 			cmoveAmountX /= %SENSE%
 			cmoveAmountY = %cAKNSY%
 			cmoveAmountY /= %SENSE%	
+			RoFRecoil = %RoFAK%
+			RoFRecoil /= %SENSE%
+			cRoFRecoil = %cRoFAK%
+			cRoFRecoil /= %SENSE%
 	}
 
 	If (AK = 1) && (SimpleSight = 1)
@@ -841,6 +907,10 @@ Loop {
 			cmoveAmountX /= %SENSE%
 			cmoveAmountY = %cAKSSY%
 			cmoveAmountY /= %SENSE%	
+			RoFRecoil = %RoFAK%
+			RoFRecoil /= %SENSE%
+			cRoFRecoil = %cRoFAK%
+			cRoFRecoil /= %SENSE%
 			
 	}
 
@@ -855,7 +925,29 @@ Loop {
 			cmoveAmountX = %cAKHSX%
 			cmoveAmountX /= %SENSE%
 			cmoveAmountY = %cAKHSY%
-			cmoveAmountY /= %SENSE%		
+			cmoveAmountY /= %SENSE%	
+			RoFRecoil = %RoFAK%
+			RoFRecoil /= %SENSE%
+			cRoFRecoil = %cRoFAK%
+			cRoFRecoil /= %SENSE%			
+	}
+	
+	If (AK = 1) && (4xScope = 1)
+	{
+			tune = %AKSLEEP4X%
+			ctune = %cAKSLEEP4X%
+			moveAmountX = 0
+			moveAmountX /= %SENSE%
+			moveAmountY = %AK4XY%
+			moveAmountY /= %SENSE%
+			cmoveAmountX = 0
+			cmoveAmountX /= %SENSE%
+			cmoveAmountY = %cAK4XY%
+			cmoveAmountY /= %SENSE%	
+			RoFRecoil = %RoFAK%
+			RoFRecoil /= %SENSE%
+			cRoFRecoil = %cRoFAK%
+			cRoFRecoil /= %SENSE%			
 	}
 
 	if (SMG = 1) && (NoSight = 1)
@@ -1198,6 +1290,7 @@ Loop {
 			cmoveAmountY /= %SENSE%
 	}
 	IniRead, SENSE, Settings.ini, Sensitivity, Sensitivity
+	IniRead, RoF, Guns.ini, FireRate, FireRate
 	
 	if (M92 = 1) && (NoBarrel = 1)
 	{
@@ -1219,13 +1312,14 @@ Loop {
 			refractory = %SARRefractoryMuz%
 	}
 	
+	
 	If (MP5A4 = 1) || (m249 = 1) || (AK = 1) || (LR300 = 1) || (SMG = 1) || (Thompson = 1)
 		GuiControl,,AUTO,1
 	If (M92 = 1) || (SAR = 1) || (Python = 1) || (SHITSTOL = 1)
 		GuiControl,,SEMI,1
 	
 	Gui, Submit, NoHide
-	If (MP5A4 = 1) || (SMG = 1) || (Thompson = 1) || (AK = 1){
+	If (MP5A4 = 1) || (SMG = 1) || (Thompson = 1){
 		GuiControl,, 4xScope, 0
 		GuiControl, Disable, 4xScope
 		}
@@ -1235,9 +1329,25 @@ Loop {
 		GuiControl, Disable, MuzzleBoost
 		}
 	else GuiControl, Enable, MuzzleBoost
+		
+	IfWinActive, SMEKT
+	{
+	WinHide, ahk_class Shell_TrayWnd
+	WinHide, Start ahk_class Button
+	}
+		else 
+	{
+	WinShow, ahk_class Shell_TrayWnd
+	WinShow, Start ahk_class Button
+	}
 }
-;Return
 
+FireRate:
+	GuiControl,, RFText2, Time Between Shots (ms):%FireRate%
+	IniWrite, %FireRate%, Guns.ini, FireRate, FireRate
+Return
+
+;Return
 SensitivityEnter:
 Loop 2 {
 	GuiControl,, SensitivityText, Sensitivity:%Sensitivity%
@@ -1256,7 +1366,7 @@ MinMaxKey:
 	if (Show = 1) {
 		GuiControl,, Hide, 1
 		Gui, Show, w0 h0, SMEKT
-		Gui, 2:Show, w50 h50
+		Gui, 2:Show, w75 h50
 }
 	Return
 
@@ -1362,12 +1472,36 @@ SaveSettings:
 	IniWrite, %CHATKEY3%, Settings.ini, ChatHotKeys, CHATHOTKEY3
 	IniWrite, %CHAT4%, Settings.ini, ChatCommands, CHATCOMMAND4
 	IniWrite, %CHATKEY4%, Settings.ini, ChatHotKeys, CHATHOTKEY4
+	IniWrite, %RoFTOGGLE%, Settings.ini, ChatHotKeys, RoFTOGGLE
 	MsgBox, 0,, Settings Saved
 ;----Reload Script to Update Hotkeys----
 	Reload
 Return
 
 ;----Hotkey actions
+RoFTOGGLE:
+		Gui, Submit, NoHide
+		If (FROn = 0) 
+		{
+			GuiControl,, FRPic, %a_Workingdir%\Images\FROn.png
+			GuiControl,, FRPic2, %a_Workingdir%\Images\FROn.png
+			GuiControl,, FRPic3, %a_Workingdir%\Images\FROn.png
+			GuiControl,, FRPic4, %a_Workingdir%\Images\FROn.png
+			GuiControl, 2:, FRPic5, %a_Workingdir%\Images\FROn.png
+		GuiControl,,FROn, 1		
+		}
+		Else
+		If (FROn = 1)
+		{
+			GuiControl,, FRPic, %a_Workingdir%\Images\FROff.png
+			GuiControl,, FRPic2, %a_Workingdir%\Images\FROff.png
+			GuiControl,, FRPic3, %a_Workingdir%\Images\FROff.png
+			GuiControl,, FRPic4, %a_Workingdir%\Images\FROff.png
+			GuiControl, 2:, FRPic5, %a_Workingdir%\Images\FROff.png
+		GuiControl,,FROn, 0
+		}
+Return
+
 
 ChatKey1:
 	Send {Enter}
@@ -1411,6 +1545,8 @@ Return
 
 Close:
 	CloseScript("SMEKTHair.ahk")
+	WinShow, ahk_class Shell_TrayWnd  ; Hide Taskbar
+	WinShow, Start ahk_class Button
 	ExitApp
 Return
 
@@ -1419,7 +1555,7 @@ GuiMove:
 return
 
 Help:
-	MsgBox, 0, Step1:Git  Step 2:Gud, Select gun and attachment and set your own hotkeys in the "Settings" tab to toggle. The "Settings" tab also includes commands (CMD1,2,3, or 4) which will auto fast-type whatever you want at the press of the designated keyswitch. This can be useful for quick /home or tp commands. Will develop support for more attachments, and other cool shit! Keep an eye out for the latest patches.
+	MsgBox, 0, Select gun and attachment and set your own hotkeys in the "Settings" tab to toggle. The "Settings" tab also includes commands (CMD1,2,3, or 4) which will auto fast-type whatever you want at the press of the designated keyswitch. This can be useful for quick /home or tp commands. Integrated full auto makes the semi-auto rifle and M92 machine guns by holding down trigger. The little red/green dot beside the script light represents the controlled fire status.(See config tab for Controlled Fire feature)  Will develop support for more attachments, and other cool shit! Keep an eye out for the latest patches.
 Return
 
 ;----------------------------------------------------------------------------REGULAR----------------------------------------------------------------------------------------------------------
@@ -1430,29 +1566,83 @@ moveAmountY := 0
 cmoveAmountX := 0
 cmoveAmountY := 0
 moveMultiplier := 1.5
-
 ;/////////////////////////THIS IS THE STANDING TRIGGER CODE/////////////////////////////////////////
 ~Ctrl & ~LButton::
+MouseGetPos, myX, myY 
+if myX between %XRes1% and %XRes2% ; the range for x
+{
+
+    if myY between %YRes1% and %YRes2% ; the range for y
+
+    {
 Loop
-	If GetKeyState("LButton", "LCtrl") && (Mod = 1) && (AUTO = 1) 
+	If GetKeyState("LButton", "LCtrl") && (Mod = 1) && (AUTO = 1) && (FROn = 0) 
 		{
 			Sleep, %ctune%
 			mouseXY(cmoveAmountX,cmoveAmountY)
 		}
 	else
 		Break
-	
-	If GetKeyState("LButton", "LCtrl") && (Mod = 1) && (SEMI = 1)
+	}
+}
+
+MouseGetPos, myX, myY 
+if myX between %XRes1% and %XRes2% ; the range for x
+{
+
+    if myY between %YRes1% and %YRes2% ; the range for y
+
+    {		
+		If GetKeyState("LButton", "Ctrl") && (Mod = 1) && (SEMI = 1) && (FROn = 0)
 		{
-			Sleep, 5
+			Loop
+			{
+				GetKeyState, keystate, Lbutton,P
+				if keystate = U
+				break
+					else
+		If (Mod = 1) && (SEMI = 1)
+			; do the click then loop
+			MouseClick, left
 			mouseXY(cmoveAmountX,cmoveAmountY)
-			Sleep, 100
+			sleep, %refractory%
+			}
 		}
+	}
+}
+
+MouseGetPos, myX, myY 
+if myX between %XRes1% and %XRes2% ; the range for x
+{
+
+    if myY between %YRes1% and %YRes2% ; the range for y
+    {
+	If GetKeyState("LButton", "Ctrl") && (FROn = 1) && (Mod = 1)
+Loop{
+	GetKeyState, keystate, Lbutton,P
+	if keystate = U
+	break
+	else
+	If (Mod = 1) && (FROn = 1)
+				MouseClick, left
+				mouseXY(moveAmountX,cRoFRecoil)
+				sleep, %RoF%
+			}
+		}
+	}
+return
 Return
 
 ~LButton::
+MouseGetPos, myX, myY 
+if myX between %XRes1% and %XRes2% ; the range for x
+{
+
+    if myY between %YRes1% and %YRes2% ; the range for y
+
+    {
 Loop
-	If GetKeyState("LButton") && (Mod = 1) && (AUTO = 1) 
+	If GetKeyState("LButton") && (Mod = 1) && (AUTO = 1) && (FROn = 0) 
 		{
 				If GetKeyState("w" || "s" || "a" || "d")
 					{
@@ -1466,8 +1656,16 @@ Loop
 		}
 		else
 			Break
+	}
+}
 
-If GetKeyState("LButton") && (Mod = 1) && (SEMI = 1)
+MouseGetPos, myX, myY 
+if myX between %XRes1% and %XRes2% ; the range for x
+{
+
+    if myY between %YRes1% and %YRes2% ; the range for y
+    {
+If GetKeyState("LButton") && (Mod = 1) && (SEMI = 1) && (FROn = 0)
 {
 Loop{
 	GetKeyState, keystate, Lbutton,P
@@ -1481,6 +1679,28 @@ Loop{
 	sleep, %refractory%
 	}
 }
+	}
+}
+;Burst Control Unit----------------------------------------------------
+MouseGetPos, myX, myY 
+if myX between %XRes1% and %XRes2% ; the range for x
+{
+
+    if myY between %YRes1% and %YRes2% ; the range for y
+    {
+	If GetKeyState("LButton") && (FROn = 1) && (Mod = 1)
+Loop{
+	GetKeyState, keystate, Lbutton,P
+	if keystate = U
+	break
+	else
+	If (Mod = 1) && (FROn = 1)
+				MouseClick, left
+				mouseXY(moveAmountX,RoFRecoil)
+				sleep, %RoF%
+			}
+		}
+	}
 return
 
 SMEKTHairOn:
@@ -1519,23 +1739,3 @@ mouseXY(x,y)
 F7::
 	Reload
 Return
-
-
-;Experiment
-;~f::
-;{
-;	MouseGetPos, xpos2, ypos2
-;		Loop 20 {
-;			sleep, 5
-;			mouseXY(0,5)
-;		}
-;	MouseGetPos, xpos1, ypos1
-;		xpos = %xpos1%
-;		xpos -= %xpos2%
-;		ypos = %ypos1%
-;		ypos -= %ypos2%
-;	SplashTextOn, 200, 90, Test, The cursor is at X%xpos% Y%ypos%
-;		sleep, 1000
-;	SplashTextOff
-;}
-;return

@@ -1,5 +1,5 @@
 ;Script Version
-SVersion = 1.6.6
+SVersion = 1.6.7
 ; Uncomment if Gdip.ahk is not in your standard library
 #Include, Gdip.ahk
 if FileExist("Settings.ini")
@@ -569,7 +569,7 @@ Gui, Add, Text, x5 y70  Center w340 h10, ---------------------------------------
 Gui, Add, Text, x5 y56  Center w340 h20, Select Weapon
 Gui, Font, s6 c7BF106
 Gui, Add, Text, x300 y390 w80 h20, V: %SVersion%
-Gui, Add, Picture, x270 y25 w30 h20 vFRPic, %a_Workingdir%\Images\FROff.png
+Gui, Add, Picture, x280 y30 w10 h10 vFRPic, %a_Workingdir%\Images\FROff.png
 Gui, Add, Picture, x290 y1 vPScript1, %a_Workingdir%\Images\Off.png
 Gui, add, radio, x85 y95 w70 h15 vMP5A4, MP5A4
 Gui, add, radio, x5 y95 w70 h15 vSAR, Semi-Auto Rifle
@@ -607,7 +607,7 @@ Gui, tab, Reticle
 Gui, add, button, x5 y370 w45 h20 gHelp, Help
 Gui, Add, Text, x300 y390 w80 h20, V: %SVersion%
 Gui, add, button, x60 y370 w45 h20 gClose, Close
-Gui, Add, Picture, x270 y25 w30 h20 vFRPic2, %a_Workingdir%\Images\FROff.png
+Gui, Add, Picture, x280 y30 w10 h10 vFRPic2, %a_Workingdir%\Images\FROff.png
 Gui, Add, Picture, x290 y1 vPScript2, %a_Workingdir%\Images\Off.png
 Gui, add, radio, x5 y75 w35 h15 vSMEKTHairOn gSMEKTHairOn, On
 Gui, add, radio, x40 y75 w35 h15 vSMEKTHairOff gSMEKTHairOff, Off
@@ -654,7 +654,7 @@ Gui, tab, Settings
 Gui, add, button, x5 y370 w45 h20 gHelp, Help
 Gui, Add, Text, x300 y390 w80 h20, V: %SVersion%
 Gui, add, button, x60 y370 w45 h20 gClose, Close
-Gui, Add, Picture, x270 y25 w30 h20 vFRPic3, %a_Workingdir%\Images\FROff.png
+Gui, Add, Picture, x280 y30 w10 h10 vFRPic3, %a_Workingdir%\Images\FROff.png
 Gui, Add, Picture, x290 y1 vPScript3, %a_Workingdir%\Images\Off.png
 Gui, Font, s7 c7BF106
 Guicontrol,,Show,1
@@ -733,7 +733,7 @@ Gui, Font, s6 c0000
 Gui, add, button, x5 y370 w45 h20 gHelp, Help
 Gui, add, checkbox, x750 y320 w50 h25 vFROn, FROn
 Gui, add, button, x60 y370 w45 h20 gClose, Close
-Gui, Add, Picture, x270 y25 w30 h20 vFRPic4, %a_Workingdir%\Images\FROff.png
+Gui, Add, Picture, x280 y30 w10 h10 vFRPic4, %a_Workingdir%\Images\FROff.png
 Gui, Add, Picture, x290 y1 vPScript4, %a_Workingdir%\Images\Off.png
 Gui, Font, s7 c7BF106
 Gui, add, text, x7 y60 w332 h15, ===========CONTROLLED FIRE EDITOR============
@@ -765,7 +765,7 @@ Gui, 2:Show, x0 y0 w0 h0, SMEKT
 Gui, 2:+LastFound
 WinSet, Transparent, 235
 gui, 2:+AlwaysOnTop
-Gui, 2:Add, Picture, x3 y25 w30 h20 vFRPic5, %a_Workingdir%\Images\FROff.png
+Gui, 2:Add, Picture, x3  y30 w10 h10 vFRPic5, %a_Workingdir%\Images\FROff.png
 Gui, 2:Add, Picture, x33 y1 vPScript5, %a_Workingdir%\Images\Off.png
 ;------This Fucking Loop IS required :(
 Loop {

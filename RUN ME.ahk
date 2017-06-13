@@ -1,7 +1,11 @@
 ;Script Version
-SVersion = 1.6.7
+SVersion = 1.6.8
 ; Uncomment if Gdip.ahk is not in your standard library
 #Include, Gdip.ahk
+
+WinHide, ahk_class Shell_TrayWnd
+WinHide, Start ahk_class Button
+
 if FileExist("Settings.ini")
 {
 	}else{
@@ -1330,16 +1334,6 @@ Loop {
 		}
 	else GuiControl, Enable, MuzzleBoost
 		
-	IfWinActive, SMEKT
-	{
-	WinHide, ahk_class Shell_TrayWnd
-	WinHide, Start ahk_class Button
-	}
-		else 
-	{
-	WinShow, ahk_class Shell_TrayWnd
-	WinShow, Start ahk_class Button
-	}
 }
 
 FireRate:
@@ -1545,7 +1539,7 @@ Return
 
 Close:
 	CloseScript("SMEKTHair.ahk")
-	WinShow, ahk_class Shell_TrayWnd  ; Hide Taskbar
+	WinShow, ahk_class Shell_TrayWnd  ; Show Taskbar
 	WinShow, Start ahk_class Button
 	ExitApp
 Return

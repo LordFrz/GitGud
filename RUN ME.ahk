@@ -1,15 +1,32 @@
 ;Script Version
-SVersion = 1.6.8
+SVersion = 1.6.10
 ; Uncomment if Gdip.ahk is not in your standard library
 #Include, Gdip.ahk
 
 WinHide, ahk_class Shell_TrayWnd
 WinHide, Start ahk_class Button
 
+
+
 if FileExist("Settings.ini")
 {
+	IniRead, GUIXCK, Settings.ini, SETTINGS, GuiLocX
+	IniRead, GUIYCK, Settings.ini, SETTINGS, GuiLocY
+	if(GUIXCK = "ERROR" || GUIYCK = "ERROR")
+	{
+		IniWrite, 0, Settings.ini, SETTINGS, GuiLocX
+		IniWrite, 0, Settings.ini, SETTINGS, GuiLocY
+		FileAppend,`n,Settings.ini
+	}
+
+
 	}else{
 ;////////////////////////////////Initial Settings Values////////////////////////////
+			;GuiLocation
+			IniWrite, 0, Settings.ini, SETTINGS, GuiLocX
+			IniWrite, 0, Settings.ini, SETTINGS, GuiLocY
+			FileAppend,`n,Settings.ini
+
             ;Crosshair	
 			IniWrite, CROSS.png, Settings.ini, SightSelected, CURRENTSIGHT
 			FileAppend,`n,Settings.ini
@@ -217,175 +234,178 @@ if FileExist("Settings.ini")
 
 		}
 		
-			IniRead, M92Refractory, Settings.ini, Refractory, M92Refractory
-			IniRead, SARRefractory, Settings.ini, Refractory, SARRefractory
-			IniRead, M92RefractoryMuz, Settings.ini, Refractory, M92RefractoryMuz
-			IniRead, SARRefractoryMuz, Settings.ini, Refractory, SARRefractoryMuz
-			IniRead, ShitstolRefractory, Settings.ini, Refractory, ShitstolRefractory
-			
-;//////////Variable: 1st 2 letters are gun, 2nd 2 letters are scope, last letter is coord///////////////////////////
-			IniRead, AKNSY, Settings.ini, RECOIL, AK (No Sight) Y
-			IniRead, AKSSY, Settings.ini, RECOIL, AK (Simple Sight) Y
-			IniRead, AKHSY, Settings.ini, RECOIL, AK (Holosight) Y
-			IniRead, AK4XY, Settings.ini, RECOIL, AK (4X Scope) Y
-			IniRead, AKNSX, Settings.ini, RECOIL, AK (No Sight) X
-			IniRead, AKSSX, Settings.ini, RECOIL, AK (Simple Sight) X
-			IniRead, AKHSX, Settings.ini, RECOIL, AK (Holosight) X
-			
-			IniRead, SHITNSY, Settings.ini, RECOIL, Shitstol (No Sight) Y
-			IniRead, SHITSSY, Settings.ini, RECOIL, Shitstol (Simple Sight) Y
-			IniRead, SHITHSY, Settings.ini, RECOIL, Shitstol (Holosight) Y
-			IniRead, SHITNSX, Settings.ini, RECOIL, Shitstol (No Sight) X
-			IniRead, SHITSSX, Settings.ini, RECOIL, Shitstol (Simple Sight) X
-			IniRead, SHITHSX, Settings.ini, RECOIL, Shitstol (Holosight) X
-			
-			IniRead, MPNSY, Settings.ini, RECOIL, MP5A4 (No Sight) Y
-			IniRead, MPSSY, Settings.ini, RECOIL, MP5A4 (Simple Sight) Y
-			IniRead, MPHSY, Settings.ini, RECOIL, MP5A4 (Holosight) Y
-			IniRead, MPNSX, Settings.ini, RECOIL, MP5A4 (No Sight) X
-			IniRead, MPSSX, Settings.ini, RECOIL, MP5A4 (Simple Sight) X
-			IniRead, MPHSX, Settings.ini, RECOIL, MP5A4 (Holosight) X
-			
-			IniRead, SARNSY, Settings.ini, RECOIL, Semi-Automatic Rifle (No Sight) Y
-			IniRead, SARSSY, Settings.ini, RECOIL, Semi-Automatic Rifle (Simple Sight) Y
-			IniRead, SARHSY, Settings.ini, RECOIL, Semi-Automatic Rifle (Holosight) Y
-			IniRead, SAR4XY, Settings.ini, RECOIL, Semi-Automatic Rifle (4x Scope) Y
-			IniRead, SARNSX, Settings.ini, RECOIL, Semi-Automatic Rifle (No Sight) X
-			IniRead, SARSSX, Settings.ini, RECOIL, Semi-Automatic Rifle (Simple Sight) X
-			IniRead, SARHSX, Settings.ini, RECOIL, Semi-Automatic Rifle (Holosight) X
-			IniRead, SAR4XX, Settings.ini, RECOIL, Semi-Automatic Rifle (4x Scope) X
-			
-			IniRead, THNSY, Settings.ini, RECOIL, Thompson (No Sight) Y
-			IniRead, THSSY, Settings.ini, RECOIL, Thompson (Simple Sight) Y
-			IniRead, THHSY, Settings.ini, RECOIL, Thompson (Holosight) Y
-			IniRead, THNSX, Settings.ini, RECOIL, Thompson (No Sight) X
-			IniRead, THSSX, Settings.ini, RECOIL, Thompson (Simple Sight) X
-			IniRead, THHSX, Settings.ini, RECOIL, Thompson (Holosight) X
-			
-			IniRead, PYNSY, Settings.ini, RECOIL, Python (No Sight) Y
-			IniRead, PYSSY, Settings.ini, RECOIL, Python (Simple Sight) Y
-			IniRead, PYHSY, Settings.ini, RECOIL, Python (Holosight) Y
-			IniRead, PY4XY, Settings.ini, RECOIL, Python (4x Scope) Y
-			IniRead, PYNSX, Settings.ini, RECOIL, Python (No Sight) X
-			IniRead, PYSSX, Settings.ini, RECOIL, Python (Simple Sight) X
-			IniRead, PYHSX, Settings.ini, RECOIL, Python (Holosight) X
-			IniRead, PY4XX, Settings.ini, RECOIL, Python (4x Scope) X
-			
-			IniRead, M9NSY, Settings.ini, RECOIL, M92 (No Sight) Y
-			IniRead, M9SSY, Settings.ini, RECOIL, M92 (Simple Sight) Y
-			IniRead, M9HSY, Settings.ini, RECOIL, M92 (Holosight) Y	
-			IniRead, M94XY, Settings.ini, RECOIL, M92 (4x Scope) Y
-			IniRead, M9NSX, Settings.ini, RECOIL, M92 (No Sight) X
-			IniRead, M9SSX, Settings.ini, RECOIL, M92 (Simple Sight) X
-			IniRead, M9HSX, Settings.ini, RECOIL, M92 (Holosight) X
-			IniRead, M94XX, Settings.ini, RECOIL, M92 (4x Scope) X
-			
-			IniRead, SMGNSY, Settings.ini, RECOIL, SMG (No Sight) Y
-			IniRead, SMGSSY, Settings.ini, RECOIL, SMG (Simple Sight) Y
-			IniRead, SMGHSY, Settings.ini, RECOIL, SMG (Holosight) Y
-			IniRead, SMGNSX, Settings.ini, RECOIL, SMG (No Sight) X
-			IniRead, SMGSSX, Settings.ini, RECOIL, SMG (Simple Sight) X
-			IniRead, SMGHSX, Settings.ini, RECOIL, SMG (Holosight) X
-			
-			IniRead, LRNSY, Settings.ini, RECOIL, LR-300 (No Sight) Y
-			IniRead, LRSSY, Settings.ini, RECOIL, LR-300 (Simple Sight) Y
-			IniRead, LRHSY, Settings.ini, RECOIL, LR-300 (Holosight) Y
-			IniRead, LR4XY, Settings.ini, RECOIL, LR-300 (4x Scope) Y
-			IniRead, LRNSX, Settings.ini, RECOIL, LR-300 (No Sight) X
-			IniRead, LRSSX, Settings.ini, RECOIL, LR-300 (Simple Sight) X
-			IniRead, LRHSX, Settings.ini, RECOIL, LR-300 (Holosight) X
-			IniRead, LR4XX, Settings.ini, RECOIL, LR-300 (4x Scope) X			
-			
-			IniRead, MGNSY, Settings.ini, RECOIL, M249 (No Sight) Y
-			IniRead, MGSSY, Settings.ini, RECOIL, M249 (Simple Sight) Y
-			IniRead, MGHSY, Settings.ini, RECOIL, M249 (Holosight) Y
-			IniRead, MG4XY, Settings.ini, RECOIL, M249 (4x Scope) Y
-			IniRead, MGNSX, Settings.ini, RECOIL, M249 (No Sight) X
-			IniRead, MGSSX, Settings.ini, RECOIL, M249 (Simple Sight) X
-			IniRead, MGHSX, Settings.ini, RECOIL, M249 (Holosight) X
-			IniRead, MG4XX, Settings.ini, RECOIL, M249 (4x Scope) X			
-;////////////////////////////////CROUCH RECOIL READ/////////////////////////////////////////
-			IniRead, cAKNSY, Settings.ini, CROUCHRECOIL, AK (No Sight) Y
-			IniRead, cAKSSY, Settings.ini, CROUCHRECOIL, AK (Simple Sight) Y
-			IniRead, cAKHSY, Settings.ini, CROUCHRECOIL, AK (Holosight) Y
-			IniRead, cAK4XY, Settings.ini, CROUCHRECOIL, AK (4x Scope) Y
-			IniRead, cAKNSX, Settings.ini, CROUCHRECOIL, AK (No Sight) X
-			IniRead, cAKSSX, Settings.ini, CROUCHRECOIL, AK (Simple Sight) X
-			IniRead, cAKHSX, Settings.ini, CROUCHRECOIL, AK (Holosight) X
-			
-			IniRead, cSHITNSY, Settings.ini, CROUCHRECOIL, Shitstol (No Sight) Y
-			IniRead, cSHITSSY, Settings.ini, CROUCHRECOIL, Shitstol (Simple Sight) Y
-			IniRead, cSHITHSY, Settings.ini, CROUCHRECOIL, Shitstol (Holosight) Y
-			IniRead, cSHITNSX, Settings.ini, CROUCHRECOIL, Shitstol (No Sight) X
-			IniRead, cSHITSSX, Settings.ini, CROUCHRECOIL, Shitstol (Simple Sight) X
-			IniRead, cSHITHSX, Settings.ini, CROUCHRECOIL, Shitstol (Holosight) X
-			
-			IniRead, cMPNSY, Settings.ini, CROUCHRECOIL, MP5A4 (No Sight) Y
-			IniRead, cMPSSY, Settings.ini, CROUCHRECOIL, MP5A4 (Simple Sight) Y
-			IniRead, cMPHSY, Settings.ini, CROUCHRECOIL, MP5A4 (Holosight) Y
-			IniRead, cMPNSX, Settings.ini, CROUCHRECOIL, MP5A4 (No Sight) X
-			IniRead, cMPSSX, Settings.ini, CROUCHRECOIL, MP5A4 (Simple Sight) X
-			IniRead, cMPHSX, Settings.ini, CROUCHRECOIL, MP5A4 (Holosight) X
-			
-			IniRead, cSARNSY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (No Sight) Y
-			IniRead, cSARSSY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Simple Sight) Y
-			IniRead, cSARHSY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Holosight) Y
-			IniRead, cSAR4XY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (4x Scope) Y
-			IniRead, cSARNSX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (No Sight) X
-			IniRead, cSARSSX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Simple Sight) X
-			IniRead, cSARHSX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Holosight) X
-			IniRead, cSAR4XX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (4x Scope) X
-			
-			IniRead, cTHNSY, Settings.ini, CROUCHRECOIL, Thompson (No Sight) Y
-			IniRead, cTHSSY, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) Y
-			IniRead, cTHHSY, Settings.ini, CROUCHRECOIL, Thompson (Holosight) Y
-			IniRead, cTHNSX, Settings.ini, CROUCHRECOIL, Thompson (No Sight) X
-			IniRead, cTHSSX, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) X
-			IniRead, cTHHSX, Settings.ini, CROUCHRECOIL, Thompson (Holosight) X
-			
-			IniRead, cPYNSY, Settings.ini, CROUCHRECOIL, Python (No Sight) Y
-			IniRead, cPYSSY, Settings.ini, CROUCHRECOIL, Python (Simple Sight) Y
-			IniRead, cPYHSY, Settings.ini, CROUCHRECOIL, Python (Holosight) Y
-			IniRead, cPY4XY, Settings.ini, CROUCHRECOIL, Python (4x Scope) Y
-			IniRead, cPYNSX, Settings.ini, CROUCHRECOIL, Python (No Sight) X
-			IniRead, cPYSSX, Settings.ini, CROUCHRECOIL, Python (Simple Sight) X
-			IniRead, cPYHSX, Settings.ini, CROUCHRECOIL, Python (Holosight) X
-			IniRead, cPY4XX, Settings.ini, CROUCHRECOIL, Python (4x Scope) X
-			
-			IniRead, cM9NSY, Settings.ini, CROUCHRECOIL, M92 (No Sight) Y
-			IniRead, cM9SSY, Settings.ini, CROUCHRECOIL, M92 (Simple Sight) Y
-			IniRead, cM9HSY, Settings.ini, CROUCHRECOIL, M92 (Holosight) Y
-			IniRead, cM94XY, Settings.ini, CROUCHRECOIL, M92 (4x Scope) Y			
-			IniRead, cM9NSX, Settings.ini, CROUCHRECOIL, M92 (No Sight) X
-			IniRead, cM9SSX, Settings.ini, CROUCHRECOIL, M92 (Simple Sight) X
-			IniRead, cM9HSX, Settings.ini, CROUCHRECOIL, M92 (Holosight) X
-			IniRead, cM94XX, Settings.ini, CROUCHRECOIL, M92 (4x Scope) X	
+	IniRead, GUIX, Settings.ini, SETTINGS, GuiLocX
+	IniRead, GUIY, Settings.ini, SETTINGS, GuiLocY
 	
-			IniRead, cSMGNSY, Settings.ini, CROUCHRECOIL, SMG (No Sight) Y
-			IniRead, cSMGSSY, Settings.ini, CROUCHRECOIL, SMG (Simple Sight) Y
-			IniRead, cSMGHSY, Settings.ini, CROUCHRECOIL, SMG (Holosight) Y
-			IniRead, cSMGNSX, Settings.ini, CROUCHRECOIL, SMG (No Sight) X
-			IniRead, cSMGSSX, Settings.ini, CROUCHRECOIL, SMG (Simple Sight) X
-			IniRead, cSMGHSX, Settings.ini, CROUCHRECOIL, SMG (Holosight) X
-			
-			IniRead, cLRNSY, Settings.ini, CROUCHRECOIL, LR-300 (No Sight) Y
-			IniRead, cLRSSY, Settings.ini, CROUCHRECOIL, LR-300 (Simple Sight) Y
-			IniRead, cLRHSY, Settings.ini, CROUCHRECOIL, LR-300 (Holosight) Y
-			IniRead, cLR4XY, Settings.ini, CROUCHRECOIL, LR-300 (4x Scope) Y
-			IniRead, cLRNSX, Settings.ini, CROUCHRECOIL, LR-300 (No Sight) X
-			IniRead, cLRSSX, Settings.ini, CROUCHRECOIL, LR-300 (Simple Sight) X
-			IniRead, cLRHSX, Settings.ini, CROUCHRECOIL, LR-300 (Holosight) X
-			IniRead, cLR4XX, Settings.ini, CROUCHRECOIL, LR-300 (4x Scope) X
-			
-			IniRead, cMGNSY, Settings.ini, CROUCHRECOIL, M249 (No Sight) Y
-			IniRead, cMGSSY, Settings.ini, CROUCHRECOIL, M249 (Simple Sight) Y
-			IniRead, cMGHSY, Settings.ini, CROUCHRECOIL, M249 (Holosight) Y
-			IniRead, cMG4XY, Settings.ini, CROUCHRECOIL, M249 (4x Scope) Y
-			IniRead, cMGNSX, Settings.ini, CROUCHRECOIL, M249 (No Sight) X
-			IniRead, cMGSSX, Settings.ini, CROUCHRECOIL, M249 (Simple Sight) X
-			IniRead, cMGHSX, Settings.ini, CROUCHRECOIL, M249 (Holosight) X
-			IniRead, cMG4XX, Settings.ini, CROUCHRECOIL, M249 (4x Scope) X
-			IniRead, SENSE, Settings.ini, Sensitivity, Sensitivity			
+	IniRead, M92Refractory, Settings.ini, Refractory, M92Refractory
+	IniRead, SARRefractory, Settings.ini, Refractory, SARRefractory
+	IniRead, M92RefractoryMuz, Settings.ini, Refractory, M92RefractoryMuz
+	IniRead, SARRefractoryMuz, Settings.ini, Refractory, SARRefractoryMuz
+	IniRead, ShitstolRefractory, Settings.ini, Refractory, ShitstolRefractory
+	
+;//////////Variable: 1st 2 letters are gun, 2nd 2 letters are scope, last letter is coord///////////////////////////
+	IniRead, AKNSY, Settings.ini, RECOIL, AK (No Sight) Y
+	IniRead, AKSSY, Settings.ini, RECOIL, AK (Simple Sight) Y
+	IniRead, AKHSY, Settings.ini, RECOIL, AK (Holosight) Y
+	IniRead, AK4XY, Settings.ini, RECOIL, AK (4X Scope) Y
+	IniRead, AKNSX, Settings.ini, RECOIL, AK (No Sight) X
+	IniRead, AKSSX, Settings.ini, RECOIL, AK (Simple Sight) X
+	IniRead, AKHSX, Settings.ini, RECOIL, AK (Holosight) X
+	
+	IniRead, SHITNSY, Settings.ini, RECOIL, Shitstol (No Sight) Y
+	IniRead, SHITSSY, Settings.ini, RECOIL, Shitstol (Simple Sight) Y
+	IniRead, SHITHSY, Settings.ini, RECOIL, Shitstol (Holosight) Y
+	IniRead, SHITNSX, Settings.ini, RECOIL, Shitstol (No Sight) X
+	IniRead, SHITSSX, Settings.ini, RECOIL, Shitstol (Simple Sight) X
+	IniRead, SHITHSX, Settings.ini, RECOIL, Shitstol (Holosight) X
+	
+	IniRead, MPNSY, Settings.ini, RECOIL, MP5A4 (No Sight) Y
+	IniRead, MPSSY, Settings.ini, RECOIL, MP5A4 (Simple Sight) Y
+	IniRead, MPHSY, Settings.ini, RECOIL, MP5A4 (Holosight) Y
+	IniRead, MPNSX, Settings.ini, RECOIL, MP5A4 (No Sight) X
+	IniRead, MPSSX, Settings.ini, RECOIL, MP5A4 (Simple Sight) X
+	IniRead, MPHSX, Settings.ini, RECOIL, MP5A4 (Holosight) X
+	
+	IniRead, SARNSY, Settings.ini, RECOIL, Semi-Automatic Rifle (No Sight) Y
+	IniRead, SARSSY, Settings.ini, RECOIL, Semi-Automatic Rifle (Simple Sight) Y
+	IniRead, SARHSY, Settings.ini, RECOIL, Semi-Automatic Rifle (Holosight) Y
+	IniRead, SAR4XY, Settings.ini, RECOIL, Semi-Automatic Rifle (4x Scope) Y
+	IniRead, SARNSX, Settings.ini, RECOIL, Semi-Automatic Rifle (No Sight) X
+	IniRead, SARSSX, Settings.ini, RECOIL, Semi-Automatic Rifle (Simple Sight) X
+	IniRead, SARHSX, Settings.ini, RECOIL, Semi-Automatic Rifle (Holosight) X
+	IniRead, SAR4XX, Settings.ini, RECOIL, Semi-Automatic Rifle (4x Scope) X
+	
+	IniRead, THNSY, Settings.ini, RECOIL, Thompson (No Sight) Y
+	IniRead, THSSY, Settings.ini, RECOIL, Thompson (Simple Sight) Y
+	IniRead, THHSY, Settings.ini, RECOIL, Thompson (Holosight) Y
+	IniRead, THNSX, Settings.ini, RECOIL, Thompson (No Sight) X
+	IniRead, THSSX, Settings.ini, RECOIL, Thompson (Simple Sight) X
+	IniRead, THHSX, Settings.ini, RECOIL, Thompson (Holosight) X
+	
+	IniRead, PYNSY, Settings.ini, RECOIL, Python (No Sight) Y
+	IniRead, PYSSY, Settings.ini, RECOIL, Python (Simple Sight) Y
+	IniRead, PYHSY, Settings.ini, RECOIL, Python (Holosight) Y
+	IniRead, PY4XY, Settings.ini, RECOIL, Python (4x Scope) Y
+	IniRead, PYNSX, Settings.ini, RECOIL, Python (No Sight) X
+	IniRead, PYSSX, Settings.ini, RECOIL, Python (Simple Sight) X
+	IniRead, PYHSX, Settings.ini, RECOIL, Python (Holosight) X
+	IniRead, PY4XX, Settings.ini, RECOIL, Python (4x Scope) X
+	
+	IniRead, M9NSY, Settings.ini, RECOIL, M92 (No Sight) Y
+	IniRead, M9SSY, Settings.ini, RECOIL, M92 (Simple Sight) Y
+	IniRead, M9HSY, Settings.ini, RECOIL, M92 (Holosight) Y	
+	IniRead, M94XY, Settings.ini, RECOIL, M92 (4x Scope) Y
+	IniRead, M9NSX, Settings.ini, RECOIL, M92 (No Sight) X
+	IniRead, M9SSX, Settings.ini, RECOIL, M92 (Simple Sight) X
+	IniRead, M9HSX, Settings.ini, RECOIL, M92 (Holosight) X
+	IniRead, M94XX, Settings.ini, RECOIL, M92 (4x Scope) X
+	
+	IniRead, SMGNSY, Settings.ini, RECOIL, SMG (No Sight) Y
+	IniRead, SMGSSY, Settings.ini, RECOIL, SMG (Simple Sight) Y
+	IniRead, SMGHSY, Settings.ini, RECOIL, SMG (Holosight) Y
+	IniRead, SMGNSX, Settings.ini, RECOIL, SMG (No Sight) X
+	IniRead, SMGSSX, Settings.ini, RECOIL, SMG (Simple Sight) X
+	IniRead, SMGHSX, Settings.ini, RECOIL, SMG (Holosight) X
+	
+	IniRead, LRNSY, Settings.ini, RECOIL, LR-300 (No Sight) Y
+	IniRead, LRSSY, Settings.ini, RECOIL, LR-300 (Simple Sight) Y
+	IniRead, LRHSY, Settings.ini, RECOIL, LR-300 (Holosight) Y
+	IniRead, LR4XY, Settings.ini, RECOIL, LR-300 (4x Scope) Y
+	IniRead, LRNSX, Settings.ini, RECOIL, LR-300 (No Sight) X
+	IniRead, LRSSX, Settings.ini, RECOIL, LR-300 (Simple Sight) X
+	IniRead, LRHSX, Settings.ini, RECOIL, LR-300 (Holosight) X
+	IniRead, LR4XX, Settings.ini, RECOIL, LR-300 (4x Scope) X			
+	
+	IniRead, MGNSY, Settings.ini, RECOIL, M249 (No Sight) Y
+	IniRead, MGSSY, Settings.ini, RECOIL, M249 (Simple Sight) Y
+	IniRead, MGHSY, Settings.ini, RECOIL, M249 (Holosight) Y
+	IniRead, MG4XY, Settings.ini, RECOIL, M249 (4x Scope) Y
+	IniRead, MGNSX, Settings.ini, RECOIL, M249 (No Sight) X
+	IniRead, MGSSX, Settings.ini, RECOIL, M249 (Simple Sight) X
+	IniRead, MGHSX, Settings.ini, RECOIL, M249 (Holosight) X
+	IniRead, MG4XX, Settings.ini, RECOIL, M249 (4x Scope) X			
+;////////////////////////////////CROUCH RECOIL READ/////////////////////////////////////////
+	IniRead, cAKNSY, Settings.ini, CROUCHRECOIL, AK (No Sight) Y
+	IniRead, cAKSSY, Settings.ini, CROUCHRECOIL, AK (Simple Sight) Y
+	IniRead, cAKHSY, Settings.ini, CROUCHRECOIL, AK (Holosight) Y
+	IniRead, cAK4XY, Settings.ini, CROUCHRECOIL, AK (4x Scope) Y
+	IniRead, cAKNSX, Settings.ini, CROUCHRECOIL, AK (No Sight) X
+	IniRead, cAKSSX, Settings.ini, CROUCHRECOIL, AK (Simple Sight) X
+	IniRead, cAKHSX, Settings.ini, CROUCHRECOIL, AK (Holosight) X
+	
+	IniRead, cSHITNSY, Settings.ini, CROUCHRECOIL, Shitstol (No Sight) Y
+	IniRead, cSHITSSY, Settings.ini, CROUCHRECOIL, Shitstol (Simple Sight) Y
+	IniRead, cSHITHSY, Settings.ini, CROUCHRECOIL, Shitstol (Holosight) Y
+	IniRead, cSHITNSX, Settings.ini, CROUCHRECOIL, Shitstol (No Sight) X
+	IniRead, cSHITSSX, Settings.ini, CROUCHRECOIL, Shitstol (Simple Sight) X
+	IniRead, cSHITHSX, Settings.ini, CROUCHRECOIL, Shitstol (Holosight) X
+	
+	IniRead, cMPNSY, Settings.ini, CROUCHRECOIL, MP5A4 (No Sight) Y
+	IniRead, cMPSSY, Settings.ini, CROUCHRECOIL, MP5A4 (Simple Sight) Y
+	IniRead, cMPHSY, Settings.ini, CROUCHRECOIL, MP5A4 (Holosight) Y
+	IniRead, cMPNSX, Settings.ini, CROUCHRECOIL, MP5A4 (No Sight) X
+	IniRead, cMPSSX, Settings.ini, CROUCHRECOIL, MP5A4 (Simple Sight) X
+	IniRead, cMPHSX, Settings.ini, CROUCHRECOIL, MP5A4 (Holosight) X
+	
+	IniRead, cSARNSY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (No Sight) Y
+	IniRead, cSARSSY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Simple Sight) Y
+	IniRead, cSARHSY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Holosight) Y
+	IniRead, cSAR4XY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (4x Scope) Y
+	IniRead, cSARNSX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (No Sight) X
+	IniRead, cSARSSX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Simple Sight) X
+	IniRead, cSARHSX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Holosight) X
+	IniRead, cSAR4XX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (4x Scope) X
+	
+	IniRead, cTHNSY, Settings.ini, CROUCHRECOIL, Thompson (No Sight) Y
+	IniRead, cTHSSY, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) Y
+	IniRead, cTHHSY, Settings.ini, CROUCHRECOIL, Thompson (Holosight) Y
+	IniRead, cTHNSX, Settings.ini, CROUCHRECOIL, Thompson (No Sight) X
+	IniRead, cTHSSX, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) X
+	IniRead, cTHHSX, Settings.ini, CROUCHRECOIL, Thompson (Holosight) X
+	
+	IniRead, cPYNSY, Settings.ini, CROUCHRECOIL, Python (No Sight) Y
+	IniRead, cPYSSY, Settings.ini, CROUCHRECOIL, Python (Simple Sight) Y
+	IniRead, cPYHSY, Settings.ini, CROUCHRECOIL, Python (Holosight) Y
+	IniRead, cPY4XY, Settings.ini, CROUCHRECOIL, Python (4x Scope) Y
+	IniRead, cPYNSX, Settings.ini, CROUCHRECOIL, Python (No Sight) X
+	IniRead, cPYSSX, Settings.ini, CROUCHRECOIL, Python (Simple Sight) X
+	IniRead, cPYHSX, Settings.ini, CROUCHRECOIL, Python (Holosight) X
+	IniRead, cPY4XX, Settings.ini, CROUCHRECOIL, Python (4x Scope) X
+	
+	IniRead, cM9NSY, Settings.ini, CROUCHRECOIL, M92 (No Sight) Y
+	IniRead, cM9SSY, Settings.ini, CROUCHRECOIL, M92 (Simple Sight) Y
+	IniRead, cM9HSY, Settings.ini, CROUCHRECOIL, M92 (Holosight) Y
+	IniRead, cM94XY, Settings.ini, CROUCHRECOIL, M92 (4x Scope) Y			
+	IniRead, cM9NSX, Settings.ini, CROUCHRECOIL, M92 (No Sight) X
+	IniRead, cM9SSX, Settings.ini, CROUCHRECOIL, M92 (Simple Sight) X
+	IniRead, cM9HSX, Settings.ini, CROUCHRECOIL, M92 (Holosight) X
+	IniRead, cM94XX, Settings.ini, CROUCHRECOIL, M92 (4x Scope) X	
+
+	IniRead, cSMGNSY, Settings.ini, CROUCHRECOIL, SMG (No Sight) Y
+	IniRead, cSMGSSY, Settings.ini, CROUCHRECOIL, SMG (Simple Sight) Y
+	IniRead, cSMGHSY, Settings.ini, CROUCHRECOIL, SMG (Holosight) Y
+	IniRead, cSMGNSX, Settings.ini, CROUCHRECOIL, SMG (No Sight) X
+	IniRead, cSMGSSX, Settings.ini, CROUCHRECOIL, SMG (Simple Sight) X
+	IniRead, cSMGHSX, Settings.ini, CROUCHRECOIL, SMG (Holosight) X
+	
+	IniRead, cLRNSY, Settings.ini, CROUCHRECOIL, LR-300 (No Sight) Y
+	IniRead, cLRSSY, Settings.ini, CROUCHRECOIL, LR-300 (Simple Sight) Y
+	IniRead, cLRHSY, Settings.ini, CROUCHRECOIL, LR-300 (Holosight) Y
+	IniRead, cLR4XY, Settings.ini, CROUCHRECOIL, LR-300 (4x Scope) Y
+	IniRead, cLRNSX, Settings.ini, CROUCHRECOIL, LR-300 (No Sight) X
+	IniRead, cLRSSX, Settings.ini, CROUCHRECOIL, LR-300 (Simple Sight) X
+	IniRead, cLRHSX, Settings.ini, CROUCHRECOIL, LR-300 (Holosight) X
+	IniRead, cLR4XX, Settings.ini, CROUCHRECOIL, LR-300 (4x Scope) X
+	
+	IniRead, cMGNSY, Settings.ini, CROUCHRECOIL, M249 (No Sight) Y
+	IniRead, cMGSSY, Settings.ini, CROUCHRECOIL, M249 (Simple Sight) Y
+	IniRead, cMGHSY, Settings.ini, CROUCHRECOIL, M249 (Holosight) Y
+	IniRead, cMG4XY, Settings.ini, CROUCHRECOIL, M249 (4x Scope) Y
+	IniRead, cMGNSX, Settings.ini, CROUCHRECOIL, M249 (No Sight) X
+	IniRead, cMGSSX, Settings.ini, CROUCHRECOIL, M249 (Simple Sight) X
+	IniRead, cMGHSX, Settings.ini, CROUCHRECOIL, M249 (Holosight) X
+	IniRead, cMG4XX, Settings.ini, CROUCHRECOIL, M249 (4x Scope) X
+	IniRead, SENSE, Settings.ini, Sensitivity, Sensitivity			
 
 if FileExist("Guns.ini")
 {
@@ -458,77 +478,77 @@ if FileExist("Guns.ini")
 		}	
 
 ;/////////////////////////////////////////////SLEEP MODIFIERS////////////////////////////////////////////
-			IniRead, RoF, Guns.ini, FireRate, FireRate
-			IniRead, RoFAK, Guns.ini, FireRate, AK (No Sight)
-			IniRead, cRoFAK, Guns.ini, FireRate, cAK (No Sight)
-			
-			IniRead, AKSLEEPNS, Guns.ini,  TUNING (Sleeps), AK (No Sight)
-			IniRead, AKSLEEPSS, Guns.ini, TUNING (Sleeps), AK (Simple Sight)
-			IniRead, AKSLEEPHS, Guns.ini, TUNING (Sleeps), AK (Holosight)
-			IniRead, AKSLEEP4X, Guns.ini, TUNING (Sleeps), AK (4x Scope)
+	IniRead, RoF, Guns.ini, FireRate, FireRate
+	IniRead, RoFAK, Guns.ini, FireRate, AK (No Sight)
+	IniRead, cRoFAK, Guns.ini, FireRate, cAK (No Sight)
+	
+	IniRead, AKSLEEPNS, Guns.ini,  TUNING (Sleeps), AK (No Sight)
+	IniRead, AKSLEEPSS, Guns.ini, TUNING (Sleeps), AK (Simple Sight)
+	IniRead, AKSLEEPHS, Guns.ini, TUNING (Sleeps), AK (Holosight)
+	IniRead, AKSLEEP4X, Guns.ini, TUNING (Sleeps), AK (4x Scope)
 
-			IniRead, MP5A4SLEEPNS, Guns.ini, TUNING (Sleeps), MP5A4 (No Sight)
-			IniRead, MP5A4SLEEPSS, Guns.ini, TUNING (Sleeps), MP5A4 (Simple Sight)
-			IniRead, MP5A4SLEEPHS, Guns.ini, TUNING (Sleeps), MP5A4 (Holosight)
+	IniRead, MP5A4SLEEPNS, Guns.ini, TUNING (Sleeps), MP5A4 (No Sight)
+	IniRead, MP5A4SLEEPSS, Guns.ini, TUNING (Sleeps), MP5A4 (Simple Sight)
+	IniRead, MP5A4SLEEPHS, Guns.ini, TUNING (Sleeps), MP5A4 (Holosight)
 
-			
-			IniRead, THSLEEPNS, Guns.ini, TUNING (Sleeps), Thompson (No Sight)
-			IniRead, THSLEEPSS, Guns.ini, TUNING (Sleeps), Thompson (Simple Sight)
-			IniRead, THSLEEPHS, Guns.ini, TUNING (Sleeps), Thompson (Holosight)	
-			
-			
-			IniRead, SMGSLEEPNS, Guns.ini, TUNING (Sleeps), SMG (No Sight)
-			IniRead, SMGSLEEPSS, Guns.ini, TUNING (Sleeps), SMG (Simple Sight)
-			IniRead, SMGSLEEPHS, Guns.ini, TUNING (Sleeps), SMG (Holosight)
-			
-			IniRead, LRSLEEPNS, Guns.ini, TUNING (Sleeps), LR-300 (No Sight)
-			IniRead, LRSLEEPSS, Guns.ini, TUNING (Sleeps), LR-300 (Simple Sight)
-			IniRead, LRSLEEPHS, Guns.ini, TUNING (Sleeps), LR-300 (Holosight)
-			IniRead, LRSLEEP4X, Guns.ini, TUNING (Sleeps), LR-300 (4x Scope)
-			
-			IniRead, M249SLEEPNS, Guns.ini, TUNING (Sleeps), M249 (No Sight)
-			IniRead, M249SLEEPSS, Guns.ini, TUNING (Sleeps), M249 (Simple Sight)
-			IniRead, M249SLEEPHS, Guns.ini, TUNING (Sleeps), M249 (Holosight)
-			IniRead, M249SLEEP4X, Guns.ini, TUNING (Sleeps), M249 (4x Scope)
-			
-			
-			
-			
-			IniRead, cAKSLEEPNS, Guns.ini,  CROUCHTUNING (Sleeps), AK (No Sight)
-			IniRead, cAKSLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), AK (Simple Sight)
-			IniRead, cAKSLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), AK (Holosight)
-			IniRead, cAKSLEEP4X, Guns.ini, CROUCHTUNING (Sleeps), AK (4x Scope)
+	
+	IniRead, THSLEEPNS, Guns.ini, TUNING (Sleeps), Thompson (No Sight)
+	IniRead, THSLEEPSS, Guns.ini, TUNING (Sleeps), Thompson (Simple Sight)
+	IniRead, THSLEEPHS, Guns.ini, TUNING (Sleeps), Thompson (Holosight)	
+	
+	
+	IniRead, SMGSLEEPNS, Guns.ini, TUNING (Sleeps), SMG (No Sight)
+	IniRead, SMGSLEEPSS, Guns.ini, TUNING (Sleeps), SMG (Simple Sight)
+	IniRead, SMGSLEEPHS, Guns.ini, TUNING (Sleeps), SMG (Holosight)
+	
+	IniRead, LRSLEEPNS, Guns.ini, TUNING (Sleeps), LR-300 (No Sight)
+	IniRead, LRSLEEPSS, Guns.ini, TUNING (Sleeps), LR-300 (Simple Sight)
+	IniRead, LRSLEEPHS, Guns.ini, TUNING (Sleeps), LR-300 (Holosight)
+	IniRead, LRSLEEP4X, Guns.ini, TUNING (Sleeps), LR-300 (4x Scope)
+	
+	IniRead, M249SLEEPNS, Guns.ini, TUNING (Sleeps), M249 (No Sight)
+	IniRead, M249SLEEPSS, Guns.ini, TUNING (Sleeps), M249 (Simple Sight)
+	IniRead, M249SLEEPHS, Guns.ini, TUNING (Sleeps), M249 (Holosight)
+	IniRead, M249SLEEP4X, Guns.ini, TUNING (Sleeps), M249 (4x Scope)
+	
+	
+	
+	
+	IniRead, cAKSLEEPNS, Guns.ini,  CROUCHTUNING (Sleeps), AK (No Sight)
+	IniRead, cAKSLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), AK (Simple Sight)
+	IniRead, cAKSLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), AK (Holosight)
+	IniRead, cAKSLEEP4X, Guns.ini, CROUCHTUNING (Sleeps), AK (4x Scope)
 
-			IniRead, cMP5A4SLEEPNS, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (No Sight)
-			IniRead, cMP5A4SLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (Simple Sight)
-			IniRead, cMP5A4SLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (Holosight)
+	IniRead, cMP5A4SLEEPNS, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (No Sight)
+	IniRead, cMP5A4SLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (Simple Sight)
+	IniRead, cMP5A4SLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (Holosight)
 
-			
-			IniRead, cTHSLEEPNS, Guns.ini, CROUCHTUNING (Sleeps), Thompson (No Sight)
-			IniRead, cTHSLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), Thompson (Simple Sight)
-			IniRead, cTHSLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), Thompson (Holosight)	
-			
-			
-			IniRead, cSMGSLEEPNS, Guns.ini, CROUCHTUNING (Sleeps), SMG (No Sight)
-			IniRead, cSMGSLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), SMG (Simple Sight)
-			IniRead, cSMGSLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), SMG (Holosight)
-			
-			IniRead, cLRSLEEPNS, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (No Sight)
-			IniRead, cLRSLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (Simple Sight)
-			IniRead, cLRSLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (Holosight)
-			IniRead, cLRSLEEP4X, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (4x Scope)
-			
-			IniRead, cM249SLEEPNS, Guns.ini, CROUCHTUNING (Sleeps), M249 (No Sight)
-			IniRead, cM249SLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), M249 (Simple Sight)
-			IniRead, cM249SLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), M249 (Holosight)
-			IniRead, cM249SLEEP4X, Guns.ini, CROUCHTUNING (Sleeps), M249 (4x Scope)
+	
+	IniRead, cTHSLEEPNS, Guns.ini, CROUCHTUNING (Sleeps), Thompson (No Sight)
+	IniRead, cTHSLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), Thompson (Simple Sight)
+	IniRead, cTHSLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), Thompson (Holosight)	
+	
+	
+	IniRead, cSMGSLEEPNS, Guns.ini, CROUCHTUNING (Sleeps), SMG (No Sight)
+	IniRead, cSMGSLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), SMG (Simple Sight)
+	IniRead, cSMGSLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), SMG (Holosight)
+	
+	IniRead, cLRSLEEPNS, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (No Sight)
+	IniRead, cLRSLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (Simple Sight)
+	IniRead, cLRSLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (Holosight)
+	IniRead, cLRSLEEP4X, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (4x Scope)
+	
+	IniRead, cM249SLEEPNS, Guns.ini, CROUCHTUNING (Sleeps), M249 (No Sight)
+	IniRead, cM249SLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), M249 (Simple Sight)
+	IniRead, cM249SLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), M249 (Holosight)
+	IniRead, cM249SLEEP4X, Guns.ini, CROUCHTUNING (Sleeps), M249 (4x Scope)
 			
 ;Resolution Calibration Unit--------------------------------
 	xx := (A_ScreenWidth // 2)
 	yy := (A_ScreenHeight // 2)
 		IniWrite, %xx%, Settings.ini, ResCalibration, XRes
 		IniWrite, %yy%, Settings.ini, ResCalibration, YRes
-		FileAppend,`n,Settings.ini
+		;FileAppend,`n,Settings.ini
 		
 		IniRead, XRes, Settings.ini, ResCalibration, XRes
 		IniRead, YRes, Settings.ini, ResCalibration, YRes
@@ -562,7 +582,7 @@ Gui, Color, 5F5A59
 Gui, Font, s8 c7BF106 Bold
 Gui, Add, Text, % "x0 y-5 w" Width " h30 BackgroundTrans Center 0x200 gGuiMove vCaption", G    I    T           G    U    D
 Gui, -Caption
-Gui, Show, x0 y0 w340 h400, SMEKT
+Gui, Show, x%GUIX% y%GUIY% w340 h400, SMEKT
 gui, +AlwaysOnTop
 Gui, Add, Tab2, x1 y25 w340 h390 , Loadout|Reticle|Settings|Config
 Gui, Font, s6 c7BF106
@@ -1350,17 +1370,19 @@ Loop 2 {
 Return
 	
 MinMaxKey:
+	IniRead, GUIX, Settings.ini, SETTINGS, GuiLocX
+	IniRead, GUIY, Settings.ini, SETTINGS, GuiLocY
 	Gui, Submit, NoHide
 	If (Hide = 1) {
-		Gui, Show, w340 h400, SMEKT
-		Gui, 2:Show, w0 h0
+		Gui, Show, x%GUIX% y%GUIY% w340 h400, SMEKT
+		Gui, 2:Show, w0 h0 x%GUIX% y%GUIY%
 		GuiControl,,Show,1
 }
 	Else 
 	if (Show = 1) {
 		GuiControl,, Hide, 1
-		Gui, Show, w0 h0, SMEKT
-		Gui, 2:Show, w75 h50
+		Gui, Show, w0 h0 x%GUIX% y%GUIY%, SMEKT
+		Gui, 2:Show, w75 h50 x%GUIX% y%GUIY%
 }
 	Return
 
@@ -1545,7 +1567,12 @@ Close:
 Return
 
 GuiMove:
-   PostMessage, 0xA1, 2
+	PostMessage, 0xA1, 2
+	WinGetPos,Cx,Cy
+	SLEEP, 20
+	WinGetPos,Cx,Cy
+	IniWrite, %Cx%, Settings.ini, SETTINGS, GuiLocX
+	IniWrite, %Cy%, Settings.ini, SETTINGS, GuiLocY
 return
 
 Help:

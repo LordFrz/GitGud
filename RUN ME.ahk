@@ -1597,7 +1597,7 @@ if myX between %XRes1% and %XRes2% ; the range for x
 
     {
 Loop
-	If GetKeyState("LButton", "LCtrl") && (Mod = 1) && (AUTO = 1) && (FROn = 0) 
+	If GetKeyState("LButton", "Ctrl") && (Mod = 1) && (AUTO = 1) && (FROn = 0) 
 		{
 			Sleep, %ctune%
 			mouseXY(cmoveAmountX,cmoveAmountY)

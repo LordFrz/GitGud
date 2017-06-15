@@ -1,5 +1,5 @@
 ;Script Version
-SVersion = 1.6.10
+SVersion = 1.6.11
 ; Uncomment if Gdip.ahk is not in your standard library
 #Include, Gdip.ahk
 

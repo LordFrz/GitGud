@@ -1,13 +1,9 @@
 ;Script Version
-SVersion = 1.6.11
+SVersion = 1.6.12
+hideTB:= false
+
 ; Uncomment if Gdip.ahk is not in your standard library
 #Include, Gdip.ahk
-
-WinHide, ahk_class Shell_TrayWnd
-WinHide, Start ahk_class Button
-
-
-
 if FileExist("Settings.ini")
 {
 	IniRead, GUIXCK, Settings.ini, SETTINGS, GuiLocX
@@ -616,10 +612,12 @@ Gui, add, radio, x5 y235 w70 h17 vNoSight, No Sight
 Gui, add, radio, x85 y235 w70 h17 vSimpleSight, Simple Sight
 Gui, add, radio, x165 y235 w70 h17 vHoloSight, Holosight
 Gui, add, radio, x240 y235 w70 h17 v4xScope, 4x Scope
+Gui, Add, Checkbox, x5 y340 w85 h20 Checked 1 vStandFire, Enable Standing Fire
 Gui, add, button, x5 y370 w45 h20 gHelp, Help
 Gui, add, radio, x5 y265 w70 h17 vNoBarrel, No Barrel Mod
 Gui, add, radio, x85 y265 w70 h17 vMuzzleBoost, Muzzle Boost
 Gui, add, button, x60 y370 w45 h20 gClose, Close
+Gui, add, button, x115 y370 w80 h20 gTBToggle, Toggle Taskbar
 Gui, add, radio, x380 y45 w70 h20 vHide, Hide
 Gui, add, radio, x380 y25 w70 h20 vShow, Show
 Gui, add, button, x380 y30 w20 h10, Filler
@@ -1385,6 +1383,22 @@ MinMaxKey:
 		Gui, 2:Show, w75 h50 x%GUIX% y%GUIY%
 }
 	Return
+	
+	
+TBToggle:
+	if(hideTB = false)
+	{
+		WinHide, ahk_class Shell_TrayWnd
+		WinHide, Start ahk_class Button
+		hideTB:= true
+	}else
+		 {
+			WinShow, ahk_class Shell_TrayWnd
+			WinShow, Start ahk_class Button
+			hideTB:= false
+		 }
+RETURN
+
 
 ColorSliderSubmit:
 	sleep, 50
@@ -1655,73 +1669,77 @@ return
 Return
 
 ~LButton::
-MouseGetPos, myX, myY 
-if myX between %XRes1% and %XRes2% ; the range for x
+if(StandFire = 1)
 {
+	MouseGetPos, myX, myY 
+	if myX between %XRes1% and %XRes2% ; the range for x
+	{
 
-    if myY between %YRes1% and %YRes2% ; the range for y
+		if myY between %YRes1% and %YRes2% ; the range for y
 
-    {
-Loop
-	If GetKeyState("LButton") && (Mod = 1) && (AUTO = 1) && (FROn = 0) 
 		{
-				If GetKeyState("w" || "s" || "a" || "d")
-					{
-					mouseXY((moveAmountX * moveMultiplier),(moveAmountY * moveMultiplier))
-					}
+	Loop
+		If GetKeyState("LButton") && (Mod = 1) && (AUTO = 1) && (FROn = 0) 
+			{
+					If GetKeyState("w" || "s" || "a" || "d")
+						{
+						mouseXY((moveAmountX * moveMultiplier),(moveAmountY * moveMultiplier))
+						}
+				else
+						{
+						mouseXY(moveAmountX,moveAmountY)
+						}
+				Sleep, %tune%
+			}
 			else
-					{
-					mouseXY(moveAmountX,moveAmountY)
-					}
-			Sleep, %tune%
+				Break
 		}
+	}
+
+	MouseGetPos, myX, myY 
+	if myX between %XRes1% and %XRes2% ; the range for x
+	{
+
+		if myY between %YRes1% and %YRes2% ; the range for y
+		{
+	If GetKeyState("LButton") && (Mod = 1) && (SEMI = 1) && (FROn = 0)
+	{
+	Loop{
+		GetKeyState, keystate, Lbutton,P
+		if keystate = U
+		break
 		else
-			Break
+		If (Mod = 1) && (SEMI = 1)
+	; do the click then loop
+		MouseClick, left
+		mouseXY(moveAmountX,moveAmountY)
+		sleep, %refractory%
+		}
 	}
-}
-
-MouseGetPos, myX, myY 
-if myX between %XRes1% and %XRes2% ; the range for x
-{
-
-    if myY between %YRes1% and %YRes2% ; the range for y
-    {
-If GetKeyState("LButton") && (Mod = 1) && (SEMI = 1) && (FROn = 0)
-{
-Loop{
-	GetKeyState, keystate, Lbutton,P
-	if keystate = U
-	break
-	else
-	If (Mod = 1) && (SEMI = 1)
-; do the click then loop
-	MouseClick, left
-	mouseXY(moveAmountX,moveAmountY)
-	sleep, %refractory%
+		}
 	}
-}
-	}
-}
-;Burst Control Unit----------------------------------------------------
-MouseGetPos, myX, myY 
-if myX between %XRes1% and %XRes2% ; the range for x
-{
+	;Burst Control Unit----------------------------------------------------
+	MouseGetPos, myX, myY 
+	if myX between %XRes1% and %XRes2% ; the range for x
+	{
 
-    if myY between %YRes1% and %YRes2% ; the range for y
-    {
-	If GetKeyState("LButton") && (FROn = 1) && (Mod = 1)
-Loop{
-	GetKeyState, keystate, Lbutton,P
-	if keystate = U
-	break
-	else
-	If (Mod = 1) && (FROn = 1)
-				MouseClick, left
-				mouseXY(moveAmountX,RoFRecoil)
-				sleep, %RoF%
+		if myY between %YRes1% and %YRes2% ; the range for y
+		{
+		If GetKeyState("LButton") && (FROn = 1) && (Mod = 1)
+	Loop{
+		GetKeyState, keystate, Lbutton,P
+		if keystate = U
+		break
+		else
+		If (Mod = 1) && (FROn = 1)
+					MouseClick, left
+					mouseXY(moveAmountX,RoFRecoil)
+					sleep, %RoF%
+				}
 			}
 		}
-	}
+}else
+	Sleep, 10
 return
 
 SMEKTHairOn:

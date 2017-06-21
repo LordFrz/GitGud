@@ -95,7 +95,7 @@ _PayPal_ - paypal.me/smekt (FrDe Plastics is for somethin else, but its the same
 - Selecting a semi-auto weapon makes it fully automatic when the mouse is held down. For example, select M92, aim at your friend and hold down the mouse button
 - Cleaned up some of the messy code for people who like to inspect or change the code.
 - Works through Devblog 163.
-### ////////////////////PATCH 1.6.7\\\\\\\\\\\\\\\\\\\\
+### ////////////////////PATCH 1.6.11\\\\\\\\\\\\\\\\\\\\
 6-12-17
 - Lots of minor bug fixes
 - Added AK Consecutive Fire mode. Just select time between shots in Config, and set hotkey for toggle in settings.

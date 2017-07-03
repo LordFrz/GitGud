@@ -765,7 +765,7 @@ Gui, add, edit, x15 y270 w70 h20 vSensitivity, %SENSE%
 Gui, add, edit, x15 y90 w70 h20 vFireRate, %RoF% 
 Gui, add, button, x85 y90 w40 h20 gFireRate, Enter
 Gui, Font, s7 cRed
-Gui, add, text, x3 y200 w290 h55 Center, Input your RUST Sensitivity below and press Enter.
+Gui, add, text, x3 y200 w290 h55 Center, Input your Sensitivity below and press Enter.
 Gui, add, text, x3 y110 w290 h55 Center, Simulates rapid single fires while mouse is held down to eliminate progressive aimcone. Input a custom time between shots above to your liking. ONLY SUPPORTS AK AT THE MOMENT
 Gui, Font, s7 c7BF106
 Gui, add, text, x10 y255 w80 h15 Center vSensitivityText, Sensitivity

@@ -3,12 +3,15 @@
 SetBatchLines, -1
 SetWorkingDir %A_ScriptDir%
 
-#Include, Gdip.ahk
+#Include, Includes/Gdip.ahk
 
 
 ;-----Gits current reticle values
-IniRead, PIC, Settings.ini, SightSelected, CURRENTSIGHT
-IniRead, RETCOLOR, Settings.ini, ColorSets, RETICLECOLOR
+IniRead, PIC, Settings.ini, SETTINGS, CURRENTSIGHT
+IniRead, RETCOLOR, Settings.ini, SETTINGS, RETICLECOLOR
+IniRead, moveX, Settings.ini, SETTINGS, RXmove
+IniRead, moveY, Settings.ini, SETTINGS, RYmove
+
 
 ; Start gdi+
 If !pToken := Gdip_Startup()
@@ -48,6 +51,9 @@ yy :=  (A_ScreenHeight //2) - (Gdip_GetImageHeight(pBitmap)/2)
 Xr:= 0
 Yr:= 0
 
+;Move Reticle by X pixles
+xx += moveX
+yy += moveY
 
 ;--------Shitty Random way to switch color---------
 ;Gdip_DrawImage(G, pBitmap, xx, yy, Width, Height, 0, 0, Width, Height)

@@ -1,477 +1,188 @@
 ;Script Version
-SVersion = 1.6.12
+SVersion = 1.7.0
 hideTB:= false
 
 ; Uncomment if Gdip.ahk is not in your standard library
-#Include, Gdip.ahk
-if FileExist("Settings.ini")
-{
-	IniRead, GUIXCK, Settings.ini, SETTINGS, GuiLocX
-	IniRead, GUIYCK, Settings.ini, SETTINGS, GuiLocY
-	if(GUIXCK = "ERROR" || GUIYCK = "ERROR")
-	{
-		IniWrite, 0, Settings.ini, SETTINGS, GuiLocX
-		IniWrite, 0, Settings.ini, SETTINGS, GuiLocY
-		FileAppend,`n,Settings.ini
-	}
+#Include, Includes/Gdip.ahk
+#Include, Includes/MakeINI.ahk
 
+;///////////////Initial INI Reads///////////////////////////////
 
-	}else{
-;////////////////////////////////Initial Settings Values////////////////////////////
-			;GuiLocation
-			IniWrite, 0, Settings.ini, SETTINGS, GuiLocX
-			IniWrite, 0, Settings.ini, SETTINGS, GuiLocY
-			FileAppend,`n,Settings.ini
-
-            ;Crosshair	
-			IniWrite, CROSS.png, Settings.ini, SightSelected, CURRENTSIGHT
-			FileAppend,`n,Settings.ini
-			
-			;Recoil Values
-			IniWrite, 11, Settings.ini, RECOIL, AK (No Sight) Y
-			IniWrite, 8, Settings.ini, RECOIL, AK (Simple Sight) Y
-			IniWrite, 10, Settings.ini, RECOIL, AK (Holosight) Y
-			IniWrite, 24, Settings.ini, RECOIL, AK (4x Scope) Y
-			IniWrite, 0, Settings.ini, RECOIL, AK (No Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, AK (Simple Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, AK (Holosight) X
-			
-			IniWrite, 47, Settings.ini, RECOIL, Shitstol (No Sight) Y
-			IniWrite, 45, Settings.ini, RECOIL, Shitstol (Simple Sight) Y
-			IniWrite, 47, Settings.ini, RECOIL, Shitstol (Holosight) Y
-			IniWrite, 0, Settings.ini, RECOIL, Shitstol (No Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, Shitstol (Simple Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, Shitstol (Holosight) X
-			
-			IniWrite, 5, Settings.ini, RECOIL, MP5A4 (No Sight) Y
-			IniWrite, 4, Settings.ini, RECOIL, MP5A4 (Simple Sight) Y
-			IniWrite, 4, Settings.ini, RECOIL, MP5A4 (Holosight) Y
-			IniWrite, 0, Settings.ini, RECOIL, MP5A4 (No Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, MP5A4 (Simple Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, MP5A4 (Holosight) X
-			
-			IniWrite, 47, Settings.ini, RECOIL, Semi-Automatic Rifle (No Sight) Y
-			IniWrite, 38, Settings.ini, RECOIL, Semi-Automatic Rifle (Simple Sight) Y
-			IniWrite, 43, Settings.ini, RECOIL, Semi-Automatic Rifle (Holosight) Y
-			IniWrite, 175, Settings.ini, RECOIL, Semi-Automatic Rifle (4x Scope) Y
-			IniWrite, 0, Settings.ini, RECOIL, Semi-Automatic Rifle (No Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, Semi-Automatic Rifle (Simple Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, Semi-Automatic Rifle (Holosight) X
-			IniWrite, 0, Settings.ini, RECOIL, Semi-Automatic Rifle (4x Scope) X
-			
-			
-			IniWrite, 6, Settings.ini, RECOIL, Thompson (No Sight) Y
-			IniWrite, 5, Settings.ini, RECOIL, Thompson (Simple Sight) Y
-			IniWrite, 5, Settings.ini, RECOIL, Thompson (Holosight) Y
-			IniWrite, 0, Settings.ini, RECOIL, Thompson (No Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, Thompson (Simple Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, Thompson (Holosight) X
-			
-			IniWrite, 85, Settings.ini, RECOIL, Python (No Sight) Y
-			IniWrite, 82, Settings.ini, RECOIL, Python (Simple Sight) Y
-			IniWrite, 88, Settings.ini, RECOIL, Python (Holosight) Y
-			IniWrite, 380, Settings.ini, RECOIL, Python (4x Scope) Y
-			IniWrite, 0, Settings.ini, RECOIL, Python (No Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, Python (Simple Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, Python (Holosight) X
-			IniWrite, 0, Settings.ini, RECOIL, Python (4x Scope) X
-			
-			IniWrite, 19, Settings.ini, RECOIL, M92 (No Sight) Y
-			IniWrite, 19, Settings.ini, RECOIL, M92 (Simple Sight) Y
-			IniWrite, 20, Settings.ini, RECOIL, M92 (Holosight) Y
-			IniWrite, 100, Settings.ini, RECOIL, M92 (4x Scope) Y
-			IniWrite, 0, Settings.ini, RECOIL, M92 (No Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, M92 (Simple Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, M92 (Holosight) X
-			IniWrite, 0, Settings.ini, RECOIL, M92 (4x Scope) X
-			
-			
-			IniWrite, 5, Settings.ini, RECOIL, SMG (No Sight) Y
-			IniWrite, 4, Settings.ini, RECOIL, SMG (Simple Sight) Y
-			IniWrite, 5, Settings.ini, RECOIL, SMG (Holosight) Y
-			IniWrite, 0, Settings.ini, RECOIL, SMG (No Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, SMG (Simple Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, SMG (Holosight) X
-			
-			IniWrite, 6, Settings.ini, RECOIL, LR-300 (No Sight) Y
-			IniWrite, 5, Settings.ini, RECOIL, LR-300 (Simple Sight) Y
-			IniWrite, 5, Settings.ini, RECOIL, LR-300 (Holosight) Y
-			IniWrite, 13, Settings.ini, RECOIL, LR-300 (4x Scope) Y
-			IniWrite, 0, Settings.ini, RECOIL, LR-300 (No Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, LR-300 (Simple Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, LR-300 (Holosight) X
-			IniWrite, 0, Settings.ini, RECOIL, LR-300 (4x Scope) X
-			
-			IniWrite, 10, Settings.ini, RECOIL, M249 (No Sight) Y
-			IniWrite, 8, Settings.ini, RECOIL, M249 (Simple Sight) Y
-			IniWrite, 9, Settings.ini, RECOIL, M249 (Holosight) Y
-			IniWrite, 37, Settings.ini, RECOIL, M249 (4x Scope) Y
-			IniWrite, 0, Settings.ini, RECOIL, M249 (No Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, M249 (Simple Sight) X
-			IniWrite, 0, Settings.ini, RECOIL, M249 (Holosight) X
-			IniWrite, 0, Settings.ini, RECOIL, M249 (4x Scope) X
-			FileAppend,`n,Settings.ini
-			
-;////////////////////////////////////////CROUCH RECOIL////////////////////////////////////////		
-
-			IniWrite, 2, Settings.ini,  CROUCHRECOIL, AK (No Sight) Y
-			IniWrite, 4, Settings.ini, CROUCHRECOIL, AK (Simple Sight) Y
-			IniWrite, 4, Settings.ini, CROUCHRECOIL, AK (Holosight) Y
-			IniWrite, 17, Settings.ini, CROUCHRECOIL, AK (4x Scope) Y
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, AK (No Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, AK (Simple Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, AK (Holosight) X
-			
-			IniWrite, 23, Settings.ini, CROUCHRECOIL, Shitstol (No Sight) Y
-			IniWrite, 23, Settings.ini, CROUCHRECOIL, Shitstol (Simple Sight) Y
-			IniWrite, 23, Settings.ini, CROUCHRECOIL, Shitstol (Holosight) Y
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Shitstol (No Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Shitstol (Simple Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Shitstol (Holosight) X
-			
-			IniWrite, 5, Settings.ini, CROUCHRECOIL, MP5A4 (No Sight) Y
-			IniWrite, 4, Settings.ini, CROUCHRECOIL, MP5A4 (Simple Sight) Y
-			IniWrite, 5, Settings.ini, CROUCHRECOIL, MP5A4 (Holosight) Y
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, MP5A4 (No Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, MP5A4 (Simple Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, MP5A4 (Holosight) X
-			
-			IniWrite, 20, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (No Sight) Y
-			IniWrite, 24, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Simple Sight) Y
-			IniWrite, 22, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Holosight) Y
-			IniWrite, 87, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (4x Scope) Y
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (No Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Simple Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Holosight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (4x Scope) X
-			
-			
-			IniWrite, 1, Settings.ini, CROUCHRECOIL, Thompson (No Sight) Y
-			IniWrite, 1, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) Y
-			IniWrite, 1, Settings.ini, CROUCHRECOIL, Thompson (Holosight) Y
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Thompson (No Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Thompson (Holosight) X
-			
-			IniWrite, 48, Settings.ini, CROUCHRECOIL, Python (No Sight) Y
-			IniWrite, 54, Settings.ini, CROUCHRECOIL, Python (Simple Sight) Y
-			IniWrite, 48, Settings.ini, CROUCHRECOIL, Python (Holosight) Y
-			IniWrite, 210, Settings.ini, CROUCHRECOIL, Python (4x Scope) Y
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Python (No Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Python (Simple Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Python (Holosight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, Python (4x Scope) X			
-			
-			IniWrite, 12, Settings.ini, CROUCHRECOIL, M92 (No Sight) Y
-			IniWrite, 10, Settings.ini, CROUCHRECOIL, M92 (Simple Sight) Y
-			IniWrite, 12, Settings.ini, CROUCHRECOIL, M92 (Holosight) Y
-			IniWrite, 81, Settings.ini, CROUCHRECOIL, M92 (4x Scope) Y
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, M92 (No Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, M92 (Simple Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, M92 (Holosight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, M92 (4x Scope) X
-			
-			IniWrite, 1, Settings.ini, CROUCHRECOIL, SMG (No Sight) Y
-			IniWrite, 1, Settings.ini, CROUCHRECOIL, SMG (Simple Sight) Y
-			IniWrite, 1, Settings.ini, CROUCHRECOIL, SMG (Holosight) Y
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, SMG (No Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, SMG (Simple Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, SMG (Holosight) X
-			
-			IniWrite, 6, Settings.ini, CROUCHRECOIL, LR-300 (No Sight) Y
-			IniWrite, 5, Settings.ini, CROUCHRECOIL, LR-300 (Simple Sight) Y
-			IniWrite, 5, Settings.ini, CROUCHRECOIL, LR-300 (Holosight) Y
-			IniWrite, 15, Settings.ini, CROUCHRECOIL, LR-300 (4x Scope) Y
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, LR-300 (No Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, LR-300 (Simple Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, LR-300 (Holosight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, LR-300 (4x Scope) X
-			
-			IniWrite, 5, Settings.ini, CROUCHRECOIL, M249 (No Sight) Y
-			IniWrite, 4, Settings.ini, CROUCHRECOIL, M249 (Simple Sight) Y
-			IniWrite, 5, Settings.ini, CROUCHRECOIL, M249 (Holosight) Y
-			IniWrite, 28, Settings.ini, CROUCHRECOIL, M249 (4x Scope) Y
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, M249 (No Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, M249 (Simple Sight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, M249 (Holosight) X
-			IniWrite, 0, Settings.ini, CROUCHRECOIL, M249 (4x Scope) X
-			FileAppend,`n,Settings.ini
-			
-			;Cusom Chat Inputs
-			IniWrite, /home 1, Settings.ini, ChatCommands, CHATCOMMAND1
-			IniWrite, /home 2, Settings.ini, ChatCommands, CHATCOMMAND2
-			IniWrite, /clanui, Settings.ini, ChatCommands, CHATCOMMAND3
-			IniWrite, /tpa, Settings.ini, ChatCommands, CHATCOMMAND4
-			FileAppend,`n,Settings.ini
-			
-			;Custom Hotkeys
-			IniWrite, ^Numpad7, Settings.ini, ChatHotKeys, TOGGLEHOTKEY
-			IniWrite, ^Numpad8, Settings.ini, ChatHotKeys, MINMAXHOTKEY			
-			IniWrite, NumpadSub, Settings.ini, ChatHotKeys, KILLHOTKEY			
-			IniWrite, ^Numpad1, Settings.ini, ChatHotKeys, CHATHOTKEY1
-			IniWrite, ^Numpad2, Settings.ini, ChatHotKeys, CHATHOTKEY2
-			IniWrite, ^Numpad3, Settings.ini, ChatHotKeys, CHATHOTKEY3
-			IniWrite, ^Numpad4, Settings.ini, ChatHotKeys, CHATHOTKEY4
-			IniWrite, ^Numpad5, Settings.ini, ChatHotKeys, RoFTOGGLE
-			FileAppend,`n,Settings.ini
-			
-			IniWrite, 90, Settings.ini, Refractory, M92Refractory
-			IniWrite, 70, Settings.ini, Refractory, M92RefractoryMuz
-			IniWrite, 165, Settings.ini, Refractory, SARRefractory
-			IniWrite, 140, Settings.ini, Refractory, SARRefractoryMuz
-			IniWrite, 140, Settings.ini, Refractory, ShitstolRefractory
-			FileAppend,`n,Settings.ini
-
-			IniWrite, -16711936, Settings.ini, ColorSets, RETICLECOLOR
-			FileAppend,`n,Settings.ini
-			IniWrite, 1.0, Settings.ini, Sensitivity, Sensitivity
-			FileAppend,`n,Settings.ini
-
-
-		}
-		
+	;Settings.ini Reads
 	IniRead, GUIX, Settings.ini, SETTINGS, GuiLocX
 	IniRead, GUIY, Settings.ini, SETTINGS, GuiLocY
-	
-	IniRead, M92Refractory, Settings.ini, Refractory, M92Refractory
-	IniRead, SARRefractory, Settings.ini, Refractory, SARRefractory
-	IniRead, M92RefractoryMuz, Settings.ini, Refractory, M92RefractoryMuz
-	IniRead, SARRefractoryMuz, Settings.ini, Refractory, SARRefractoryMuz
-	IniRead, ShitstolRefractory, Settings.ini, Refractory, ShitstolRefractory
+	IniRead, SENSE, Settings.ini, SETTINGS, Sensitivity		
+
+	;Guns.ini Reads
+	IniRead, M92Refractory, Guns.ini, Refractory, M92Refractory
+	IniRead, SARRefractory, Guns.ini, Refractory, SARRefractory
+	IniRead, M92RefractoryMuz, Guns.ini, Refractory, M92RefractoryMuz
+	IniRead, SARRefractoryMuz, Guns.ini, Refractory, SARRefractoryMuz
+	IniRead, ShitstolRefractory, Guns.ini, Refractory, ShitstolRefractory
 	
 ;//////////Variable: 1st 2 letters are gun, 2nd 2 letters are scope, last letter is coord///////////////////////////
-	IniRead, AKNSY, Settings.ini, RECOIL, AK (No Sight) Y
-	IniRead, AKSSY, Settings.ini, RECOIL, AK (Simple Sight) Y
-	IniRead, AKHSY, Settings.ini, RECOIL, AK (Holosight) Y
-	IniRead, AK4XY, Settings.ini, RECOIL, AK (4X Scope) Y
-	IniRead, AKNSX, Settings.ini, RECOIL, AK (No Sight) X
-	IniRead, AKSSX, Settings.ini, RECOIL, AK (Simple Sight) X
-	IniRead, AKHSX, Settings.ini, RECOIL, AK (Holosight) X
+	IniRead, AKNSY, Guns.ini, RECOIL, AK (No Sight) Y
+	IniRead, AKSSY, Guns.ini, RECOIL, AK (Simple Sight) Y
+	IniRead, AKHSY, Guns.ini, RECOIL, AK (Holosight) Y
+	IniRead, AK4XY, Guns.ini, RECOIL, AK (4X Scope) Y
+	IniRead, AKNSX, Guns.ini, RECOIL, AK (No Sight) X
+	IniRead, AKSSX, Guns.ini, RECOIL, AK (Simple Sight) X
+	IniRead, AKHSX, Guns.ini, RECOIL, AK (Holosight) X
 	
-	IniRead, SHITNSY, Settings.ini, RECOIL, Shitstol (No Sight) Y
-	IniRead, SHITSSY, Settings.ini, RECOIL, Shitstol (Simple Sight) Y
-	IniRead, SHITHSY, Settings.ini, RECOIL, Shitstol (Holosight) Y
-	IniRead, SHITNSX, Settings.ini, RECOIL, Shitstol (No Sight) X
-	IniRead, SHITSSX, Settings.ini, RECOIL, Shitstol (Simple Sight) X
-	IniRead, SHITHSX, Settings.ini, RECOIL, Shitstol (Holosight) X
+	IniRead, SHITNSY, Guns.ini, RECOIL, Shitstol (No Sight) Y
+	IniRead, SHITSSY, Guns.ini, RECOIL, Shitstol (Simple Sight) Y
+	IniRead, SHITHSY, Guns.ini, RECOIL, Shitstol (Holosight) Y
+	IniRead, SHITNSX, Guns.ini, RECOIL, Shitstol (No Sight) X
+	IniRead, SHITSSX, Guns.ini, RECOIL, Shitstol (Simple Sight) X
+	IniRead, SHITHSX, Guns.ini, RECOIL, Shitstol (Holosight) X
 	
-	IniRead, MPNSY, Settings.ini, RECOIL, MP5A4 (No Sight) Y
-	IniRead, MPSSY, Settings.ini, RECOIL, MP5A4 (Simple Sight) Y
-	IniRead, MPHSY, Settings.ini, RECOIL, MP5A4 (Holosight) Y
-	IniRead, MPNSX, Settings.ini, RECOIL, MP5A4 (No Sight) X
-	IniRead, MPSSX, Settings.ini, RECOIL, MP5A4 (Simple Sight) X
-	IniRead, MPHSX, Settings.ini, RECOIL, MP5A4 (Holosight) X
+	IniRead, MPNSY, Guns.ini, RECOIL, MP5A4 (No Sight) Y
+	IniRead, MPSSY, Guns.ini, RECOIL, MP5A4 (Simple Sight) Y
+	IniRead, MPHSY, Guns.ini, RECOIL, MP5A4 (Holosight) Y
+	IniRead, MPNSX, Guns.ini, RECOIL, MP5A4 (No Sight) X
+	IniRead, MPSSX, Guns.ini, RECOIL, MP5A4 (Simple Sight) X
+	IniRead, MPHSX, Guns.ini, RECOIL, MP5A4 (Holosight) X
 	
-	IniRead, SARNSY, Settings.ini, RECOIL, Semi-Automatic Rifle (No Sight) Y
-	IniRead, SARSSY, Settings.ini, RECOIL, Semi-Automatic Rifle (Simple Sight) Y
-	IniRead, SARHSY, Settings.ini, RECOIL, Semi-Automatic Rifle (Holosight) Y
-	IniRead, SAR4XY, Settings.ini, RECOIL, Semi-Automatic Rifle (4x Scope) Y
-	IniRead, SARNSX, Settings.ini, RECOIL, Semi-Automatic Rifle (No Sight) X
-	IniRead, SARSSX, Settings.ini, RECOIL, Semi-Automatic Rifle (Simple Sight) X
-	IniRead, SARHSX, Settings.ini, RECOIL, Semi-Automatic Rifle (Holosight) X
-	IniRead, SAR4XX, Settings.ini, RECOIL, Semi-Automatic Rifle (4x Scope) X
+	IniRead, SARNSY, Guns.ini, RECOIL, Semi-Automatic Rifle (No Sight) Y
+	IniRead, SARSSY, Guns.ini, RECOIL, Semi-Automatic Rifle (Simple Sight) Y
+	IniRead, SARHSY, Guns.ini, RECOIL, Semi-Automatic Rifle (Holosight) Y
+	IniRead, SAR4XY, Guns.ini, RECOIL, Semi-Automatic Rifle (4x Scope) Y
+	IniRead, SARNSX, Guns.ini, RECOIL, Semi-Automatic Rifle (No Sight) X
+	IniRead, SARSSX, Guns.ini, RECOIL, Semi-Automatic Rifle (Simple Sight) X
+	IniRead, SARHSX, Guns.ini, RECOIL, Semi-Automatic Rifle (Holosight) X
+	IniRead, SAR4XX, Guns.ini, RECOIL, Semi-Automatic Rifle (4x Scope) X
 	
-	IniRead, THNSY, Settings.ini, RECOIL, Thompson (No Sight) Y
-	IniRead, THSSY, Settings.ini, RECOIL, Thompson (Simple Sight) Y
-	IniRead, THHSY, Settings.ini, RECOIL, Thompson (Holosight) Y
-	IniRead, THNSX, Settings.ini, RECOIL, Thompson (No Sight) X
-	IniRead, THSSX, Settings.ini, RECOIL, Thompson (Simple Sight) X
-	IniRead, THHSX, Settings.ini, RECOIL, Thompson (Holosight) X
+	IniRead, THNSY, Guns.ini, RECOIL, Thompson (No Sight) Y
+	IniRead, THSSY, Guns.ini, RECOIL, Thompson (Simple Sight) Y
+	IniRead, THHSY, Guns.ini, RECOIL, Thompson (Holosight) Y
+	IniRead, THNSX, Guns.ini, RECOIL, Thompson (No Sight) X
+	IniRead, THSSX, Guns.ini, RECOIL, Thompson (Simple Sight) X
+	IniRead, THHSX, Guns.ini, RECOIL, Thompson (Holosight) X
 	
-	IniRead, PYNSY, Settings.ini, RECOIL, Python (No Sight) Y
-	IniRead, PYSSY, Settings.ini, RECOIL, Python (Simple Sight) Y
-	IniRead, PYHSY, Settings.ini, RECOIL, Python (Holosight) Y
-	IniRead, PY4XY, Settings.ini, RECOIL, Python (4x Scope) Y
-	IniRead, PYNSX, Settings.ini, RECOIL, Python (No Sight) X
-	IniRead, PYSSX, Settings.ini, RECOIL, Python (Simple Sight) X
-	IniRead, PYHSX, Settings.ini, RECOIL, Python (Holosight) X
-	IniRead, PY4XX, Settings.ini, RECOIL, Python (4x Scope) X
+	IniRead, PYNSY, Guns.ini, RECOIL, Python (No Sight) Y
+	IniRead, PYSSY, Guns.ini, RECOIL, Python (Simple Sight) Y
+	IniRead, PYHSY, Guns.ini, RECOIL, Python (Holosight) Y
+	IniRead, PY4XY, Guns.ini, RECOIL, Python (4x Scope) Y
+	IniRead, PYNSX, Guns.ini, RECOIL, Python (No Sight) X
+	IniRead, PYSSX, Guns.ini, RECOIL, Python (Simple Sight) X
+	IniRead, PYHSX, Guns.ini, RECOIL, Python (Holosight) X
+	IniRead, PY4XX, Guns.ini, RECOIL, Python (4x Scope) X
 	
-	IniRead, M9NSY, Settings.ini, RECOIL, M92 (No Sight) Y
-	IniRead, M9SSY, Settings.ini, RECOIL, M92 (Simple Sight) Y
-	IniRead, M9HSY, Settings.ini, RECOIL, M92 (Holosight) Y	
-	IniRead, M94XY, Settings.ini, RECOIL, M92 (4x Scope) Y
-	IniRead, M9NSX, Settings.ini, RECOIL, M92 (No Sight) X
-	IniRead, M9SSX, Settings.ini, RECOIL, M92 (Simple Sight) X
-	IniRead, M9HSX, Settings.ini, RECOIL, M92 (Holosight) X
-	IniRead, M94XX, Settings.ini, RECOIL, M92 (4x Scope) X
+	IniRead, M9NSY, Guns.ini, RECOIL, M92 (No Sight) Y
+	IniRead, M9SSY, Guns.ini, RECOIL, M92 (Simple Sight) Y
+	IniRead, M9HSY, Guns.ini, RECOIL, M92 (Holosight) Y	
+	IniRead, M94XY, Guns.ini, RECOIL, M92 (4x Scope) Y
+	IniRead, M9NSX, Guns.ini, RECOIL, M92 (No Sight) X
+	IniRead, M9SSX, Guns.ini, RECOIL, M92 (Simple Sight) X
+	IniRead, M9HSX, Guns.ini, RECOIL, M92 (Holosight) X
+	IniRead, M94XX, Guns.ini, RECOIL, M92 (4x Scope) X
 	
-	IniRead, SMGNSY, Settings.ini, RECOIL, SMG (No Sight) Y
-	IniRead, SMGSSY, Settings.ini, RECOIL, SMG (Simple Sight) Y
-	IniRead, SMGHSY, Settings.ini, RECOIL, SMG (Holosight) Y
-	IniRead, SMGNSX, Settings.ini, RECOIL, SMG (No Sight) X
-	IniRead, SMGSSX, Settings.ini, RECOIL, SMG (Simple Sight) X
-	IniRead, SMGHSX, Settings.ini, RECOIL, SMG (Holosight) X
+	IniRead, SMGNSY, Guns.ini, RECOIL, SMG (No Sight) Y
+	IniRead, SMGSSY, Guns.ini, RECOIL, SMG (Simple Sight) Y
+	IniRead, SMGHSY, Guns.ini, RECOIL, SMG (Holosight) Y
+	IniRead, SMGNSX, Guns.ini, RECOIL, SMG (No Sight) X
+	IniRead, SMGSSX, Guns.ini, RECOIL, SMG (Simple Sight) X
+	IniRead, SMGHSX, Guns.ini, RECOIL, SMG (Holosight) X
 	
-	IniRead, LRNSY, Settings.ini, RECOIL, LR-300 (No Sight) Y
-	IniRead, LRSSY, Settings.ini, RECOIL, LR-300 (Simple Sight) Y
-	IniRead, LRHSY, Settings.ini, RECOIL, LR-300 (Holosight) Y
-	IniRead, LR4XY, Settings.ini, RECOIL, LR-300 (4x Scope) Y
-	IniRead, LRNSX, Settings.ini, RECOIL, LR-300 (No Sight) X
-	IniRead, LRSSX, Settings.ini, RECOIL, LR-300 (Simple Sight) X
-	IniRead, LRHSX, Settings.ini, RECOIL, LR-300 (Holosight) X
-	IniRead, LR4XX, Settings.ini, RECOIL, LR-300 (4x Scope) X			
+	IniRead, LRNSY, Guns.ini, RECOIL, LR-300 (No Sight) Y
+	IniRead, LRSSY, Guns.ini, RECOIL, LR-300 (Simple Sight) Y
+	IniRead, LRHSY, Guns.ini, RECOIL, LR-300 (Holosight) Y
+	IniRead, LR4XY, Guns.ini, RECOIL, LR-300 (4x Scope) Y
+	IniRead, LRNSX, Guns.ini, RECOIL, LR-300 (No Sight) X
+	IniRead, LRSSX, Guns.ini, RECOIL, LR-300 (Simple Sight) X
+	IniRead, LRHSX, Guns.ini, RECOIL, LR-300 (Holosight) X
+	IniRead, LR4XX, Guns.ini, RECOIL, LR-300 (4x Scope) X			
 	
-	IniRead, MGNSY, Settings.ini, RECOIL, M249 (No Sight) Y
-	IniRead, MGSSY, Settings.ini, RECOIL, M249 (Simple Sight) Y
-	IniRead, MGHSY, Settings.ini, RECOIL, M249 (Holosight) Y
-	IniRead, MG4XY, Settings.ini, RECOIL, M249 (4x Scope) Y
-	IniRead, MGNSX, Settings.ini, RECOIL, M249 (No Sight) X
-	IniRead, MGSSX, Settings.ini, RECOIL, M249 (Simple Sight) X
-	IniRead, MGHSX, Settings.ini, RECOIL, M249 (Holosight) X
-	IniRead, MG4XX, Settings.ini, RECOIL, M249 (4x Scope) X			
+	IniRead, MGNSY, Guns.ini, RECOIL, M249 (No Sight) Y
+	IniRead, MGSSY, Guns.ini, RECOIL, M249 (Simple Sight) Y
+	IniRead, MGHSY, Guns.ini, RECOIL, M249 (Holosight) Y
+	IniRead, MG4XY, Guns.ini, RECOIL, M249 (4x Scope) Y
+	IniRead, MGNSX, Guns.ini, RECOIL, M249 (No Sight) X
+	IniRead, MGSSX, Guns.ini, RECOIL, M249 (Simple Sight) X
+	IniRead, MGHSX, Guns.ini, RECOIL, M249 (Holosight) X
+	IniRead, MG4XX, Guns.ini, RECOIL, M249 (4x Scope) X
+	
 ;////////////////////////////////CROUCH RECOIL READ/////////////////////////////////////////
-	IniRead, cAKNSY, Settings.ini, CROUCHRECOIL, AK (No Sight) Y
-	IniRead, cAKSSY, Settings.ini, CROUCHRECOIL, AK (Simple Sight) Y
-	IniRead, cAKHSY, Settings.ini, CROUCHRECOIL, AK (Holosight) Y
-	IniRead, cAK4XY, Settings.ini, CROUCHRECOIL, AK (4x Scope) Y
-	IniRead, cAKNSX, Settings.ini, CROUCHRECOIL, AK (No Sight) X
-	IniRead, cAKSSX, Settings.ini, CROUCHRECOIL, AK (Simple Sight) X
-	IniRead, cAKHSX, Settings.ini, CROUCHRECOIL, AK (Holosight) X
+	IniRead, cAKNSY, Guns.ini, CROUCHRECOIL, AK (No Sight) Y
+	IniRead, cAKSSY, Guns.ini, CROUCHRECOIL, AK (Simple Sight) Y
+	IniRead, cAKHSY, Guns.ini, CROUCHRECOIL, AK (Holosight) Y
+	IniRead, cAK4XY, Guns.ini, CROUCHRECOIL, AK (4x Scope) Y
+	IniRead, cAKNSX, Guns.ini, CROUCHRECOIL, AK (No Sight) X
+	IniRead, cAKSSX, Guns.ini, CROUCHRECOIL, AK (Simple Sight) X
+	IniRead, cAKHSX, Guns.ini, CROUCHRECOIL, AK (Holosight) X
 	
-	IniRead, cSHITNSY, Settings.ini, CROUCHRECOIL, Shitstol (No Sight) Y
-	IniRead, cSHITSSY, Settings.ini, CROUCHRECOIL, Shitstol (Simple Sight) Y
-	IniRead, cSHITHSY, Settings.ini, CROUCHRECOIL, Shitstol (Holosight) Y
-	IniRead, cSHITNSX, Settings.ini, CROUCHRECOIL, Shitstol (No Sight) X
-	IniRead, cSHITSSX, Settings.ini, CROUCHRECOIL, Shitstol (Simple Sight) X
-	IniRead, cSHITHSX, Settings.ini, CROUCHRECOIL, Shitstol (Holosight) X
+	IniRead, cSHITNSY, Guns.ini, CROUCHRECOIL, Shitstol (No Sight) Y
+	IniRead, cSHITSSY, Guns.ini, CROUCHRECOIL, Shitstol (Simple Sight) Y
+	IniRead, cSHITHSY, Guns.ini, CROUCHRECOIL, Shitstol (Holosight) Y
+	IniRead, cSHITNSX, Guns.ini, CROUCHRECOIL, Shitstol (No Sight) X
+	IniRead, cSHITSSX, Guns.ini, CROUCHRECOIL, Shitstol (Simple Sight) X
+	IniRead, cSHITHSX, Guns.ini, CROUCHRECOIL, Shitstol (Holosight) X
 	
-	IniRead, cMPNSY, Settings.ini, CROUCHRECOIL, MP5A4 (No Sight) Y
-	IniRead, cMPSSY, Settings.ini, CROUCHRECOIL, MP5A4 (Simple Sight) Y
-	IniRead, cMPHSY, Settings.ini, CROUCHRECOIL, MP5A4 (Holosight) Y
-	IniRead, cMPNSX, Settings.ini, CROUCHRECOIL, MP5A4 (No Sight) X
-	IniRead, cMPSSX, Settings.ini, CROUCHRECOIL, MP5A4 (Simple Sight) X
-	IniRead, cMPHSX, Settings.ini, CROUCHRECOIL, MP5A4 (Holosight) X
+	IniRead, cMPNSY, Guns.ini, CROUCHRECOIL, MP5A4 (No Sight) Y
+	IniRead, cMPSSY, Guns.ini, CROUCHRECOIL, MP5A4 (Simple Sight) Y
+	IniRead, cMPHSY, Guns.ini, CROUCHRECOIL, MP5A4 (Holosight) Y
+	IniRead, cMPNSX, Guns.ini, CROUCHRECOIL, MP5A4 (No Sight) X
+	IniRead, cMPSSX, Guns.ini, CROUCHRECOIL, MP5A4 (Simple Sight) X
+	IniRead, cMPHSX, Guns.ini, CROUCHRECOIL, MP5A4 (Holosight) X
 	
-	IniRead, cSARNSY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (No Sight) Y
-	IniRead, cSARSSY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Simple Sight) Y
-	IniRead, cSARHSY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Holosight) Y
-	IniRead, cSAR4XY, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (4x Scope) Y
-	IniRead, cSARNSX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (No Sight) X
-	IniRead, cSARSSX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Simple Sight) X
-	IniRead, cSARHSX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (Holosight) X
-	IniRead, cSAR4XX, Settings.ini, CROUCHRECOIL, Semi-Automatic Rifle (4x Scope) X
+	IniRead, cSARNSY, Guns.ini, CROUCHRECOIL, Semi-Automatic Rifle (No Sight) Y
+	IniRead, cSARSSY, Guns.ini, CROUCHRECOIL, Semi-Automatic Rifle (Simple Sight) Y
+	IniRead, cSARHSY, Guns.ini, CROUCHRECOIL, Semi-Automatic Rifle (Holosight) Y
+	IniRead, cSAR4XY, Guns.ini, CROUCHRECOIL, Semi-Automatic Rifle (4x Scope) Y
+	IniRead, cSARNSX, Guns.ini, CROUCHRECOIL, Semi-Automatic Rifle (No Sight) X
+	IniRead, cSARSSX, Guns.ini, CROUCHRECOIL, Semi-Automatic Rifle (Simple Sight) X
+	IniRead, cSARHSX, Guns.ini, CROUCHRECOIL, Semi-Automatic Rifle (Holosight) X
+	IniRead, cSAR4XX, Guns.ini, CROUCHRECOIL, Semi-Automatic Rifle (4x Scope) X
 	
-	IniRead, cTHNSY, Settings.ini, CROUCHRECOIL, Thompson (No Sight) Y
-	IniRead, cTHSSY, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) Y
-	IniRead, cTHHSY, Settings.ini, CROUCHRECOIL, Thompson (Holosight) Y
-	IniRead, cTHNSX, Settings.ini, CROUCHRECOIL, Thompson (No Sight) X
-	IniRead, cTHSSX, Settings.ini, CROUCHRECOIL, Thompson (Simple Sight) X
-	IniRead, cTHHSX, Settings.ini, CROUCHRECOIL, Thompson (Holosight) X
+	IniRead, cTHNSY, Guns.ini, CROUCHRECOIL, Thompson (No Sight) Y
+	IniRead, cTHSSY, Guns.ini, CROUCHRECOIL, Thompson (Simple Sight) Y
+	IniRead, cTHHSY, Guns.ini, CROUCHRECOIL, Thompson (Holosight) Y
+	IniRead, cTHNSX, Guns.ini, CROUCHRECOIL, Thompson (No Sight) X
+	IniRead, cTHSSX, Guns.ini, CROUCHRECOIL, Thompson (Simple Sight) X
+	IniRead, cTHHSX, Guns.ini, CROUCHRECOIL, Thompson (Holosight) X
 	
-	IniRead, cPYNSY, Settings.ini, CROUCHRECOIL, Python (No Sight) Y
-	IniRead, cPYSSY, Settings.ini, CROUCHRECOIL, Python (Simple Sight) Y
-	IniRead, cPYHSY, Settings.ini, CROUCHRECOIL, Python (Holosight) Y
-	IniRead, cPY4XY, Settings.ini, CROUCHRECOIL, Python (4x Scope) Y
-	IniRead, cPYNSX, Settings.ini, CROUCHRECOIL, Python (No Sight) X
-	IniRead, cPYSSX, Settings.ini, CROUCHRECOIL, Python (Simple Sight) X
-	IniRead, cPYHSX, Settings.ini, CROUCHRECOIL, Python (Holosight) X
-	IniRead, cPY4XX, Settings.ini, CROUCHRECOIL, Python (4x Scope) X
+	IniRead, cPYNSY, Guns.ini, CROUCHRECOIL, Python (No Sight) Y
+	IniRead, cPYSSY, Guns.ini, CROUCHRECOIL, Python (Simple Sight) Y
+	IniRead, cPYHSY, Guns.ini, CROUCHRECOIL, Python (Holosight) Y
+	IniRead, cPY4XY, Guns.ini, CROUCHRECOIL, Python (4x Scope) Y
+	IniRead, cPYNSX, Guns.ini, CROUCHRECOIL, Python (No Sight) X
+	IniRead, cPYSSX, Guns.ini, CROUCHRECOIL, Python (Simple Sight) X
+	IniRead, cPYHSX, Guns.ini, CROUCHRECOIL, Python (Holosight) X
+	IniRead, cPY4XX, Guns.ini, CROUCHRECOIL, Python (4x Scope) X
 	
-	IniRead, cM9NSY, Settings.ini, CROUCHRECOIL, M92 (No Sight) Y
-	IniRead, cM9SSY, Settings.ini, CROUCHRECOIL, M92 (Simple Sight) Y
-	IniRead, cM9HSY, Settings.ini, CROUCHRECOIL, M92 (Holosight) Y
-	IniRead, cM94XY, Settings.ini, CROUCHRECOIL, M92 (4x Scope) Y			
-	IniRead, cM9NSX, Settings.ini, CROUCHRECOIL, M92 (No Sight) X
-	IniRead, cM9SSX, Settings.ini, CROUCHRECOIL, M92 (Simple Sight) X
-	IniRead, cM9HSX, Settings.ini, CROUCHRECOIL, M92 (Holosight) X
-	IniRead, cM94XX, Settings.ini, CROUCHRECOIL, M92 (4x Scope) X	
+	IniRead, cM9NSY, Guns.ini, CROUCHRECOIL, M92 (No Sight) Y
+	IniRead, cM9SSY, Guns.ini, CROUCHRECOIL, M92 (Simple Sight) Y
+	IniRead, cM9HSY, Guns.ini, CROUCHRECOIL, M92 (Holosight) Y
+	IniRead, cM94XY, Guns.ini, CROUCHRECOIL, M92 (4x Scope) Y			
+	IniRead, cM9NSX, Guns.ini, CROUCHRECOIL, M92 (No Sight) X
+	IniRead, cM9SSX, Guns.ini, CROUCHRECOIL, M92 (Simple Sight) X
+	IniRead, cM9HSX, Guns.ini, CROUCHRECOIL, M92 (Holosight) X
+	IniRead, cM94XX, Guns.ini, CROUCHRECOIL, M92 (4x Scope) X	
 
-	IniRead, cSMGNSY, Settings.ini, CROUCHRECOIL, SMG (No Sight) Y
-	IniRead, cSMGSSY, Settings.ini, CROUCHRECOIL, SMG (Simple Sight) Y
-	IniRead, cSMGHSY, Settings.ini, CROUCHRECOIL, SMG (Holosight) Y
-	IniRead, cSMGNSX, Settings.ini, CROUCHRECOIL, SMG (No Sight) X
-	IniRead, cSMGSSX, Settings.ini, CROUCHRECOIL, SMG (Simple Sight) X
-	IniRead, cSMGHSX, Settings.ini, CROUCHRECOIL, SMG (Holosight) X
+	IniRead, cSMGNSY, Guns.ini, CROUCHRECOIL, SMG (No Sight) Y
+	IniRead, cSMGSSY, Guns.ini, CROUCHRECOIL, SMG (Simple Sight) Y
+	IniRead, cSMGHSY, Guns.ini, CROUCHRECOIL, SMG (Holosight) Y
+	IniRead, cSMGNSX, Guns.ini, CROUCHRECOIL, SMG (No Sight) X
+	IniRead, cSMGSSX, Guns.ini, CROUCHRECOIL, SMG (Simple Sight) X
+	IniRead, cSMGHSX, Guns.ini, CROUCHRECOIL, SMG (Holosight) X
 	
-	IniRead, cLRNSY, Settings.ini, CROUCHRECOIL, LR-300 (No Sight) Y
-	IniRead, cLRSSY, Settings.ini, CROUCHRECOIL, LR-300 (Simple Sight) Y
-	IniRead, cLRHSY, Settings.ini, CROUCHRECOIL, LR-300 (Holosight) Y
-	IniRead, cLR4XY, Settings.ini, CROUCHRECOIL, LR-300 (4x Scope) Y
-	IniRead, cLRNSX, Settings.ini, CROUCHRECOIL, LR-300 (No Sight) X
-	IniRead, cLRSSX, Settings.ini, CROUCHRECOIL, LR-300 (Simple Sight) X
-	IniRead, cLRHSX, Settings.ini, CROUCHRECOIL, LR-300 (Holosight) X
-	IniRead, cLR4XX, Settings.ini, CROUCHRECOIL, LR-300 (4x Scope) X
+	IniRead, cLRNSY, Guns.ini, CROUCHRECOIL, LR-300 (No Sight) Y
+	IniRead, cLRSSY, Guns.ini, CROUCHRECOIL, LR-300 (Simple Sight) Y
+	IniRead, cLRHSY, Guns.ini, CROUCHRECOIL, LR-300 (Holosight) Y
+	IniRead, cLR4XY, Guns.ini, CROUCHRECOIL, LR-300 (4x Scope) Y
+	IniRead, cLRNSX, Guns.ini, CROUCHRECOIL, LR-300 (No Sight) X
+	IniRead, cLRSSX, Guns.ini, CROUCHRECOIL, LR-300 (Simple Sight) X
+	IniRead, cLRHSX, Guns.ini, CROUCHRECOIL, LR-300 (Holosight) X
+	IniRead, cLR4XX, Guns.ini, CROUCHRECOIL, LR-300 (4x Scope) X
 	
-	IniRead, cMGNSY, Settings.ini, CROUCHRECOIL, M249 (No Sight) Y
-	IniRead, cMGSSY, Settings.ini, CROUCHRECOIL, M249 (Simple Sight) Y
-	IniRead, cMGHSY, Settings.ini, CROUCHRECOIL, M249 (Holosight) Y
-	IniRead, cMG4XY, Settings.ini, CROUCHRECOIL, M249 (4x Scope) Y
-	IniRead, cMGNSX, Settings.ini, CROUCHRECOIL, M249 (No Sight) X
-	IniRead, cMGSSX, Settings.ini, CROUCHRECOIL, M249 (Simple Sight) X
-	IniRead, cMGHSX, Settings.ini, CROUCHRECOIL, M249 (Holosight) X
-	IniRead, cMG4XX, Settings.ini, CROUCHRECOIL, M249 (4x Scope) X
-	IniRead, SENSE, Settings.ini, Sensitivity, Sensitivity			
-
-if FileExist("Guns.ini")
-{
-	}else{
-;////////////////////////////////Initial Settings Values////////////////////////////
-
-			IniWrite, 52, Guns.ini, TUNING (Sleeps), AK (No Sight)
-			IniWrite, 38, Guns.ini, TUNING (Sleeps), AK (Simple Sight)
-			IniWrite, 52, Guns.ini, TUNING (Sleeps), AK (Holosight)
-			IniWrite, 52, Guns.ini, TUNING (Sleeps), AK (4x Scope)
-
-			
-			IniWrite, 36, Guns.ini, TUNING (Sleeps), MP5A4 (No Sight)
-			IniWrite, 34, Guns.ini, TUNING (Sleeps), MP5A4 (Simple Sight)
-			IniWrite, 36, Guns.ini, TUNING (Sleeps), MP5A4 (Holosight)
-			
-			
-			IniWrite, 51, Guns.ini, TUNING (Sleeps), Thompson (No Sight)
-			IniWrite, 51, Guns.ini, TUNING (Sleeps), Thompson (Simple Sight)
-			IniWrite, 46, Guns.ini, TUNING (Sleeps), Thompson (Holosight)
-			
-			IniWrite, 35, Guns.ini, TUNING (Sleeps), SMG (No Sight)
-			IniWrite, 35, Guns.ini, TUNING (Sleeps), SMG (Simple Sight)
-			IniWrite, 35, Guns.ini, TUNING (Sleeps), SMG (Holosight)
-			
-			IniWrite, 35, Guns.ini, TUNING (Sleeps), LR-300 (No Sight)
-			IniWrite, 35, Guns.ini, TUNING (Sleeps), LR-300 (Simple Sight)
-			IniWrite, 35, Guns.ini, TUNING (Sleeps), LR-300 (Holosight)
-			IniWrite, 20, Guns.ini, TUNING (Sleeps), LR-300 (4x Scope)
-			
-			IniWrite, 29, Guns.ini, TUNING (Sleeps), M249 (No Sight)
-			IniWrite, 29, Guns.ini, TUNING (Sleeps), M249 (Simple Sight)
-			IniWrite, 29, Guns.ini, TUNING (Sleeps), M249 (Holosight)
-			IniWrite, 29, Guns.ini, TUNING (Sleeps), M249 (4x Scope)
-			FileAppend,`n,Settings.ini
-			
-			IniWrite, 20, Guns.ini, CROUCHTUNING (Sleeps), AK (No Sight)
-			IniWrite, 45, Guns.ini, CROUCHTUNING (Sleeps), AK (Simple Sight)
-			IniWrite, 37, Guns.ini, CROUCHTUNING (Sleeps), AK (Holosight)
-			IniWrite, 37, Guns.ini, CROUCHTUNING (Sleeps), AK (4x Scope)
-
-			IniWrite, 65, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (No Sight)
-			IniWrite, 65, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (Simple Sight)
-			IniWrite, 65, Guns.ini, CROUCHTUNING (Sleeps), MP5A4 (Holosight)
-			
-			
-			IniWrite, 5, Guns.ini, CROUCHTUNING (Sleeps), Thompson (No Sight)
-			IniWrite, 5, Guns.ini, CROUCHTUNING (Sleeps), Thompson (Simple Sight)
-			IniWrite, 5, Guns.ini, CROUCHTUNING (Sleeps), Thompson (Holosight)
-
-			IniWrite, 5, Guns.ini, CROUCHTUNING (Sleeps), SMG (No Sight)
-			IniWrite, 5, Guns.ini, CROUCHTUNING (Sleeps), SMG (Simple Sight)
-			IniWrite, 5, Guns.ini, CROUCHTUNING (Sleeps), SMG (Holosight)
-			
-			IniWrite, 50, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (No Sight)
-			IniWrite, 50, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (Simple Sight)
-			IniWrite, 50, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (Holosight)
-			IniWrite, 34, Guns.ini, CROUCHTUNING (Sleeps), LR-300 (4x Scope)
-			
-			IniWrite, 29, Guns.ini, CROUCHTUNING (Sleeps), M249 (No Sight)
-			IniWrite, 29, Guns.ini, CROUCHTUNING (Sleeps), M249 (Simple Sight)
-			IniWrite, 29, Guns.ini, CROUCHTUNING (Sleeps), M249 (Holosight)
-			IniWrite, 45, Guns.ini, CROUCHTUNING (Sleeps), M249 (4x Scope)
-			FileAppend,`n,Settings.ini
-			
-			IniWrite, 220, Guns.ini, FireRate, FireRate
-			IniWrite, 28, Guns.ini, FireRate, AK (No Sight)
-			IniWrite, 11, Guns.ini, FireRate, cAK (No Sight)
-			FileAppend,`n,Settings.ini
-		}	
+	IniRead, cMGNSY, Guns.ini, CROUCHRECOIL, M249 (No Sight) Y
+	IniRead, cMGSSY, Guns.ini, CROUCHRECOIL, M249 (Simple Sight) Y
+	IniRead, cMGHSY, Guns.ini, CROUCHRECOIL, M249 (Holosight) Y
+	IniRead, cMG4XY, Guns.ini, CROUCHRECOIL, M249 (4x Scope) Y
+	IniRead, cMGNSX, Guns.ini, CROUCHRECOIL, M249 (No Sight) X
+	IniRead, cMGSSX, Guns.ini, CROUCHRECOIL, M249 (Simple Sight) X
+	IniRead, cMGHSX, Guns.ini, CROUCHRECOIL, M249 (Holosight) X
+	IniRead, cMG4XX, Guns.ini, CROUCHRECOIL, M249 (4x Scope) X	
 
 ;/////////////////////////////////////////////SLEEP MODIFIERS////////////////////////////////////////////
 	IniRead, RoF, Guns.ini, FireRate, FireRate
@@ -507,9 +218,6 @@ if FileExist("Guns.ini")
 	IniRead, M249SLEEPHS, Guns.ini, TUNING (Sleeps), M249 (Holosight)
 	IniRead, M249SLEEP4X, Guns.ini, TUNING (Sleeps), M249 (4x Scope)
 	
-	
-	
-	
 	IniRead, cAKSLEEPNS, Guns.ini,  CROUCHTUNING (Sleeps), AK (No Sight)
 	IniRead, cAKSLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), AK (Simple Sight)
 	IniRead, cAKSLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), AK (Holosight)
@@ -538,7 +246,7 @@ if FileExist("Guns.ini")
 	IniRead, cM249SLEEPSS, Guns.ini, CROUCHTUNING (Sleeps), M249 (Simple Sight)
 	IniRead, cM249SLEEPHS, Guns.ini, CROUCHTUNING (Sleeps), M249 (Holosight)
 	IniRead, cM249SLEEP4X, Guns.ini, CROUCHTUNING (Sleeps), M249 (4x Scope)
-			
+		
 ;Resolution Calibration Unit--------------------------------
 	xx := (A_ScreenWidth // 2)
 	yy := (A_ScreenHeight // 2)
@@ -649,7 +357,7 @@ Gui, add, radio, x145 y120 w50 h25 vHonzo gHonzo, Honzo
 Gui, add, radio, x145 y145 w50 h25 vWTF gWTF, ???
 
 ;----------------Color Slider-----------------------
-IniRead, RETCOLOR, Settings.ini, ColorSets, RETICLECOLOR
+IniRead, RETCOLOR, Settings.ini, SETTINGS, RETICLECOLOR
 ; These change the ARGB ####### number to 3 RGB ###,###,### numbers 
 RETTRAN  := (0xff000000 & RETCOLOR) >> 24 
 RETRED   := (0x00ff0000 & RETCOLOR) >> 16
@@ -688,10 +396,13 @@ Guicontrol,,Semi,1
 Guicontrol,,NoSight,1
 GuiControl,,SMEKTHairOn,1
 
-;--------------------Git saved vales from settings----------------------
+;Git saved vales from settings
 IniRead, TOGGLEKEY, Settings.ini, ChatHotKeys, TOGGLEHOTKEY
 IniRead, MINMAXKEY, Settings.ini, ChatHotKeys, MINMAXHOTKEY
 IniRead, KILLKEY, Settings.ini, ChatHotKeys, KILLHOTKEY
+IniRead, RoFTOG, Settings.ini, ChatHotKeys, RoFTOGGLE
+IniRead, COMBATLOGKEY, Settings.ini, ChatHotKeys, COMBATLOGHOTKEY
+
 IniRead, CHAT1, Settings.ini, ChatCommands, CHATCOMMAND1
 IniRead, CHATKEY1, Settings.ini, ChatHotKeys, CHATHOTKEY1
 IniRead, CHAT2, Settings.ini, ChatCommands, CHATCOMMAND2
@@ -700,54 +411,86 @@ IniRead, CHAT3, Settings.ini, ChatCommands, CHATCOMMAND3
 IniRead, CHATKEY3, Settings.ini, ChatHotKeys, CHATHOTKEY3
 IniRead, CHAT4, Settings.ini, ChatCommands, CHATCOMMAND4
 IniRead, CHATKEY4, Settings.ini, ChatHotKeys, CHATHOTKEY4
-IniRead, RoFTOG, Settings.ini, ChatHotKeys, RoFTOGGLE
+IniRead, CHAT5, Settings.ini, ChatCommands, CHATCOMMAND5
+IniRead, CHATKEY5, Settings.ini, ChatHotKeys, CHATHOTKEY5
+IniRead, CHAT6, Settings.ini, ChatCommands, CHATCOMMAND6
+IniRead, CHATKEY6, Settings.ini, ChatHotKeys, CHATHOTKEY6
+IniRead, CHAT7, Settings.ini, ChatCommands, CHATCOMMAND7
+IniRead, CHATKEY7, Settings.ini, ChatHotKeys, CHATHOTKEY7
+IniRead, CHAT8, Settings.ini, ChatCommands, CHATCOMMAND8
+IniRead, CHATKEY8, Settings.ini, ChatHotKeys, CHATHOTKEY8
+
 IniRead, X1, Settings.ini, ResCalibration, X1
 IniRead, X2, Settings.ini, ResCalibration, X2
 IniRead, Y1, Settings.ini, ResCalibration, Y1
 IniRead, Y2, Settings.ini, ResCalibration, Y2
 
+;Settinss Tab Fields
+Gui, add, Text, x8 y65 w110 h13, Custom Commands
+Gui, add, Text, x155 y65 w110 h13, Key
 
-Gui, add, Text, x8 y95 w110 h13, Custom Commands
-Gui, add, Text, x155 y95 w110 h13, Key
+Gui, add, Text, x8 y80 w100 h20, TOGGLE
+Gui, Add, Hotkey, vToggleKey x155 y80 w100 h20,%TOGGLEKEY%
 
-Gui, add, Text, x8 y110 w100 h20, TOGGLE
-Gui, Add, Hotkey, vToggleKey x155 y110 w100 h20,%TOGGLEKEY%
+Gui, add, Text, x8 y100 w100 h20, MINMAX
+Gui, Add, Hotkey, vMinMaxKey x155 y100 w100 h20,%MINMAXKEY%
 
-Gui, add, Text, x8 y130 w100 h20, MINMAX
-Gui, Add, Hotkey, vMinMaxKey x155 y130 w100 h20,%MINMAXKEY%
+Gui, add, Text, x8 y120 w100 h20, KILL
+Gui, Add, Hotkey, vKillKey x155 y120 w100 h20,%KILLKEY%
 
-Gui, add, Text, x8 y150 w100 h20, KILL
-Gui, Add, Hotkey, vKillKey x155 y150 w100 h20,%KILLKEY%
+Gui, add, Text, x8 y140 w150 h20, Controlled Fire Toggle
+Gui, Add, Hotkey, vRoFTOGGLE x155 y140 w100 h20,%RoFTOG%
 
-Gui, add, Text, x8 y170 w100 h20, CMD1
-Gui, Add, Edit, x55 y170 w100 h20 vCHAT1 cBlack, %CHAT1%
-Gui, Add, Hotkey, vChatKey1 x155 y170 w100 h20,%CHATKEY1%
+Gui, add, Text, x8 y160 w100 h20, CombatLog
+Gui, Add, Hotkey, vCombatLogKey x155 y160 w100 h20,%COMBATLOGKEY%
 
-Gui, add, Text, x8 y190 w100 h20, CMD2
-Gui, Add, Edit, x55 y190 w100 h20 vCHAT2 cBlack, %CHAT2%
-Gui, Add, Hotkey, vChatKey2 x155 y190 w100 h20,%CHATKEY2%
+Gui, add, Text, x8 y180 w100 h20, CMD1
+Gui, Add, Edit, x55 y180 w100 h20 vCHAT1 cBlack, %CHAT1%
+Gui, Add, Hotkey, vChatKey1 x155 y180 w100 h20,%CHATKEY1%
 
-Gui, add, Text, x8 y210 w100 h20, CMD3
-Gui, Add, Edit, x55 y210 w100 h20 vCHAT3 cBlack, %CHAT3%
-Gui, Add, Hotkey, vChatKey3 x155 y210 w100 h20,%CHATKEY3%
+Gui, add, Text, x8 y200 w100 h20, CMD2
+Gui, Add, Edit, x55 y200 w100 h20 vCHAT2 cBlack, %CHAT2%
+Gui, Add, Hotkey, vChatKey2 x155 y200 w100 h20,%CHATKEY2%
 
-Gui, add, Text, x8 y230 w100 h20, CMD4
-Gui, Add, Edit, x55 y230 w100 h20 vCHAT4 cBlack, %CHAT4%
-Gui, Add, Hotkey, vChatKey4 x155 y230 w100 h20,%CHATKEY4%
+Gui, add, Text, x8 y220 w100 h20, CMD3
+Gui, Add, Edit, x55 y220 w100 h20 vCHAT3 cBlack, %CHAT3%
+Gui, Add, Hotkey, vChatKey3 x155 y220 w100 h20,%CHATKEY3%
 
-Gui, add, Text, x8 y250 w150 h20, Controlled Fire Toggle
-Gui, Add, Hotkey, vRoFTOGGLE x155 y250 w100 h20,%RoFTOG%
+Gui, add, Text, x8 y240 w100 h20, CMD4
+Gui, Add, Edit, x55 y240 w100 h20 vCHAT4 cBlack, %CHAT4%
+Gui, Add, Hotkey, vChatKey4 x155 y240 w100 h20,%CHATKEY4%
+
+Gui, add, Text, x8 y260 w100 h20, CMD5
+Gui, Add, Edit, x55 y260 w100 h20 vCHAT5 cBlack, %CHAT5%
+Gui, Add, Hotkey, vChatKey5 x155 y260 w100 h20,%CHATKEY5%
+
+Gui, add, Text, x8 y280 w100 h20, CMD6
+Gui, Add, Edit, x55 y280 w100 h20 vCHAT6 cBlack, %CHAT6%
+Gui, Add, Hotkey, vChatKey6 x155 y280 w100 h20,%CHATKEY6%
+
+Gui, add, Text, x8 y300 w100 h20, CMD7
+Gui, Add, Edit, x55 y300 w100 h20 vCHAT7 cBlack, %CHAT7%
+Gui, Add, Hotkey, vChatKey7 x155 y300 w100 h20,%CHATKEY7%
+
+Gui, add, Text, x8 y320 w100 h20, CMD8
+Gui, Add, Edit, x55 y320 w100 h20 vCHAT8 cBlack, %CHAT8%
+Gui, Add, Hotkey, vChatKey8 x155 y320 w100 h20,%CHATKEY8%
 
 Gui, add, button, x115 y370 w45 h20 gSaveSettings, Save
 ;Set Hotkeys
 	Hotkey, %TOGGLEKEY%, ToggleKey
 	Hotkey, %MINMAXKEY%, MinMaxKey
 	Hotkey, %KILLKEY%, KillKey
+	Hotkey, %RoFTOG%, RoFTOGGLE
+	Hotkey, %COMBATLOGKEY%, CombatLogKey	
 	Hotkey, %CHATKEY1%, ChatKey1
 	Hotkey, %CHATKEY2%, ChatKey2
 	Hotkey, %CHATKEY3%, ChatKey3
 	Hotkey, %CHATKEY4%, ChatKey4
-	Hotkey, %RoFTOG%, RoFTOGGLE
+	Hotkey, %CHATKEY5%, ChatKey5
+	Hotkey, %CHATKEY6%, ChatKey6
+	Hotkey, %CHATKEY7%, ChatKey7
+	Hotkey, %CHATKEY8%, ChatKey8
 	
 ;/////////////////////////////////////////Config Tab////////////////////////////////////////
 Gui, tab, Config
@@ -765,7 +508,7 @@ Gui, add, edit, x15 y270 w70 h20 vSensitivity, %SENSE%
 Gui, add, edit, x15 y90 w70 h20 vFireRate, %RoF% 
 Gui, add, button, x85 y90 w40 h20 gFireRate, Enter
 Gui, Font, s7 cRed
-Gui, add, text, x3 y200 w290 h55 Center, Input your Sensitivity below and press Enter.
+Gui, add, text, x3 y200 w290 h55 Center, Input your RUST Sensitivity below and press Enter.
 Gui, add, text, x3 y110 w290 h55 Center, Simulates rapid single fires while mouse is held down to eliminate progressive aimcone. Input a custom time between shots above to your liking. ONLY SUPPORTS AK AT THE MOMENT
 Gui, Font, s7 c7BF106
 Gui, add, text, x10 y255 w80 h15 Center vSensitivityText, Sensitivity
@@ -1311,7 +1054,7 @@ Loop {
 			cmoveAmountY = %cSARSSY%
 			cmoveAmountY /= %SENSE%
 	}
-	IniRead, SENSE, Settings.ini, Sensitivity, Sensitivity
+	IniRead, SENSE, Settings.ini, SETTINGS, Sensitivity
 	IniRead, RoF, Guns.ini, FireRate, FireRate
 	
 	if (M92 = 1) && (NoBarrel = 1)
@@ -1363,7 +1106,7 @@ Return
 SensitivityEnter:
 Loop 2 {
 	GuiControl,, SensitivityText, Sensitivity:%Sensitivity%
-	IniWrite, %Sensitivity%, Settings.ini, Sensitivity, Sensitivity
+	IniWrite, %Sensitivity%, Settings.ini, SETTINGS, Sensitivity
 }
 Return
 	
@@ -1404,7 +1147,7 @@ ColorSliderSubmit:
 	sleep, 50
 ;-----------Translates the RGB from sliders to ARGB number, 255 is Transparency------------
 	RGB:= Gdip_ToARGB(255, CSRed, CSGreen, CSBlue)
-	IniWrite, %RGB%, Settings.ini, ColorSets, RETICLECOLOR
+	IniWrite, %RGB%, Settings.ini, SETTINGS, RETICLECOLOR
 	Run, "SMEKTHair.ahk"
 Return
 
@@ -1434,58 +1177,58 @@ Return
 
 ;-----Saves last selected screen reticle to settings.ini
 Quad:
-IniWrite, Quad.png, Settings.ini, SightSelected, CURRENTSIGHT
+IniWrite, Quad.png, Settings.ini, SETTINGS, CURRENTSIGHT
 		Run, "SMEKTHair.ahk"
 Return
 
 
 Sniper:
-IniWrite, SNIPER.png, Settings.ini, SightSelected, CURRENTSIGHT
+IniWrite, SNIPER.png, Settings.ini, SETTINGS, CURRENTSIGHT
 		Run, "SMEKTHair.ahk"
 Return
 
 ACOG:
-IniWrite, ACOG.png, Settings.ini, SightSelected, CURRENTSIGHT
+IniWrite, ACOG.png, Settings.ini, SETTINGS, CURRENTSIGHT
 		Run, "SMEKTHair.ahk"
 Return
 
 Cross:
-IniWrite, CROSS.png, Settings.ini, SightSelected, CURRENTSIGHT
+IniWrite, CROSS.png, Settings.ini, SETTINGS, CURRENTSIGHT
 		Run, "SMEKTHair.ahk"
 Return
 
 Dot:
-IniWrite, DOT.png, Settings.ini, SightSelected, CURRENTSIGHT
+IniWrite, DOT.png, Settings.ini, SETTINGS, CURRENTSIGHT
 		Run, "SMEKTHair.ahk"
 Return
 
 VSight:
-IniWrite, VSIGHT.png, Settings.ini, SightSelected, CURRENTSIGHT
+IniWrite, VSIGHT.png, Settings.ini, SETTINGS, CURRENTSIGHT
 	sleep, 50
 		Run, "SMEKTHair.ahk"
 Return
 
 GapDash:
-IniWrite, GAPDASH.png, Settings.ini, SightSelected, CURRENTSIGHT
+IniWrite, GAPDASH.png, Settings.ini, SETTINGS, CURRENTSIGHT
 		Run, "SMEKTHair.ahk"
 Return
 
 RangeFinder:
-IniWrite, RANGEFINDER.png, Settings.ini, SightSelected, CURRENTSIGHT
+IniWrite, RANGEFINDER.png, Settings.ini, SETTINGS, CURRENTSIGHT
 		Run, "SMEKTHair.ahk"
 Return
 
 XSight:
-IniWrite, XSIGHT.png, Settings.ini, SightSelected, CURRENTSIGHT
+IniWrite, XSIGHT.png, Settings.ini, SETTINGS, CURRENTSIGHT
 		Run, "SMEKTHair.ahk"
 Return
 Honzo:
-IniWrite, Honzo.png, Settings.ini, SightSelected, CURRENTSIGHT
+IniWrite, Honzo.png, Settings.ini, SETTINGS, CURRENTSIGHT
 		Run, "SMEKTHair.ahk"
 Return
 
 WTF:
-IniWrite, WTF.png, Settings.ini, SightSelected, CURRENTSIGHT
+IniWrite, WTF.png, Settings.ini, SETTINGS, CURRENTSIGHT
 		Run, "SMEKTHair.ahk"
 Return
 
@@ -1494,6 +1237,9 @@ SaveSettings:
 	IniWrite, %TOGGLEKEY%, Settings.ini, ChatHotKeys, TOGGLEHOTKEY
 	IniWrite, %MINMAXKEY%, Settings.ini, ChatHotKeys, MINMAXHOTKEY
 	IniWrite, %KILLKEY%, Settings.ini, ChatHotKeys, KILLHOTKEY
+	IniWrite, %COMBATLOGKEY%, Settings.ini, ChatHotKeys, COMBATLOGHOTKEY
+	IniWrite, %RoFTOGGLE%, Settings.ini, ChatHotKeys, RoFTOGGLE
+	
 	IniWrite, %CHAT1%, Settings.ini, ChatCommands, CHATCOMMAND1
 	IniWrite, %CHATKEY1%, Settings.ini, ChatHotKeys, CHATHOTKEY1
 	IniWrite, %CHAT2%, Settings.ini, ChatCommands, CHATCOMMAND2
@@ -1502,7 +1248,15 @@ SaveSettings:
 	IniWrite, %CHATKEY3%, Settings.ini, ChatHotKeys, CHATHOTKEY3
 	IniWrite, %CHAT4%, Settings.ini, ChatCommands, CHATCOMMAND4
 	IniWrite, %CHATKEY4%, Settings.ini, ChatHotKeys, CHATHOTKEY4
-	IniWrite, %RoFTOGGLE%, Settings.ini, ChatHotKeys, RoFTOGGLE
+	IniWrite, %CHAT5%, Settings.ini, ChatCommands, CHATCOMMAND5
+	IniWrite, %CHATKEY5%, Settings.ini, ChatHotKeys, CHATHOTKEY5
+	IniWrite, %CHAT6%, Settings.ini, ChatCommands, CHATCOMMAND6
+	IniWrite, %CHATKEY6%, Settings.ini, ChatHotKeys, CHATHOTKEY6
+	IniWrite, %CHAT7%, Settings.ini, ChatCommands, CHATCOMMAND7
+	IniWrite, %CHATKEY7%, Settings.ini, ChatHotKeys, CHATHOTKEY7
+	IniWrite, %CHAT8%, Settings.ini, ChatCommands, CHATCOMMAND8
+	IniWrite, %CHATKEY8%, Settings.ini, ChatHotKeys, CHATHOTKEY8
+	
 	MsgBox, 0,, Settings Saved
 ;----Reload Script to Update Hotkeys----
 	Reload
@@ -1561,6 +1315,35 @@ ChatKey4:
 	Sleep, 5
 	Send {Enter}
 Return
+ChatKey5:
+	Send {Enter}
+	Sleep, 100
+	Send %CHAT5%
+	Sleep, 5
+	Send {Enter}
+Return
+ChatKey6:
+	Send {Enter}
+	Sleep, 100
+	Send %CHAT6%
+	Sleep, 5
+	Send {Enter}
+Return
+ChatKey7:
+	Send {Enter}
+	Sleep, 100
+	Send %CHAT7%
+	Sleep, 5
+	Send {Enter}
+Return
+ChatKey8:
+	Send {Enter}
+	Sleep, 100
+	Send %CHAT8%
+	Sleep, 5
+	Send {Enter}
+Return
+
 ;---This is suicide, not murder
 KillKey:
 	Send {F1}
@@ -1571,7 +1354,14 @@ KillKey:
 	Sleep, 15
 	Send {F1}
 Return
-
+CombatLogKey:
+	Send {F1}
+	Sleep, 100
+	Send combatlog
+	Sleep, 5
+	Send {Enter}
+	Sleep, 15
+Return
 
 Close:
 	CloseScript("SMEKTHair.ahk")

@@ -1,3 +1,5 @@
+## Detectable and bannable right now!
+
 ## GitGud
 An FPS Autohotkey system specific for Rust
 

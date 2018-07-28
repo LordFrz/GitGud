@@ -73,10 +73,6 @@ While defaults are optimized for Rust in-game sensitivity of 1, you may set your
 ## [Discord](https://discord.gg/Ghq9UcQ)
 
 ### Donations
-_DOGE_ - DBdYwDEy8fEpNAjwDHDTuHcntA1dpogh9Q
-
-_BitCoin_ - 1K4zmXYRXhEG3mwfzKp8fq9XkwkNVnL48z
-
 _PayPal_ - paypal.me/smekt (FrDe Plastics is for somethin else, but its the same account)
 
 
